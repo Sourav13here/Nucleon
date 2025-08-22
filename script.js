@@ -8,7 +8,7 @@ const initSwiper = () => {
         effect: 'fade',
         speed: 1000,
         autoplay: {
-            delay: 5000,
+            delay: 3000,
             disableOnInteraction: false,
         },
         
@@ -55,6 +55,24 @@ const initSwiper = () => {
             heroSwiper.autoplay.start();
         });
     }
+
+// Highlight current page in nav
+function setActiveNav() {
+    if (!navLinkItems || navLinkItems.length === 0) return;
+    const current = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    navLinkItems.forEach(link => {
+        const href = (link.getAttribute('href') || '').split('/').pop().toLowerCase();
+        const isHome = href === 'index.html' && (current === '' || current === 'index.html');
+        if (href === current || isHome) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
+// Run immediately
+setActiveNav();
 };
 
 // Preloader
@@ -185,29 +203,6 @@ if (backToTop) {
     });
 }
 
-// Program Filtering
-const categoryBtns = document.querySelectorAll('.category-btn');
-const programCards = document.querySelectorAll('.program-card');
-
-categoryBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        // Remove active class from all buttons
-        categoryBtns.forEach(b => b.classList.remove('active'));
-        // Add active class to clicked button
-        btn.classList.add('active');
-        
-        const category = btn.getAttribute('data-category');
-        
-        // Filter programs
-        programCards.forEach(card => {
-            if (category === 'all' || card.getAttribute('data-category') === category) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    });
-});
 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
