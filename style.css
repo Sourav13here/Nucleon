@@ -161,6 +161,7 @@ h4 { font-size: 1.5rem; }
     overflow: hidden;
     margin-top: 2rem; /* Add space between quote card and hero slider */
     margin-top: -80px; /* To account for fixed header */
+    margin-bottom: 2rem;
 }
 
 .hero-slide {
