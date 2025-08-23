@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Nucleon Coaching Institutes</title>
-    <meta name="description" content="Get in touch with Nucleon Coaching Institutes. Contact us for admissions, queries, and more information.">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
+    <meta name="description"
+        content="Get in touch with Nucleon Coaching Institutes. Contact us for admissions, queries, and more information.">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="contact.css">
 </head>
+
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="container">
             <nav class="nav">
@@ -33,7 +34,7 @@
                     <li><a href="centers.html">Centers</a></li>
                     <li><a href="educator.html">Educator</a></li>
                     <li><a href="partnership.html">Partnership</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
                 </ul>
                 <button class="mobile-menu-btn">
                     <i class="fas fa-bars"></i>
@@ -43,26 +44,20 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
                     <h1>Contact Us</h1>
-                    <p>Get in touch with us for admissions, queries, or any assistance. We're here to help you succeed.</p>
+                    <p>Get in touch with us for admissions, queries, or any assistance. We're here to help you succeed.
+                    </p>
                 </div>
-            </div>
-            <div class="hero-wave">
-                <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-                    <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512,67,583,96.69,653.27,126,723,136,792,138c90,3.38,161.76-22.12,237.51-51.08,11.14-4.34,22.48-8.82,33.9-13.4,11.42-4.57,22.87-9.28,34.38-14.08,21.19-8.8,42.9-16.12,65.2-21.95V0Z" fill="#fff"></path>
-                </svg>
-            </div>
+            </div> 
         </section>
 
-        <!-- Contact Section -->
+        <!--Form Section-->
         <section class="section">
             <div class="container">
                 <div class="program-cards">
-                    <!-- Contact Form -->
                     <div class="program-card" style="grid-column: 1 / -1; max-width: 800px; margin: 0 auto;">
                         <div class="program-icon">
                             <i class="fas fa-envelope"></i>
@@ -71,22 +66,22 @@
                         <form id="contactForm" style="margin-top: 2rem;">
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
                                 <div>
-                                    <label for="name" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Name *</label>
-                                    <input type="text" id="name" name="name" required style="width: 100%; padding: 0.75rem; border: 2px solid var(--gray-200); border-radius: var(--radius); font-size: 1rem;">
+                                    <label for="name">Name *</label>
+                                    <input type="text" id="name" name="name" required autocomplete="name">
                                 </div>
                                 <div>
-                                    <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email *</label>
-                                    <input type="email" id="email" name="email" required style="width: 100%; padding: 0.75rem; border: 2px solid var(--gray-200); border-radius: var(--radius); font-size: 1rem;">
+                                    <label for="email">Email *</label>
+                                    <input type="email" id="email" name="email" required autocomplete="email">
                                 </div>
                             </div>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
                                 <div>
-                                    <label for="phone" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Phone *</label>
-                                    <input type="tel" id="phone" name="phone" required style="width: 100%; padding: 0.75rem; border: 2px solid var(--gray-200); border-radius: var(--radius); font-size: 1rem;">
+                                    <label for="phone">Phone *</label>
+                                    <input type="tel" id="phone" name="phone" required autocomplete="tel">
                                 </div>
                                 <div>
-                                    <label for="program" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Program Interest</label>
-                                    <select id="program" name="program" style="width: 100%; padding: 0.75rem; border: 2px solid var(--gray-200); border-radius: var(--radius); font-size: 1rem;">
+                                    <label for="program">Program Interest</label>
+                                    <select id="program" name="program">
                                         <option value="">Select Program</option>
                                         <option value="foundation">Foundation (VI-X)</option>
                                         <option value="class11-12">Class XI & XII</option>
@@ -97,12 +92,12 @@
                                 </div>
                             </div>
                             <div style="margin-bottom: 1.5rem;">
-                                <label for="message" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Message *</label>
-                                <textarea id="message" name="message" rows="5" required style="width: 100%; padding: 0.75rem; border: 2px solid var(--gray-200); border-radius: var(--radius); font-size: 1rem; resize: vertical;"></textarea>
+                                <label for="message">Message *</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
                             </div>
-                            <button type="submit" class="btn btn-large" style="width: 100%;">
+                            <button type="submit" id="submitBtn" class="btn btn-large" style="width: 100%;">
                                 <i class="fas fa-paper-plane"></i>
-                                Send Message
+                                <span>Send Message</span>
                             </button>
                         </form>
                     </div>
@@ -110,7 +105,6 @@
             </div>
         </section>
 
-        <!-- Contact Info -->
         <section class="section testimonials">
             <div class="container">
                 <div class="section-title">
@@ -125,8 +119,8 @@
                         </div>
                         <h3>Head Office</h3>
                         <p>Nucleon Coaching Institutes<br>
-                        City Center, Durgapur<br>
-                        West Bengal - 713216</p>
+                            City Center, Durgapur<br>
+                            West Bengal - 713216</p>
                     </div>
 
                     <div class="program-card">
@@ -135,8 +129,8 @@
                         </div>
                         <h3>Phone Numbers</h3>
                         <p>Main Office: +91-XXXX-XXXXXX<br>
-                        Admission Helpline: +91-XXXX-XXXXXX<br>
-                        Student Support: +91-XXXX-XXXXXX</p>
+                            Admission Helpline: +91-XXXXXXXXXX<br>
+                            Student Support: +91-XXXX-XXXXXX</p>
                     </div>
 
                     <div class="program-card">
@@ -145,31 +139,21 @@
                         </div>
                         <h3>Email Addresses</h3>
                         <p>General Inquiries: info@nucleoncoaching.com<br>
-                        Admissions: admissions@nucleoncoaching.com<br>
-                        Support: support@nucleoncoaching.com</p>
-                    </div>
-
-                    <div class="program-card">
-                        <div class="program-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <h3>Office Hours</h3>
-                        <p>Monday - Friday: 9:00 AM - 6:00 PM<br>
-                        Saturday: 9:00 AM - 4:00 PM<br>
-                        Sunday: Closed</p>
+                            Admissions: admissions@nucleoncoaching.com<br>
+                            Support: support@nucleoncoaching.com</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Nucleon Coaching</h3>
-                    <p>Empowering students with quality education and proven results. Join thousands of successful students across India.</p>
+                    <p>Empowering students with quality education and proven results. Join thousands of successful
+                        students across India.</p>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
@@ -198,12 +182,189 @@
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
     <a href="#" class="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </a>
-    
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+
+    <!-- Custom Success Dialog -->
+    <div id="successDialog" class="dialog-container">
+        <div class="dialog-content">
+            <div class="dialog-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 id="dialogTitle">Success!</h3>
+            <p id="dialogMessage">Your message has been sent successfully.</p>
+            <button type="button" id="dialogOkButton" class="dialog-button">OK</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const contactForm = document.getElementById("contactForm");
+            const submitBtn = document.getElementById("submitBtn");
+            const dialogOkButton = document.getElementById("dialogOkButton");
+            
+            // Add styles for dialog
+            const dialogStyles = `
+                .dialog-container {
+                    display: none; 
+                    position: fixed; 
+                    top: 0; 
+                    left: 0; 
+                    width: 100%; 
+                    height: 100%; 
+                    background: rgba(0,0,0,0.7); 
+                    z-index: 9999; 
+                    justify-content: center; 
+                    align-items: center;
+                }
+                
+                .dialog-content {
+                    border: 2px solid #800000; 
+                    border-radius: 12px; 
+                    padding: 30px 25px; 
+                    width: 340px; 
+                    background: white; 
+                    text-align: center; 
+                    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+                }
+                
+                .dialog-icon {
+                    margin-bottom: 20px;
+                }
+                
+                .dialog-icon i {
+                    font-size: 50px; 
+                    color: #800000;
+                }
+                
+                .dialog-content h3 {
+                    margin: 0 0 15px 0; 
+                    font-size: 22px; 
+                    color: black; 
+                    font-weight: 700;
+                }
+                
+                .dialog-content p {
+                    margin: 0; 
+                    color: #333; 
+                    line-height: 1.6; 
+                    font-size: 16px;
+                    margin-bottom: 20px;
+                }
+                
+                .dialog-button {
+                    padding: 12px 30px; 
+                    border: none; 
+                    background: #800000; 
+                    color: white; 
+                    border-radius: 6px; 
+                    cursor: pointer;
+                    font-size: 16px;
+                    font-weight: 600;
+                    transition: background 0.2s;
+                }
+                
+                .dialog-button:hover {
+                    background: #600000;
+                }
+            `;
+            
+            const styleSheet = document.createElement('style');
+            styleSheet.textContent = dialogStyles;
+            document.head.appendChild(styleSheet);
+
+            function showDialog(title, message) {
+                document.getElementById("dialogTitle").innerText = title;
+                document.getElementById("dialogMessage").innerText = message;
+                document.getElementById("successDialog").style.display = "flex";
+                
+                // Set focus to the OK button for accessibility
+                dialogOkButton.focus();
+            }
+
+            function closeDialog() {
+                document.getElementById("successDialog").style.display = "none";
+            }
+
+            // Make it global
+            window.closeDialog = closeDialog;
+
+            // Handle form submission
+            contactForm.addEventListener("submit", async function (e) {
+                e.preventDefault();
+
+                const originalBtnText = submitBtn.querySelector("span").innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.querySelector("span").innerHTML = "Sending...";
+
+                const formData = new FormData(contactForm);
+                const data = Object.fromEntries(formData.entries());
+
+                if (!data.name || !data.email || !data.phone || !data.message) {
+                    showDialog("Error", "Please fill out all required fields.");
+                    submitBtn.disabled = false;
+                    submitBtn.querySelector("span").innerHTML = originalBtnText;
+                    return;
+                }
+
+                try {
+                    const response = await fetch("http://localhost:5000/contacts", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(data)
+                    });
+
+                    if (!response.ok) {
+                        const errorResult = await response.json().catch(() => ({ message: "An unknown server error occurred." }));
+                        throw new Error(errorResult.message || `HTTP error! Status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        showDialog("Success!", "Your message has been sent successfully. We'll get back to you soon.");
+                        contactForm.reset();
+                    } else {
+                        showDialog("Error", result.message || "Something went wrong.");
+                    }
+
+                } catch (err) {
+                    console.error("Submission Error:", err);
+                    showDialog("Submission Failed", `Error: ${err.message}`);
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.querySelector("span").innerHTML = originalBtnText;
+                }
+            });
+
+            // Close dialog when OK button is clicked
+            dialogOkButton.addEventListener("click", closeDialog);
+            
+            // Close with Escape key
+            document.addEventListener("keydown", function (e) {
+                if (e.key === "Escape") {
+                    closeDialog();
+                }
+            });
+
+            // Back to top button functionality
+            const backToTopButton = document.querySelector('.back-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+
 </body>
 </html>
