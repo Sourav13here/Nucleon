@@ -157,7 +157,8 @@ body {
 
 /* Section Styles */
 .section {
-    padding: 5rem 0;
+    padding: 2rem 0;
+    padding-bottom: 2rem;
 }
 
 .section-title {
@@ -186,6 +187,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
+    padding-bottom: 3rem;
 }
 
 .program-card {
