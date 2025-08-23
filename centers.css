@@ -82,3 +82,13 @@
   border-radius: 10px;
 }
 
+.hero {
+    background: linear-gradient(0deg, rgba(128,0,0,0.7), rgba(128,0,0,0.5)), url('images/centers/hero-back.jpg') center/cover no-repeat;
+    color: var(--white);
+    padding: var(--space-20) 0;
+    position: relative;
+    overflow: hidden;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+}
