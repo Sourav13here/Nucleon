@@ -1157,3 +1157,8 @@ h4 { font-size: 1.5rem; }
 .mt-4 { margin-top: var(--space-4); }
 .p-4 { padding: var(--space-4); }
 .hidden { display: none; }
+.card-image {
+    width: 100%; /* Makes the image span the full width of the card */
+    height: auto; /* Maintains the image's aspect ratio */
+    display: block; /* Removes any extra space below the image */
+}

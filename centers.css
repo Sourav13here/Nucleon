@@ -1,0 +1,94 @@
+.centers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.center-card {
+  background: #fff;
+  border: 2px solid var(--primary);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  transition: 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.center-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+.center-video {
+  width: 100%;
+  height: auto;
+  max-height: 400px; /* adjust if needed */
+  border-radius: 10px;
+  object-fit:contain;
+  display: block;
+}
+
+.center-icon {
+  font-size: 2.5rem;
+  color: var(--primary);
+}
+
+.center-address::before {
+  font-family: "Font Awesome 6 Free"; 
+  font-weight: 1000; 
+  content: "\f3c5"; 
+  margin-right: 8px;
+  color: var(--primary);
+}
+
+.center-address {
+  font-style: normal;
+  margin: 10px 0;
+  color: #555;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.directions-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 8px 15px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.directions-btn:hover {
+  background: var(--primary);
+}
+.center-slider {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.center-slider img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.hero {
+    background: linear-gradient(0deg, rgba(128,0,0,0.7), rgba(128,0,0,0.5)), url('images/centers/hero-back.jpg') center/cover no-repeat;
+    color: var(--white);
+    padding: var(--space-20) 0;
+    position: relative;
+    overflow: hidden;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+}
