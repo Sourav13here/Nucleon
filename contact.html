@@ -347,7 +347,7 @@
 
                     if (!response.ok) {
                         const errorResult = await response.json().catch(() => ({ message: "An unknown server error occurred." }));
-                        throw new Error(errorResult.message || `HTTP error! Status: ${response.status}`);
+                        throw new Error(errorResult.message || HTTP error! Status: ${response.status});
                     }
 
                     const result = await response.json();
@@ -361,7 +361,7 @@
 
                 } catch (err) {
                     console.error("Submission Error:", err);
-                    showDialog("Submission Failed", `Error: ${err.message}`);
+                    showDialog("Submission Failed", Error: ${err.message});
                 } finally {
                     submitBtn.disabled = false;
                     submitBtn.querySelector("span").innerHTML = originalBtnText;
