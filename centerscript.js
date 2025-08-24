@@ -74,6 +74,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 nextEl: slider.querySelector('.swiper-button-next'),
                 prevEl: slider.querySelector('.swiper-button-prev'),
             },
+            // autoplay: {
+            //   delay: 3000,
+            //   disableOnInteraction: false,
+            //   pauseOnMouseEnter: false
+            // }
         });
     });
 });
