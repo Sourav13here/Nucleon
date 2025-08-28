@@ -1,321 +1,666 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Educator - Nucleon Coaching Institutes</title>
-    <meta name="description"
-        content="Become an educator with Nucleon Coaching Institutes. Join 15+ years of excellence in education and inspire the next generation of achievers.">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Educator - Nucleon Coaching Institutes</title>
+        <meta name="description"
+            content="Become an educator with Nucleon Coaching Institutes. Join 15+ years of excellence in education and inspire the next generation of achievers.">
 
-    <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
-        rel="stylesheet">
+        <!-- Google Fonts -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+            rel="stylesheet">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="style.css">
 
-    <style>
-        /* Form Container */
-        .application-form {
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            margin: 40px auto;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .application-form h2 {
-            font-family: 'Oswald', sans-serif;
-            color: #a00000;
-            font-size: 1.6rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #a00000;
-            padding-bottom: 8px;
-        }
-
-        .application-form fieldset {
-            border: 1px solid #ddd;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 8px;
-        }
-
-        .application-form legend {
-            font-weight: 600;
-            color: #a00000;
-            font-size: 1.05rem;
-        }
-
-        .application-form label {
-            display: block;
-            font-weight: 500;
-            margin-top: 12px;
-            margin-bottom: 6px;
-            color: #333;
-        }
-
-        .application-form input,
-        .application-form textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            margin-bottom: 12px;
-            font-family: inherit;
-        }
-
-        .application-form button {
-            width: 100%;
-            background: #a00000;
-            color: #fff;
-            padding: 15px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .application-form button:hover {
-            background: #800000;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
+        <style>
+            /* Form Container */
             .application-form {
-                padding: 20px;
-                margin: 20px;
+                background: #fff;
+                border: 1px solid #ddd;
+                border-radius: 15px;
+                padding: 40px;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+                margin: 50px auto;
+                font-family: 'Inter', sans-serif;
+                max-width: 900px;
             }
 
             .application-form h2 {
+                font-family: 'Oswald', sans-serif;
+                color: #a00000;
+                font-size: 2rem;
+                font-weight: 600;
+                margin-bottom: 25px;
+                border-bottom: 3px solid #a00000;
+                padding-bottom: 15px;
                 text-align: center;
-                font-size: 1.4rem;
+            }
+
+            .application-form h2 i {
+                margin-right: 12px;
+            }
+
+            .institute-info {
+                background: #f8f9fa;
+                padding: 20px;
+                border-radius: 10px;
+                margin-bottom: 30px;
+                border-left: 4px solid #a00000;
+            }
+
+            .institute-info p {
+                margin: 5px 0;
+                color: #555;
+            }
+
+            .application-form fieldset {
+                border: 2px solid #e9ecef;
+                padding: 25px;
+                margin: 30px 0;
+                border-radius: 12px;
+                background: #fafbfc;
             }
 
             .application-form legend {
-                font-size: 1rem;
+                font-weight: 600;
+                color: #a00000;
+                font-size: 1.1rem;
+                padding: 8px 15px;
+                background: white;
+                border: 2px solid #a00000;
+                border-radius: 8px;
+                margin-bottom: 15px;
+            }
+
+            .application-form legend i {
+                margin-right: 8px;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .application-form label {
+                display: block;
+                font-weight: 600;
+                margin-bottom: 8px;
+                color: #333;
+                font-size: 0.95rem;
+            }
+
+            .application-form input,
+            .application-form textarea,
+            .application-form select {
+                width: 100%;
+                padding: 12px 15px;
+                border: 2px solid #e9ecef;
+                border-radius: 8px;
+                margin-bottom: 15px;
+                font-family: inherit;
+                font-size: 0.95rem;
+                transition: all 0.3s ease;
+                background: white;
+            }
+
+            .application-form input:focus,
+            .application-form textarea:focus,
+            .application-form select:focus {
+                outline: none;
+                border-color: #a00000;
+                box-shadow: 0 0 0 3px rgba(160, 0, 0, 0.1);
+            }
+
+            /* Radio Button Styling */
+            .radio-group {
+                display: flex;
+                gap: 25px;
+                margin-bottom: 15px;
+                flex-wrap: wrap;
+            }
+
+            .radio-option {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                padding: 10px 15px;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+                background: white;
+                border: 2px solid #e9ecef;
+                min-width: 100px;
+            }
+
+            .radio-option:hover {
+                background: #f8f9fa;
+                border-color: #a00000;
+            }
+
+            .radio-option input[type="radio"] {
+                width: auto;
+                height: 18px;
+                margin: 0 10px 0 0;
+                cursor: pointer;
+                accent-color: #a00000;
+            }
+
+            .radio-option label {
+                margin: 0;
+                cursor: pointer;
+                font-weight: 500;
+                color: #555;
+            }
+
+            .radio-option input[type="radio"]:checked+label {
+                color: #a00000;
+                font-weight: 600;
+            }
+
+            .radio-option:has(input[type="radio"]:checked) {
+                background: rgba(160, 0, 0, 0.05);
+                border-color: #a00000;
+            }
+
+            /* Date Input Styling */
+            .date-input {
+                display: flex;
+                gap: 15px;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+
+            .date-input label {
+                margin-bottom: 0;
+                min-width: 140px;
+            }
+
+            .date-input input {
+                margin-bottom: 0;
+                max-width: 200px;
             }
 
             .application-form button {
-                font-size: 1rem;
-                padding: 14px;
+                width: 100%;
+                background: linear-gradient(135deg, #a00000, #800000);
+                color: #fff;
+                padding: 18px;
+                font-size: 1.2rem;
+                font-weight: 600;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                margin-top: 30px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
             }
-        }
-    </style>
-</head>
 
-<body
-    style="margin: 0; padding: 0; font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
+            .application-form button:hover {
+                background: linear-gradient(135deg, #800000, #600000);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(160, 0, 0, 0.3);
+            }
 
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <nav class="nav">
-                <a href="about.html" class="brand" aria-label="Nucleon Coaching Institutes">
-                    <span class="logo"><img src="images/logo.png" alt="Nucleon Coaching Institutes"></span>
-                    <span class="brand-text">
-                        <span class="brand-line-1">Nucleon Coaching</span>
-                        <span class="brand-line-1">Institutes</span>
-                    </span>
-                </a>
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="centers.html">Centers</a></li>
-                    <li><a href="educator.html" class="active">Educator</a></li>
-                    <li><a href="partnership.html">Partnership</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
-            </nav>
-        </div>
-    </header>
+            .application-form button i {
+                margin-right: 10px;
+            }
 
-    <!-- Hero Section -->
-    <section
-        style="background: linear-gradient(135deg,  #5a1e1e 0%, #a00000 100%); color: white; padding: 120px 20px 80px; text-align: center;">
-        <h1
-            style="font-family: 'Oswald', sans-serif; font-size: 3rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;color:white">
-            Inspire The Future
-        </h1>
-        <p style="font-size: 1rem; max-width: 600px; margin: 0 auto;">
-            Join Nucleon Coaching Institutes as an educator and be part of our legacy of shaping minds for over 15
-            years. Guide,
-            mentor, and inspire students to achieve academic success and lifelong excellence.
-        </p>
-    </section>
+            /* Declaration Section */
+            .declaration-text {
+                background: #fff3cd;
+                border: 1px solid #ffeaa7;
+                border-radius: 8px;
+                padding: 15px;
+                margin-bottom: 20px;
+                font-size: 0.9rem;
+                line-height: 1.5;
+                color: #856404;
+            }
 
-    <!-- Main Content -->
-    <main style="flex: 1; padding: 60px 20px;">
-        <div style="max-width: 900px; margin: 0 auto;">
+            /* Two Column Layout for some fields */
+            .two-column {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
 
-            <!-- Educator Application Form -->
-            <section class="application-form">
-                <h2><i class="fas fa-chalkboard-teacher"></i> Educator Application Form</h2>
-            
-                <p><strong>Nucleon Coaching Institute, Durgapur</strong><br>
-                    Address: [Institute Address]<br>
-                    Contact: [Phone]<br>
-                    Email: [Email]</p>
-            
-                <label>Application Date:</label>
-                <input type="date" name="application_date">
-            
-                <!-- Personal Info -->
-                <fieldset>
-                    <legend><i class="fas fa-user" style="margin-right:8px; color:#a00000;"></i> Personal Information</legend>
-                    <label>Full Name:</label>
-                    <input type="text" name="full_name">
-                    <label>Date of Birth:</label>
-                    <input type="date" name="dob">
-                    <label>Gender:</label>
-                    <div>
-                        <input type="radio" name="gender" value="Male"> Male
-                        <input type="radio" name="gender" value="Female"> Female
-                        <input type="radio" name="gender" value="Other"> Other
-                    </div>
-                    <label>Address:</label>
-                    <textarea name="address" rows="3"></textarea>
-                    <label>Contact Number:</label>
-                    <input type="tel" name="phone">
-                    <label>Email Address:</label>
-                    <input type="email" name="email">
-                </fieldset>
-            
-                <!-- Education -->
-                <fieldset>
-                    <legend><i class="fas fa-graduation-cap" style="margin-right:8px; color:#a00000;"></i> Educational Background
-                    </legend>
-                    <label>Highest Degree Obtained:</label>
-                    <input type="text" name="degree">
-                    <label>Additional Qualifications/Certifications:</label>
-                    <textarea name="certifications" rows="2"></textarea>
-                    <label>Subjects of Expertise:</label>
-                    <input type="text" name="subjects">
-                </fieldset>
-            
-                <!-- Experience -->
-                <fieldset>
-                    <legend><i class="fas fa-briefcase" style="margin-right:8px; color:#a00000;"></i> Teaching Experience</legend>
-                    <label>Current/Most Recent Position:</label>
-                    <textarea name="current_position" rows="2"></textarea>
-                    <label>Previous Teaching Experience:</label>
-                    <textarea name="previous_experience" rows="3"></textarea>
-                </fieldset>
-            
-                <!-- Skills -->
-                <fieldset>
-                    <legend><i class="fas fa-lightbulb" style="margin-right:8px; color:#a00000;"></i> Skills and Competencies
-                    </legend>
-                    <label>Teaching Philosophy:</label>
-                    <textarea name="philosophy" rows="3"></textarea>
-                    <label>Technological Proficiency:</label>
-                    <textarea name="tech_skills" rows="2"></textarea>
-                </fieldset>
-            
-                <!-- Availability -->
-                <fieldset>
-                    <legend><i class="fas fa-calendar-alt" style="margin-right:8px; color:#a00000;"></i> Availability</legend>
-                    <label>Preferred Subjects to Teach:</label>
-                    <input type="text" name="preferred_subjects">
-                    <label>Available Days and Times:</label>
-                    <textarea name="availability" rows="2"></textarea>
-                </fieldset>
-            
-                <!-- References -->
-                <fieldset>
-                    <legend><i class="fas fa-users" style="margin-right:8px; color:#a00000;"></i> References</legend>
-                    <label>Reference 1:</label>
-                    <input type="text" name="ref1" placeholder="Name, Relation, Contact">
-                    <label>Reference 2:</label>
-                    <input type="text" name="ref2" placeholder="Name, Relation, Contact">
-                </fieldset>
-            
-                <!-- Declaration -->
-                <fieldset>
-                    <legend><i class="fas fa-file-signature" style="margin-right:8px; color:#a00000;"></i> Declaration</legend>
-                    <p>I declare that the above information is true and accurate to the best of my knowledge. I understand that
-                        submitting this application does not guarantee employment.</p>
-                    <label>Applicant's Name:</label>
-                    <input type="text" name="applicant_name">
-                    <label>Signature Date:</label>
-                    <input type="date" name="signature_date">
-                </fieldset>
-            
-                <button type="submit"><i class="fas fa-paper-plane"></i> Submit Application</button>
-            </section>
+            /* Responsive */
+            @media (max-width: 768px) {
+                .application-form {
+                    padding: 25px;
+                    margin: 20px 10px;
+                }
 
-            <!-- (Benefits + Why Join sections remain same as your version) -->
-        <!-- Educator Benefits Cards -->
-        <div
-            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 50px;">
-            <div style="background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease; border-top: 4px solid #a00000; text-align: center;"
-                onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)'"
-                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)'">
-                <i class="fas fa-chalkboard-teacher" style="font-size: 3rem; color: #a00000; margin-bottom: 20px;"></i>
-                <h3 style="font-family: 'Oswald', sans-serif; font-size: 1.5rem; color: #a00000;">Shape Future Leaders</h3>
-                <p style="color: #666; line-height: 1.6;">Guide and mentor students to excel in academics and prepare them for
-                    competitive challenges.</p>
+                .application-form h2 {
+                    font-size: 1.6rem;
+                }
+
+                .application-form fieldset {
+                    padding: 20px;
+                }
+
+                .radio-group {
+                    flex-direction: column;
+                    gap: 10px;
+                }
+
+                .two-column {
+                    grid-template-columns: 1fr;
+                    gap: 15px;
+                }
+
+                .date-input {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
+                .date-input label {
+                    min-width: auto;
+            
+                }
+
+                .date-input input {
+                    max-width: 100%;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .application-form {
+                    padding: 20px;
+                }
+
+                .application-form h2 {
+                    font-size: 1.4rem;
+                }
+
+                .radio-option {
+                    min-width: auto;
+                    padding: 8px 12px;
+                }
+            }
+
+            /* Header Styles */
+            .header {
+                background: #fff;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+            }
+
+            .nav {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 15px 20px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .brand {
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                color: #a00000;
+            }
+
+            .brand img {
+                height: 50px;
+                margin-right: 15px;
+            }
+
+            .brand-text {
+                font-family: 'Oswald', sans-serif;
+                font-weight: 600;
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                display: flex;
+                list-style: none;
+                gap: 30px;
+                margin: 0;
+                padding: 0;
+            }
+
+            .nav-links a {
+                text-decoration: none;
+                color: #333;
+                font-weight: 500;
+                transition: color 0.3s ease;
+            }
+
+            .nav-links a:hover,
+            .nav-links a.active {
+                color: #a00000;
+            }
+
+            .mobile-menu-btn {
+                display: none;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                color: #a00000;
+            }
+
+            @media (max-width: 968px) {
+                .nav-links {
+                    display: none;
+                }
+
+                .mobile-menu-btn {
+                    display: block;
+                }
+            }
+        </style>
+    </head>
+
+    <body
+        style="margin: 0; padding: 0; font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
+
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <nav class="nav">
+                    <a href="about.html" class="brand" aria-label="Nucleon Coaching Institutes">
+                        <span class="logo"><img src="images/logo.png" alt="Nucleon Coaching Institutes"></span>
+                        <span class="brand-text">
+                            <span class="brand-line-1">Nucleon Coaching</span>
+                            <span class="brand-line-1">Institutes</span>
+                        </span>
+                    </a>
+                    <ul class="nav-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="centers.html">Centers</a></li>
+                        <li><a href="educator.html" class="active">Educator</a></li>
+                        <li><a href="partnership.html">Partnership</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+                </nav>
             </div>
-            <div style="background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease; border-top: 4px solid #a00000; text-align: center;"
-                onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)'"
-                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)'">
-                <i class="fas fa-users" style="font-size: 3rem; color: #a00000; margin-bottom: 20px;"></i>
-                <h3 style="font-family: 'Oswald', sans-serif; font-size: 1.5rem; color: #a00000;">Collaborative Environment</h3>
-                <p style="color: #666; line-height: 1.6;">Work with experienced educators and be part of a supportive academic
-                    community.</p>
-            </div>
-            <div style="background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease; border-top: 4px solid #a00000; text-align: center;"
-                onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)'"
-                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.1)'">
-                <i class="fas fa-book-open" style="font-size: 3rem; color: #a00000; margin-bottom: 20px;"></i>
-                <h3 style="font-family: 'Oswald', sans-serif; font-size: 1.5rem; color: #a00000;">Continuous Growth</h3>
-                <p style="color: #666; line-height: 1.6;">Access training, workshops, and resources to enhance your teaching
-                    skills.</p>
-            </div>
-        </div>
-        
-        <!-- Why Join as Educator -->
+        </header>
+
+        <!-- Hero Section -->
         <section
-            style="margin-top: 50px; padding: 40px; background: linear-gradient(135deg, rgba(160,0,0,0.05), rgba(200,0,0,0.08)); border-radius: 20px;">
-            <h2
-                style="font-family: 'Oswald', sans-serif; font-size: 1.8rem; color: #a00000; text-align: center; margin-bottom: 30px;">
-                Why Join Nucleon as an Educator?</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
-                <div
-                    style="text-align: center; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                    <i class="fas fa-award" style="font-size: 2rem; color: #a00000; margin-bottom: 10px;"></i>
-                    <p style="font-weight: 500; color: #333; margin: 0;">National Recognition</p>
-                </div>
-                <div
-                    style="text-align: center; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                    <i class="fas fa-laptop" style="font-size: 2rem; color: #a00000; margin-bottom: 10px;"></i>
-                    <p style="font-weight: 500; color: #333; margin: 0;">Modern Teaching Tools</p>
-                </div>
-                <div
-                    style="text-align: center; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                    <i class="fas fa-handshake" style="font-size: 2rem; color: #a00000; margin-bottom: 10px;"></i>
-                    <p style="font-weight: 500; color: #333; margin: 0;">Mentorship & Support</p>
-                </div>
-                <div
-                    style="text-align: center; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                    <i class="fas fa-graduation-cap" style="font-size: 2rem; color: #a00000; margin-bottom: 10px;"></i>
-                    <p style="font-weight: 500; color: #333; margin: 0;">Impact Thousands of Students</p>
-                </div>
-            </div>
+            style="background: linear-gradient(135deg,  #5a1e1e 0%, #a00000 100%); color: white; padding: 120px 20px 80px; text-align: center;">
+            <h1
+                style="font-family: 'Oswald', sans-serif; font-size: 3rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;color:white">
+                Inspire The Future
+            </h1>
+            <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.6;">
+                Join Nucleon Coaching Institutes as an educator and be part of our legacy of shaping minds for over 15
+                years. Guide, mentor, and inspire students to achieve academic success and lifelong excellence.
+            </p>
         </section>
 
-        </div>
-    </main>
-</body>
+        <!-- Main Content -->
+        <main style="flex: 1; padding: 60px 20px;">
+            <div style="max-width: 1000px; margin: 0 auto;">
+
+                <!-- Educator Application Form -->
+                <section class="application-form">
+                    <h2><i class="fas fa-chalkboard-teacher"></i> Educator Application Form</h2>
+
+                    <div class="institute-info">
+                        <p><strong>Nucleon Coaching Institute, Durgapur</strong></p>
+                        <p>Address: [Institute Address]</p>
+                        <p>Contact: [Phone] | Email: [Email]</p>
+                    </div>
+
+                    <div class="date-input">
+                        <label>Application Date:</label>
+                        <span id="application_date"></span>
+                    </div>
+                
+                <script>
+                    const now = new Date();
+                    document.getElementById("application_date").textContent =
+                        now.toLocaleString(); // shows date + time in local format
+                </script>
+
+                    <!-- Personal Info -->
+                    <fieldset>
+                        <legend><i class="fas fa-user"></i> Personal Information</legend>
+
+                        <div class="form-group">
+                            <label>Full Name:</label>
+                            <input type="text" name="full_name" placeholder="Enter your full name">
+                        </div>
+
+                        <div class="two-column">
+                            <div class="form-group">
+                                <label>Date of Birth:</label>
+                                <input type="date" name="dob">
+                            </div>
+                            <div class="form-group">
+                                <label>Gender</label>
+                                <select name="gender" required>
+                                    <option value="" disabled selected>Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                    <option value="Prefer not to say">Prefer not to say</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Address:</label>
+                            <textarea name="address" rows="3" placeholder="Enter your complete address"></textarea>
+                        </div>
+
+                        <div class="two-column">
+                            <div class="form-group">
+                                <label>Contact Number:</label>
+                                <input type="tel" name="phone" placeholder="+91 XXXXX XXXXX">
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address:</label>
+                                <input type="email" name="email" placeholder="your.email@example.com">
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Education -->
+                    <fieldset>
+                        <legend><i class="fas fa-graduation-cap"></i> Educational Background</legend>
+
+                        <div class="form-group">
+                            <label>Highest Degree Obtained:</label>
+                            <input type="text" name="degree" placeholder="e.g., M.Sc. Physics, B.Tech Computer Science">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Additional Qualifications/Certifications:</label>
+                            <textarea name="certifications" rows="3"
+                                placeholder="List any additional certifications, courses, or qualifications"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Subjects of Expertise:</label>
+                            <input type="text" name="subjects" placeholder="e.g., Mathematics, Physics, Chemistry">
+                        </div>
+                    </fieldset>
+
+                    <!-- Experience -->
+                    <fieldset>
+                        <legend><i class="fas fa-briefcase"></i> Teaching Experience</legend>
+
+                        <div class="form-group">
+                            <label>Current/Most Recent Position:</label>
+                            <textarea name="current_position" rows="3"
+                                placeholder="Describe your current or most recent teaching position"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Previous Teaching Experience:</label>
+                            <textarea name="previous_experience" rows="4"
+                                placeholder="Detail your previous teaching experience, including institutions and duration"></textarea>
+                        </div>
+                    </fieldset>
+
+                    <!-- Skills -->
+                    <fieldset>
+                        <legend><i class="fas fa-lightbulb"></i> Skills and Competencies</legend>
+
+                        <div class="form-group">
+                            <label>Teaching Philosophy:</label>
+                            <textarea name="philosophy" rows="4"
+                                placeholder="Describe your teaching philosophy and approach"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Technological Proficiency:</label>
+                            <textarea name="tech_skills" rows="3"
+                                placeholder="List your technical skills relevant to modern teaching"></textarea>
+                        </div>
+                    </fieldset>
+
+                    <!-- Availability -->
+                    <fieldset>
+                        <legend><i class="fas fa-calendar-alt"></i> Availability</legend>
+
+                        <div class="form-group">
+                            <label>Preferred Subjects to Teach:</label>
+                            <input type="text" name="preferred_subjects"
+                                placeholder="List subjects you prefer to teach">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Available Days and Times:</label>
+                            <textarea name="availability" rows="3"
+                                placeholder="Specify your available days and preferred time slots"></textarea>
+                        </div>
+                    </fieldset>
+
+                    <!-- References -->
+                    <fieldset>
+                        <legend><i class="fas fa-users"></i> References</legend>
+
+                        <div class="form-group">
+                            <label>Reference 1:</label>
+                            <input type="text" name="ref1" placeholder="Name, Relation, Contact Number/Email">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Reference 2:</label>
+                            <input type="text" name="ref2" placeholder="Name, Relation, Contact Number/Email">
+                        </div>
+                    </fieldset>
+
+                    <!-- Declaration -->
+                    <fieldset>
+                        <legend><i class="fas fa-file-signature"></i> Declaration</legend>
+
+                        <div class="declaration-text">
+                            <p><strong>Declaration:</strong> I declare that the above information is true and accurate
+                                to the best of my knowledge. I understand that submitting this application does not
+                                guarantee employment. I agree to provide additional documentation if required during the
+                                selection process.</p>
+                        </div>
+
+                        <div class="two-column">
+                            <div class="form-group">
+                                <label>Applicant's Name:</label>
+                                <input type="text" name="applicant_name" placeholder="Type your full name as signature">
+                            </div>
+                            <div class="form-group">
+                                <label>Signature Date:</label>
+                                <input type="date" name="signature_date">
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <button type="submit"><i class="fas fa-paper-plane"></i> Submit Application</button>
+                </section>
+
+                <!-- Educator Benefits Cards -->
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; margin: 60px 0;">
+                    <div style="background: white; border-radius: 20px; padding: 35px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); transition: all 0.4s ease; border-top: 5px solid #a00000; text-align: center;"
+                        onmouseover="this.style.transform='translateY(-15px)'; this.style.boxShadow='0 25px 50px rgba(0,0,0,0.15)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.1)'">
+                        <i class="fas fa-chalkboard-teacher"
+                            style="font-size: 3.5rem; color: #a00000; margin-bottom: 25px;"></i>
+                        <h3
+                            style="font-family: 'Oswald', sans-serif; font-size: 1.6rem; color: #a00000; margin-bottom: 20px;">
+                            Shape Future Leaders</h3>
+                        <p style="color: #666; line-height: 1.7; font-size: 1rem;">Guide and mentor students to excel in
+                            academics and prepare them for competitive challenges.</p>
+                    </div>
+                    <div style="background: white; border-radius: 20px; padding: 35px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); transition: all 0.4s ease; border-top: 5px solid #a00000; text-align: center;"
+                        onmouseover="this.style.transform='translateY(-15px)'; this.style.boxShadow='0 25px 50px rgba(0,0,0,0.15)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.1)'">
+                        <i class="fas fa-users" style="font-size: 3.5rem; color: #a00000; margin-bottom: 25px;"></i>
+                        <h3
+                            style="font-family: 'Oswald', sans-serif; font-size: 1.6rem; color: #a00000; margin-bottom: 20px;">
+                            Collaborative Environment</h3>
+                        <p style="color: #666; line-height: 1.7; font-size: 1rem;">Work with experienced educators and
+                            be part of a supportive academic community.</p>
+                    </div>
+                    <div style="background: white; border-radius: 20px; padding: 35px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); transition: all 0.4s ease; border-top: 5px solid #a00000; text-align: center;"
+                        onmouseover="this.style.transform='translateY(-15px)'; this.style.boxShadow='0 25px 50px rgba(0,0,0,0.15)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.1)'">
+                        <i class="fas fa-book-open" style="font-size: 3.5rem; color: #a00000; margin-bottom: 25px;"></i>
+                        <h3
+                            style="font-family: 'Oswald', sans-serif; font-size: 1.6rem; color: #a00000; margin-bottom: 20px;">
+                            Continuous Growth</h3>
+                        <p style="color: #666; line-height: 1.7; font-size: 1rem;">Access training, workshops, and
+                            resources to enhance your teaching skills.</p>
+                    </div>
+                </div>
+
+                <!-- Why Join as Educator -->
+                <section
+                    style="margin-top: 60px; padding: 50px 40px; background: linear-gradient(135deg, rgba(160,0,0,0.08), rgba(200,0,0,0.12)); border-radius: 25px;">
+                    <h2
+                        style="font-family: 'Oswald', sans-serif; font-size: 2rem; color: #a00000; text-align: center; margin-bottom: 40px;">
+                        Why Join Nucleon as an Educator?</h2>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px;">
+                        <div style="text-align: center; padding: 30px 25px; background: rgba(255,255,255,0.9); border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); transition: all 0.3s ease;"
+                            onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.12)'"
+                            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.08)'">
+                            <i class="fas fa-award" style="font-size: 2.5rem; color: #a00000; margin-bottom: 15px;"></i>
+                            <p style="font-weight: 600; color: #333; margin: 0; font-size: 1rem;">National Recognition
+                            </p>
+                        </div>
+                        <div style="text-align: center; padding: 30px 25px; background: rgba(255,255,255,0.9); border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); transition: all 0.3s ease;"
+                            onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.12)'"
+                            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.08)'">
+                            <i class="fas fa-laptop"
+                                style="font-size: 2.5rem; color: #a00000; margin-bottom: 15px;"></i>
+                            <p style="font-weight: 600; color: #333; margin: 0; font-size: 1rem;">Modern Teaching Tools
+                            </p>
+                        </div>
+                        <div style="text-align: center; padding: 30px 25px; background: rgba(255,255,255,0.9); border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); transition: all 0.3s ease;"
+                            onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.12)'"
+                            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.08)'">
+                            <i class="fas fa-handshake"
+                                style="font-size: 2.5rem; color: #a00000; margin-bottom: 15px;"></i>
+                            <p style="font-weight: 600; color: #333; margin: 0; font-size: 1rem;">Mentorship & Support
+                            </p>
+                        </div>
+                        <div style="text-align: center; padding: 30px 25px; background: rgba(255,255,255,0.9); border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); transition: all 0.3s ease;"
+                            onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.12)'"
+                            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.08)'">
+                            <i class="fas fa-graduation-cap"
+                                style="font-size: 2.5rem; color: #a00000; margin-bottom: 15px;"></i>
+                            <p style="font-weight: 600; color: #333; margin: 0; font-size: 1rem;">Impact Thousands of
+                                Students</p>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </body>
 
 </html>
