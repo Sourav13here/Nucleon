@@ -235,6 +235,9 @@
             const submitBtn = document.getElementById("submitBtn");
             const dialogOkButton = document.getElementById("dialogOkButton");
 
+            // Configuration - Update these URLs for your Laravel setup
+            const API_BASE_URL = 'http://localhost:8000/api'; // Laravel's default dev server
+            
             // Add styles for dialog
             const dialogStyles = `
                 .dialog-container {
@@ -321,6 +324,19 @@
             // Make it global
             window.closeDialog = closeDialog;
 
+            // Get CSRF token for Laravel (if using web routes instead of API)
+            async function getCsrfToken() {
+                try {
+                    const response = await fetch(`${API_BASE_URL.replace('/api', '')}/sanctum/csrf-cookie`, {
+                        credentials: 'include'
+                    });
+                    return true;
+                } catch (error) {
+                    console.log('CSRF token not needed for API routes');
+                    return false;
+                }
+            }
+
             // Handle form submission
             contactForm.addEventListener("submit", async function (e) {
                 e.preventDefault();
@@ -332,6 +348,7 @@
                 const formData = new FormData(contactForm);
                 const data = Object.fromEntries(formData.entries());
 
+                // Client-side validation
                 if (!data.name || !data.email || !data.phone || !data.message) {
                     showDialog("Error", "Please fill out all required fields.");
                     submitBtn.disabled = false;
@@ -339,22 +356,44 @@
                     return;
                 }
 
+                // Email validation
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(data.email)) {
+                    showDialog("Error", "Please enter a valid email address.");
+                    submitBtn.disabled = false;
+                    submitBtn.querySelector("span").innerHTML = originalBtnText;
+                    return;
+                }
+
                 try {
-                    const response = await fetch("http://localhost:5000/contacts", {
+                    // Prepare headers for Laravel API
+                    const headers = {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    };
+
+                    // Make the API request to Laravel
+                    const response = await fetch(`${API_BASE_URL}/contacts`, {
                         method: "POST",
-                        headers: { "Content-Type": "application/json" },
+                        headers: headers,
                         body: JSON.stringify(data)
                     });
 
-                    if (!response.ok) {
-                        const errorResult = await response.json().catch(() => ({ message: "An unknown server error occurred." }));
-                        throw new Error(errorResult.message || HTTP error! Status: ${response.status});
-                    }
-
                     const result = await response.json();
 
+                    if (!response.ok) {
+                        // Handle Laravel validation errors
+                        if (response.status === 422 && result.errors) {
+                            const errorMessages = Object.values(result.errors).flat();
+                            throw new Error(errorMessages.join(' '));
+                        }
+                        
+                        throw new Error(result.message || `Server error: ${response.status}`);
+                    }
+
+                    // Success response from Laravel
                     if (result.success) {
-                        showDialog("Success!", "Your message has been sent successfully. We'll get back to you soon.");
+                        showDialog("Success!", result.message || "Your message has been sent successfully. We'll get back to you soon.");
                         contactForm.reset();
                     } else {
                         showDialog("Error", result.message || "Something went wrong.");
@@ -362,7 +401,15 @@
 
                 } catch (err) {
                     console.error("Submission Error:", err);
-                    showDialog("Submission Failed", Error: ${err.message});
+                    
+                    // Handle specific error types
+                    if (err.message.includes('Failed to fetch') || err.message.includes('NetworkError')) {
+                        showDialog("Connection Error", "Unable to connect to the server. Please check your internet connection and try again.");
+                    } else if (err.message.includes('CORS')) {
+                        showDialog("Configuration Error", "Server configuration issue. Please contact support.");
+                    } else {
+                        showDialog("Submission Failed", err.message);
+                    }
                 } finally {
                     submitBtn.disabled = false;
                     submitBtn.querySelector("span").innerHTML = originalBtnText;
@@ -380,13 +427,15 @@
             });
 
             // Back to top button functionality
-            const backToTopButton = document.querySelector('.back-to-top');
+            const backToTopButton = document.querySelector('a[href="#"]');
 
             window.addEventListener('scroll', () => {
                 if (window.pageYOffset > 300) {
-                    backToTopButton.classList.add('visible');
+                    backToTopButton.style.opacity = '1';
+                    backToTopButton.style.visibility = 'visible';
                 } else {
-                    backToTopButton.classList.remove('visible');
+                    backToTopButton.style.opacity = '0';
+                    backToTopButton.style.visibility = 'hidden';
                 }
             });
 
