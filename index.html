@@ -10,8 +10,10 @@
     <!-- Favicon -->
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     
+    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -257,6 +259,27 @@
         color: white;
         transform: translateY(-3px);
     }
+
+    /* Footer Admin link styling */
+    .footer-admin { list-style: none; margin-top: 10px; padding: 0; }
+    .footer-admin a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: #fff;
+        text-decoration: none;
+        border: 1px solid rgba(255,255,255,0.6);
+        padding: 6px 12px;
+        border-radius: 999px;
+        line-height: 1;
+        transition: all 0.2s ease;
+    }
+    .footer-admin a:hover {
+        background: rgba(255,255,255,0.12);
+        border-color: #fff;
+        transform: translateY(-1px);
+    }
+    .footer-admin .material-symbols-outlined { font-size: 20px; color: #fff; }
 
     .result-btn {
         display: inline-block;
@@ -1795,7 +1818,7 @@
                     <li><a href="about.html">About</a></li>
                     <li><a href="programs.html">Programs</a></li>
                     <li><a href="centers.html">Centers</a></li>
-                    <li><a href="educator.html">Educator</a></li>
+                    <li><a href="educator.html">Careers</a></li>
                     <li><a href="partnership.html">Partnership</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
@@ -2222,6 +2245,7 @@
             <div style="flex:1; min-width:200px;">
                 <h3 style="margin-bottom:15px; color:#fff;">Nucleon Coaching</h3>
                 <p>Empowering students with quality education and proven results. Join thousands of successful students across India.</p>
+                <li class="footer-admin"><a href="admin.html" aria-label="Admin login"><span class="material-symbols-outlined" aria-hidden="true">lock</span> Admin</a></li>
             </div>
             
           <div style="flex:1; min-width:200px;">
@@ -2258,7 +2282,8 @@
         </div>
         
         <div style="text-align:center; border-top:1px solid rgba(255,255,255,0.2); padding-top:15px; font-size:14px; opacity:0.8;">
-            <p>&copy; 2024 Nucleon Coaching Institutes. All rights reserved.</p>
+            <p>&copy; 2024 Nucleon Coaching Institutes. All rights reserved.</p><br>
+            <p>Developed by <a href="https://www.growtez.com" target="_blank" style="color:#fff; text-decoration:none; transition:all 0.3s;" onmouseover="this.style.color='#ffff'; this.style.textShadow='0 0 8px #FFD700';" onmouseout="this.style.color='#ffff'; this.style.textShadow='none';">growtez</a></p>
         </div>
     </div>
 </footer>
