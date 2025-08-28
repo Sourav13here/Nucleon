@@ -258,6 +258,26 @@
         transform: translateY(-3px);
     }
 
+    .result-btn {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        color: rgb(141, 13, 13);
+        padding: 0.8rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+        border: 2px solid rgb(153, 35, 35);
+    }
+
+    .result-btn:hover {
+        background: transparent;
+        border-color: rgb(125, 20, 20);
+        color: rgb(190, 20, 20);
+        transform: translateY(-3px);
+    }
+
     /* Swiper Navigation */
     .swiper-button-next,
     .swiper-button-prev {
@@ -626,8 +646,8 @@
     }
 
     .quote-card {
-        background: var(--primary-dark);
-        color: var(--white);
+        background: var(--gray-200);
+        color: var(--primary);
         max-width: 760px;
         margin-top: 3rem;
         margin: -2.5rem auto 2rem;
@@ -1044,6 +1064,8 @@
     .testimonials .section-title h2 { margin-bottom: 0.25rem; }
     .testimonials .testimonial-swiper { padding-top: 0.5rem; }
     .testimonials .testimonial-swiper { margin-bottom: 2rem; }
+
+    
 
     /* ===== FACULTY SLIDER ===== */
     .faculty-swiper {
@@ -1843,8 +1865,12 @@
                     "Empowering Students Across India,
                     From Foundation to Competitive Exams"
                 </div>
+                <div class="container" style="text-align:center;">
+                    <a id="results-cta" href="results.html" class="result-btn">SEE OUR RESULTS</a>
+                </div>
             </div>
         </section>
+
 
         <!-- Faculty Members Section -->
         <section id="faculty" class="section">
@@ -2183,6 +2209,8 @@
 
             </div>
         </section>
+
+        
     </main>
 
    <!-- Footer -->
