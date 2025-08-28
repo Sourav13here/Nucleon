@@ -18,282 +18,36 @@
 
         <!-- Custom CSS -->
         <link rel="stylesheet" href="style.css">
+        <!-- Form css -->
+        <link rel="stylesheet" href="form.css">
+
 
         <style>
-            /* Form Container */
-            .application-form {
-                background: #fff;
-                border: 1px solid #ddd;
-                border-radius: 15px;
-                padding: 40px;
-                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-                margin: 50px auto;
-                font-family: 'Inter', sans-serif;
-                max-width: 900px;
-            }
-
-            .application-form h2 {
-                font-family: 'Oswald', sans-serif;
-                color: #a00000;
-                font-size: 2rem;
-                font-weight: 600;
-                margin-bottom: 25px;
-                border-bottom: 3px solid #a00000;
-                padding-bottom: 15px;
-                text-align: center;
-            }
-
-            .application-form h2 i {
-                margin-right: 12px;
-            }
-
-            .institute-info {
-                background: #f8f9fa;
-                padding: 20px;
-                border-radius: 10px;
-                margin-bottom: 30px;
-                border-left: 4px solid #a00000;
-            }
-
-            .institute-info p {
-                margin: 5px 0;
-                color: #555;
-            }
-
-            .application-form fieldset {
-                border: 2px solid #e9ecef;
-                padding: 25px;
-                margin: 30px 0;
-                border-radius: 12px;
-                background: #fafbfc;
-            }
-
-            .application-form legend {
-                font-weight: 600;
-                color: #a00000;
-                font-size: 1.1rem;
-                padding: 8px 15px;
-                background: white;
-                border: 2px solid #a00000;
-                border-radius: 8px;
-                margin-bottom: 15px;
-            }
-
-            .application-form legend i {
-                margin-right: 8px;
-            }
-
-            .form-group {
-                margin-bottom: 20px;
-            }
-
-            .application-form label {
-                display: block;
-                font-weight: 600;
-                margin-bottom: 8px;
-                color: #333;
-                font-size: 0.95rem;
-            }
-
-            .application-form input,
-            .application-form textarea,
-            .application-form select {
-                width: 100%;
-                padding: 12px 15px;
-                border: 2px solid #e9ecef;
-                border-radius: 8px;
-                margin-bottom: 15px;
-                font-family: inherit;
-                font-size: 0.95rem;
-                transition: all 0.3s ease;
-                background: white;
-            }
-
-            .application-form input:focus,
-            .application-form textarea:focus,
-            .application-form select:focus {
-                outline: none;
-                border-color: #a00000;
-                box-shadow: 0 0 0 3px rgba(160, 0, 0, 0.1);
-            }
-
-            /* Radio Button Styling */
-            .radio-group {
-                display: flex;
-                gap: 25px;
-                margin-bottom: 15px;
-                flex-wrap: wrap;
-            }
-
-            .radio-option {
-                display: flex;
-                align-items: center;
-                cursor: pointer;
-                padding: 10px 15px;
-                border-radius: 8px;
-                transition: all 0.3s ease;
-                background: white;
-                border: 2px solid #e9ecef;
-                min-width: 100px;
-            }
-
-            .radio-option:hover {
-                background: #f8f9fa;
-                border-color: #a00000;
-            }
-
-            .radio-option input[type="radio"] {
-                width: auto;
-                height: 18px;
-                margin: 0 10px 0 0;
-                cursor: pointer;
-                accent-color: #a00000;
-            }
-
-            .radio-option label {
-                margin: 0;
-                cursor: pointer;
-                font-weight: 500;
-                color: #555;
-            }
-
-            .radio-option input[type="radio"]:checked+label {
-                color: #a00000;
-                font-weight: 600;
-            }
-
-            .radio-option:has(input[type="radio"]:checked) {
-                background: rgba(160, 0, 0, 0.05);
-                border-color: #a00000;
-            }
-
-            /* Date Input Styling */
-            .date-input {
-                display: flex;
-                gap: 15px;
-                align-items: center;
-                margin-bottom: 20px;
-            }
-
-            .date-input label {
-                margin-bottom: 0;
-                min-width: 140px;
-            }
-
-            .date-input input {
-                margin-bottom: 0;
-                max-width: 200px;
-            }
-
-            .application-form button {
-                width: 100%;
-                background: linear-gradient(135deg, #a00000, #800000);
-                color: #fff;
-                padding: 18px;
-                font-size: 1.2rem;
-                font-weight: 600;
-                border: none;
-                border-radius: 10px;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                margin-top: 30px;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-            }
-
-            .application-form button:hover {
-                background: linear-gradient(135deg, #800000, #600000);
-                transform: translateY(-2px);
-                box-shadow: 0 8px 25px rgba(160, 0, 0, 0.3);
-            }
-
-            .application-form button i {
-                margin-right: 10px;
-            }
-
-            /* Declaration Section */
-            .declaration-text {
-                background: #fff3cd;
-                border: 1px solid #ffeaa7;
-                border-radius: 8px;
-                padding: 15px;
-                margin-bottom: 20px;
-                font-size: 0.9rem;
-                line-height: 1.5;
-                color: #856404;
-            }
-
-            /* Two Column Layout for some fields */
-            .two-column {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 20px;
-            }
-
-            /* Responsive */
-            @media (max-width: 768px) {
-                .application-form {
-                    padding: 25px;
-                    margin: 20px 10px;
-                }
-
-                .application-form h2 {
-                    font-size: 1.6rem;
-                }
-
-                .application-form fieldset {
-                    padding: 20px;
-                }
-
-                .radio-group {
-                    flex-direction: column;
-                    gap: 10px;
-                }
-
-                .two-column {
-                    grid-template-columns: 1fr;
-                    gap: 15px;
-                }
-
-                .date-input {
-                    flex-direction: column;
-                    align-items: flex-start;
-                }
-
-                .date-input label {
-                    min-width: auto;
-            
-                }
-
-                .date-input input {
-                    max-width: 100%;
-                }
-            }
-
-            @media (max-width: 480px) {
-                .application-form {
-                    padding: 20px;
-                }
-
-                .application-form h2 {
-                    font-size: 1.4rem;
-                }
-
-                .radio-option {
-                    min-width: auto;
-                    padding: 8px 12px;
-                }
-            }
-
             /* Header Styles */
             .header {
-                background: #fff;
+                background: rgba(255, 255, 255, 0.98);
                 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                position: sticky;
+                position: fixed;
                 top: 0;
+                left: 0;
+                right: 0;
                 z-index: 1000;
+                padding: 0.5rem 0; /* reduced header height */
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                transform: translateY(0);
             }
 
+            .header.scrolled {
+                padding: 0.6rem 0;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .header.menu-open {
+                background: rgba(255, 255, 255, 0.98);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            }
             .nav {
                 display: flex;
                 align-items: center;
@@ -452,10 +206,19 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label>Address:</label>
-                            <textarea name="address" rows="3" placeholder="Enter your complete address"></textarea>
+                    <div class="form-group">
+                        <label>Address:</label>
+                        <div style="margin-top: 8px;">
+                            <input type="text" name="street" placeholder="Street"
+                                style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
+                            <input type="text" name="city" placeholder="City"
+                                style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
+                            <input type="text" name="state" placeholder="State"
+                                style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
+                            <input type="text" name="zipcode" placeholder="Zip Code"
+                                style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
                         </div>
+                    </div>
 
                         <div class="two-column">
                             <div class="form-group">
@@ -475,18 +238,18 @@
 
                         <div class="form-group">
                             <label>Highest Degree Obtained:</label>
-                            <input type="text" name="degree" placeholder="e.g., M.Sc. Physics, B.Tech Computer Science">
+                            <input type="text" name="degree" placeholder="Please specify degree, major, and institution.">
                         </div>
 
                         <div class="form-group">
                             <label>Additional Qualifications/Certifications:</label>
                             <textarea name="certifications" rows="3"
-                                placeholder="List any additional certifications, courses, or qualifications"></textarea>
+                                placeholder="List any relevant certifications or courses completed."></textarea>
                         </div>
 
                         <div class="form-group">
-                            <label>Subjects of Expertise:</label>
-                            <input type="text" name="subjects" placeholder="e.g., Mathematics, Physics, Chemistry">
+                            <label>Subject(s) of Expertise:</label>
+                            <input type="text" name="subjects" placeholder="Please specify the subjects you are qualified to teach.">
                         </div>
                     </fieldset>
 
@@ -496,9 +259,25 @@
 
                         <div class="form-group">
                             <label>Current/Most Recent Position:</label>
-                            <textarea name="current_position" rows="3"
-                                placeholder="Describe your current or most recent teaching position"></textarea>
+                            <div style="margin-top: 8px;">
+                                <input type="text" name="institution_name" placeholder="Institution Name"
+                                    style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
+                        
+                                <input type="text" name="position_held" placeholder="Position Held"
+                                    style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
+                        
+                                <div style="display:flex; gap:10px; margin-bottom:10px;">
+                                    <input type="date" name="duration_from" placeholder="From"
+                                        style="flex:1; padding:8px; border:1px solid #ccc; border-radius:5px;">
+                                    <input type="date" name="duration_to" placeholder="To"
+                                        style="flex:1; padding:8px; border:1px solid #ccc; border-radius:5px;">
+                                </div>
+                        
+                                <textarea name="key_responsibilities" rows="3" placeholder="List your key responsibilities"
+                                    style="width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;"></textarea>
+                            </div>
                         </div>
+
 
                         <div class="form-group">
                             <label>Previous Teaching Experience:</label>
@@ -545,15 +324,39 @@
                     <fieldset>
                         <legend><i class="fas fa-users"></i> References</legend>
 
-                        <div class="form-group">
-                            <label>Reference 1:</label>
-                            <input type="text" name="ref1" placeholder="Name, Relation, Contact Number/Email">
+                    <div class="form-group">
+                        <label>Reference 1:</label>
+                        <div style="margin-top: 8px;">
+                            <input type="text" name="ref1_name" placeholder="Reference Name"
+                                style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
+                    
+                            <input type="text" name="ref1_relation" placeholder="Relation to Applicant"
+                                style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
+                    
+                            <input type="text" name="ref1_contact" placeholder="Contact Number"
+                                style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
+                    
+                            <input type="email" name="ref1_email" placeholder="Email Address"
+                                style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
                         </div>
+                    </div>
 
                         <div class="form-group">
                             <label>Reference 2:</label>
-                            <input type="text" name="ref2" placeholder="Name, Relation, Contact Number/Email">
-                        </div>
+                                <div style="margin-top: 8px;">
+                                    <input type="text" name="ref1_name" placeholder="Reference Name"
+                                        style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
+
+                                    <input type="text" name="ref1_relation" placeholder="Relation to Applicant"
+                                        style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
+
+                                    <input type="text" name="ref1_contact" placeholder="Contact Number"
+                                        style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
+
+                                    <input type="email" name="ref1_email" placeholder="Email Address"
+                                        style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
+                                </div>                       
+                             </div>
                     </fieldset>
 
                     <!-- Declaration -->
