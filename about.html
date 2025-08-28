@@ -32,6 +32,7 @@
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="programs.html">Programs</a></li>
                     <li><a href="centers.html">Centers</a></li>
                     <li><a href="educator.html">Educator</a></li>
                     <li><a href="partnership.html" >Partnership</a></li>
@@ -192,23 +193,26 @@
                 <script>
                     document.querySelectorAll('[data-target]').forEach(el => {
                         let target = +el.getAttribute("data-target");
-                        let suffix = el.getAttribute("data-suffix") || "+";
+                        let suffix = el.getAttribute("data-suffix") || "";
                         let numberEl = el.querySelector(".stat-number");
-                        let current = 0;
-                        let increment = target / 100; // speed
-
-                        let update = () => {
-                            current += increment;
-                            if (current < target) {
-                                numberEl.innerText = Math.floor(current) + suffix;
-                                requestAnimationFrame(update);
-                            } else {
-                                numberEl.innerText = target + suffix;
+                        let duration = 1500; // animation time in ms
+                        let start = null;
+                    
+                        function animateCounter(timestamp) {
+                            if (!start) start = timestamp;
+                            let progress = Math.min((timestamp - start) / duration, 1);
+                            let value = Math.floor(progress * target);
+                            numberEl.innerText = value + suffix;
+                    
+                            if (progress < 1) {
+                                requestAnimationFrame(animateCounter);
                             }
-                        };
-                        update();
+                        }
+                    
+                        requestAnimationFrame(animateCounter);
                     });
-                </script>
+                    </script>
+                    
 
 
 
