@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Nucleon Coaching Institutes</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://img.icons8.com/ios-filled/50/800000/graduation-cap.png" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="./admin.css">
+</head>
+
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <h1>Nucleon Admin Panel</h1>
+        <div class="admin-user">
+            <div class="user-avatar">AD</div>
+            <span>Admin User</span>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <!-- Sidebar Navigation -->
+        <aside class="admin-sidebar">
+            <ul class="admin-nav">
+                <li class="nav-item">
+                    <a href="#" class="active">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#">
+                        <i class="fas fa-handshake"></i> Partnerships
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#">
+                        <i class="fas fa-chalkboard-teacher"></i> Educators
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#">
+                        <i class="fas fa-trash"></i> Trash
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#">
+                        <i class="fas fa-cog"></i> Settings
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Statistics Cards -->
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-label">Total Submissions</div>
+                    <div class="stat-number">142</div>
+                    <div class="stat-desc">All time</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Partnership Forms</div>
+                    <div class="stat-number">87</div>
+                    <div class="stat-desc">Active: 72</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Educator Forms</div>
+                    <div class="stat-number">55</div>
+                    <div class="stat-desc">Active: 48</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Items in Trash</div>
+                    <div class="stat-number">17</div>
+                    <div class="stat-desc">Will be deleted in 12 days</div>
+                </div>
+            </div>
+
+            <!-- Content Panel -->
+            <div class="panel-content">
+                <div class="content-header">
+                    <h2>Recent Partnership Submissions</h2>
+                    <span>Last 30 days</span>
+                </div>
+
+                <div class="search-bar">
+                    <input type="text" placeholder="Search submissions...">
+                    <button><i class="fas fa-search"></i> Search</button>
+                </div>
+
+                <table class="submissions-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Location</th>
+                            <th>Submitted On</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Rajesh Kumar</td>
+                            <td>rajesh@example.com</td>
+                            <td>Mumbai</td>
+                            <td>Oct 18, 2023</td>
+                            <td>
+                                <button class="action-btn view-btn"><i class="fas fa-eye"></i> View</button>
+                                <button class="action-btn delete-btn"><i class="fas fa-trash"></i> Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Priya Sharma</td>
+                            <td>priya@example.com</td>
+                            <td>Delhi</td>
+                            <td>Oct 15, 2023</td>
+                            <td>
+                                <button class="action-btn view-btn"><i class="fas fa-eye"></i> View</button>
+                                <button class="action-btn delete-btn"><i class="fas fa-trash"></i> Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Vikram Singh</td>
+                            <td>vikram@example.com</td>
+                            <td>Bangalore</td>
+                            <td>Oct 12, 2023</td>
+                            <td>
+                                <button class="action-btn view-btn"><i class="fas fa-eye"></i> View</button>
+                                <button class="action-btn delete-btn"><i class="fas fa-trash"></i> Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Anjali Patel</td>
+                            <td>anjali@example.com</td>
+                            <td>Ahmedabad</td>
+                            <td>Oct 10, 2023</td>
+                            <td>
+                                <button class="action-btn view-btn"><i class="fas fa-eye"></i> View</button>
+                                <button class="action-btn delete-btn"><i class="fas fa-trash"></i> Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Sanjay Mehta</td>
+                            <td>sanjay@example.com</td>
+                            <td>Kolkata</td>
+                            <td>Oct 5, 2023</td>
+                            <td>
+                                <button class="action-btn view-btn"><i class="fas fa-eye"></i> View</button>
+                                <button class="action-btn delete-btn"><i class="fas fa-trash"></i> Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="admin-footer">
+                <p>&copy; 2023 Nucleon Coaching Institutes. All rights reserved.</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="./adminscript.js"></script>
+</body>
+
+</html>
