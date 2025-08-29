@@ -33,9 +33,10 @@
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
+                    <li><a href="programs.html">Programs</a></li>
                     <li><a href="centers.html">Centers</a></li>
                     <li><a href="educator.html">Educator</a></li>
-                    <li><a href="partnership.html">Partnership</a></li>
+                    <li><a href="partnership.html" >Partnership</a></li>
                     <li><a href="contact.html" class="active">Contact</a></li>
                 </ul>
                 <button class="mobile-menu-btn">
@@ -230,6 +231,13 @@
     </div>
 
     <script>
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
         document.addEventListener('DOMContentLoaded', function () {
             const contactForm = document.getElementById("contactForm");
             const submitBtn = document.getElementById("submitBtn");

@@ -10,8 +10,10 @@
     <!-- Favicon -->
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     
+    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -255,6 +257,47 @@
         background: transparent;
         border-color: white;
         color: white;
+        transform: translateY(-3px);
+    }
+
+    /* Footer Admin link styling */
+    .footer-admin { list-style: none; margin-top: 10px; padding: 0; }
+    .footer-admin a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: #fff;
+        text-decoration: none;
+        border: 1px solid rgba(255,255,255,0.6);
+        padding: 6px 12px;
+        border-radius: 999px;
+        line-height: 1;
+        transition: all 0.2s ease;
+    }
+    .footer-admin a:hover {
+        background: rgba(255,255,255,0.12);
+        border-color: #fff;
+        transform: translateY(-1px);
+    }
+    .footer-admin .material-symbols-outlined { font-size: 20px; color: #fff; }
+
+    .result-btn {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        color: rgb(141, 13, 13);
+        padding: 0.8rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+        border: 2px solid rgb(153, 35, 35);
+    }
+
+    .result-btn:hover {
+        background: transparent;
+        border-color: rgb(125, 20, 20);
+        color: rgb(190, 20, 20);
         transform: translateY(-3px);
     }
 
@@ -626,8 +669,8 @@
     }
 
     .quote-card {
-        background: var(--primary-dark);
-        color: var(--white);
+        background: var(--gray-200);
+        color: var(--primary);
         max-width: 760px;
         margin-top: 3rem;
         margin: -2.5rem auto 2rem;
@@ -964,13 +1007,12 @@
         padding: 2rem;
         border-radius: var(--radius-lg);
         box-shadow: var(--shadow);
-        border: 2px solid var(--gray-200);
-        border-color: var(--primary);
+        border: 2px solid var(--primary);
         transition: all 0.3s ease;
     }
     
     .testimonial-card:hover {
-        border-color: var(--black);
+        border-color: var(--primary-dark);
         box-shadow: var(--shadow-lg);
         transform: translateY(-2px);
     }
@@ -1001,6 +1043,125 @@
     .author-info span {
         color: var(--gray-500);
         font-size: 0.9rem;
+    }
+
+    /* Author avatar */
+    .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .author-avatar {
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--primary);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        background: #eee;
+    }
+
+    /* Swiper layout for testimonials */
+    .testimonial-swiper {
+        padding: 0.5rem 0 2.5rem;
+    }
+    .testimonial-swiper .swiper-slide {
+        height: auto;
+    }
+    .testimonial-swiper .testimonial-card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .testimonial-pagination .swiper-pagination-bullet {
+        background: var(--primary) !important;
+        opacity: 0.4 !important;
+    }
+    .testimonial-pagination .swiper-pagination-bullet-active {
+        opacity: 1 !important;
+    }
+
+    /* Tight spacing between testimonials title and slider */
+    .testimonials .section-title { margin-bottom: 0.5rem; }
+    .testimonials .section-title h2 { margin-bottom: 0.25rem; }
+    .testimonials .testimonial-swiper { padding-top: 0.5rem; }
+    .testimonials .testimonial-swiper { margin-bottom: 2rem; }
+
+    
+
+    /* ===== FACULTY SLIDER ===== */
+    .faculty-swiper {
+        padding: 0.5rem 0 2.5rem;
+    }
+    /* Ensure equal-height and equal-width cards per breakpoint */
+    .faculty-swiper .swiper-wrapper { align-items: stretch; }
+    .faculty-swiper .swiper-slide { height: auto; display: flex; }
+    .faculty-swiper .swiper-slide { box-sizing: border-box; }
+    .faculty-card { width: 100%; box-sizing: border-box; }
+    .faculty-card {
+        background: var(--white);
+        border: 2px solid var(--primary);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow);
+        height: 100%; /* fill slide height */
+        min-height: 160px; /* guard for very short cards */
+        display: grid;
+        grid-template-columns: 1fr 140px; /* fixed column for avatar */
+        align-items: center;
+        overflow: hidden;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .faculty-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+    }
+    .faculty-content {
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .faculty-name {
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: var(--primary-dark);
+    }
+    .faculty-role {
+        color: var(--gray-700);
+        font-weight: 600;
+    }
+    .faculty-meta {
+        color: var(--gray-600);
+        line-height: 1.5;
+        font-size: 0.95rem;
+    }
+    .faculty-photo { 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        padding: 0.75rem; 
+    }
+    .faculty-photo img {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--primary);
+        box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+        display: block;
+        background: #eee;
+    }
+    @media (max-width: 640px) {
+        .faculty-card { grid-template-columns: 1fr 120px; }
+        .faculty-photo img { width: 96px; height: 96px; }
+    }
+    .faculty-pagination .swiper-pagination-bullet {
+        background: var(--primary) !important;
+        opacity: 0.4 !important;
+    }
+    .faculty-pagination .swiper-pagination-bullet-active {
+        opacity: 1 !important;
     }
 
     /* ===== FOOTER ===== */
@@ -1285,6 +1446,33 @@
     }
 
     /* ===== RESPONSIVE DESIGN ===== */
+    /* ===== NOTICE MARQUEE ===== */
+    .notice-marquee {
+        width: 100%;
+        overflow: hidden;
+        background: #fff7e6; /* soft notice bg */
+        border: 1px solid #ffd699;
+        color: #7a4b00;
+        border-radius: 0; /* no curve */
+        padding: 0.5rem 0;
+        margin-bottom: 1rem;
+        position: relative;
+        /* fade both left and right edges */
+        -webkit-mask-image: linear-gradient(to right, transparent 0, black 40px, black calc(100% - 40px), transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0, black 40px, black calc(100% - 40px), transparent 100%);
+    }
+    .notice-marquee .marquee-track {
+        display: inline-block;
+        white-space: nowrap;
+        will-change: transform;
+        animation: marquee-left 36s linear infinite;
+        padding-left: 100%; /* start off-screen to the right */
+    }
+    .notice-marquee strong { color: #a35f00; }
+    @keyframes marquee-left {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+    }
     @media (max-width: 768px) {
         .nav-links {
             display: none;
@@ -1628,8 +1816,9 @@
                 <ul class="nav-links">
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="about.html">About</a></li>
+                    <li><a href="programs.html">Programs</a></li>
                     <li><a href="centers.html">Centers</a></li>
-                    <li><a href="educator.html">Educator</a></li>
+                    <li><a href="educator.html">Careers</a></li>
                     <li><a href="partnership.html">Partnership</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
@@ -1680,6 +1869,18 @@
             
         </section>
 
+        <!-- Notice Section (separate from Quote) -->
+        <section class="notice-section">
+            <div class="container">
+                <div class="notice-marquee" role="status" aria-live="polite">
+                    <div class="marquee-track">
+                        <strong>Notice:</strong> Admissions open for JEE/NEET Foundation & Crash Courses · For scholarship test, contact institute  · Contact us for partnership programs ·
+                        <strong>Notice:</strong> Admissions open for JEE/NEET Foundation & Crash Courses · For scholarship test, contact institute  · Contact us for partnership programs ·
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Quote Section -->
         <section class="quote-section" >
             <div class="container">
@@ -1687,124 +1888,185 @@
                     "Empowering Students Across India,
                     From Foundation to Competitive Exams"
                 </div>
+                <div class="container" style="text-align:center;">
+                    <a id="results-cta" href="results.html" class="result-btn">SEE OUR RESULTS</a>
+                </div>
             </div>
         </section>
 
-        <!-- Programs Section -->
-        <section id="programs" class="section programs">
+
+        <!-- Faculty Members Section -->
+        <section id="faculty" class="section">
             <div class="container">
                 <div class="section-title">
-                    <span class="section-subtitle">Our Programs</span>
-                    <h2>Programs We Provide</h2>
-                    <p>Comprehensive coaching programs designed to help students excel.</p>
+                    <span class="section-subtitle">Faculty</span>
+                    <h2>Our Faculty Members</h2>
+                    <p>Experienced educators guiding our students</p>
                 </div>
-                
-                
-                <div class="program-cards">
-                    <!-- Foundation Program -->
-                    <div class="program-card" data-category="school">
-                        <div class="program-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="program-header">
-                            <h3>Foundation Program (VI - X)</h3>
-                        </div>
-                        <p>Building strong conceptual understanding and develop problem-solving skills from an early age.</p>
-                        <ul class="program-features">
-                            <li>Comprehensive syllabus coverage</li>
-                            <li>Regular assessments</li>
-                            <li>Doubt clearing sessions</li>
-                            <li>Parent-teacher interactions</li>
-                        </ul>
-                    </div>
 
-                    <!-- Class XI & XII -->
-                    <div class="program-card" data-category="school">
-                        <div class="program-icon">
-                            <i class="fas fa-book-open"></i>
+                <div class="faculty-swiper swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="faculty-card">
+                                <div class="faculty-content">
+                                    <div class="faculty-name">Jit Sikdhar</div>
+                                    <div class="faculty-role">Senior Chemistry</div>
+                                    <div class="faculty-meta">IIT Kharagpur · Ex. Resonance Faculty</div>
+                                </div>
+                                <div class="faculty-photo">
+                                    <img src="images/jitsikdar.jpg" alt="Photo of Jit Sikdhar" onerror="this.onerror=null;this.src='images/1.jpg';">
+                                </div>
+                            </div>
                         </div>
-                        <div class="program-header">
-                            <h3>Class XI & XII Coaching</h3>
-                        </div>
-                        <p>Specialized coaching for CBSE, ISC, and state boards with focus on board exam excellence.</p>
-                        <ul class="program-features">
-                            <li>Chapter-wise study material</li>
-                            <li>Regular tests and mock exams</li>
-                            <li>Dedicated doubt sessions</li>
-                            <li>Board exam preparation</li>
-                        </ul>
-                    </div>
 
-                    <!-- JEE/NEET -->
-                    <div class="program-card" data-category="competitive">
-                        <div class="program-icon">
-                            <i class="fas fa-atom"></i>
+                        <div class="swiper-slide">
+                            <div class="faculty-card">
+                                <div class="faculty-content">
+                                    <div class="faculty-name">Arvind Kumar Shukla</div>
+                                    <div class="faculty-role">Senior Math Faculty</div>
+                                    <div class="faculty-meta">Ex. Career Point, Dibrugarh · H.O.D</div>
+                                </div>
+                                <div class="faculty-photo">
+                                    <img src="images/arvindkumar.jpg" alt="Photo of Arvind Kumar Shukla" onerror="this.onerror=null;this.src='images/3.jpg';">
+                                </div>
+                            </div>
                         </div>
-                        <div class="program-header">
-                            <h3>JEE/NEET Coaching</h3>
-                        </div>
-                        <p>Comprehensive preparation for engineering and medical entrance examinations.</p>
-                        <ul class="program-features">
-                            <li>Expert faculty from IITs/AIIMS</li>
-                            <li>Dropper & repeater batches</li>
-                            <li>All-India test series</li>
-                            <li>Doubt clearing sessions</li>
-                        </ul>
-                    </div>
 
-                    <!-- Olympiad -->
-                    <div class="program-card" data-category="competitive">
-                        <div class="program-icon">
-                            <i class="fas fa-medal"></i>
+                        <div class="swiper-slide">
+                            <div class="faculty-card">
+                                <div class="faculty-content">
+                                    <div class="faculty-name">Soumadip Roy</div>
+                                    <div class="faculty-role">Mathematics Faculty</div>
+                                    <div class="faculty-meta">M.Sc · IIT Kharagpur</div>
+                                </div>
+                                <div class="faculty-photo">
+                                    <img src="images/soumadeep.jpg" alt="Photo of Soumadip Roy" onerror="this.onerror=null;this.src='images/5.jpg';">
+                                </div>
+                            </div>
                         </div>
-                        <div class="program-header">
-                            <h3>Olympiad Training</h3>
-                        </div>
-                        <p>Specialized training for various national and international Olympiads and scholarship exams.</p>
-                        <ul class="program-features">
-                            <li>NTSE, KVPY, NSO, IMO, etc.</li>
-                            <li>Conceptual clarity</li>
-                            <li>Problem-solving techniques</li>
-                            <li>Mock tests & analysis</li>
-                        </ul>
-                    </div>
 
-                    <!-- School Integrated Program -->
-                    <div class="program-card" data-category="other">
-                        <div class="program-icon">
-                            <i class="fas fa-school"></i>
+                        <div class="swiper-slide">
+                            <div class="faculty-card">
+                                <div class="faculty-content">
+                                    <div class="faculty-name">V. P. Singh</div>
+                                    <div class="faculty-role">Physics Faculty</div>
+                                    <div class="faculty-meta">B.Tech · GATE Qualified</div>
+                                </div>
+                                <div class="faculty-photo">
+                                    <img src="images/vpsingh.jpg" alt="Photo of V. P. Singh" onerror="this.onerror=null;this.src='images/10.jpg';">
+                                </div>
+                            </div>
                         </div>
-                        <div class="program-header">
-                            <h3>School Integrated Program (SIP)</h3>
-                        </div>
-                        <p>Integrated coaching program in collaboration with schools across India.</p>
-                        <ul class="program-features">
-                            <li>Regular school + coaching</li>
-                            <li>Customized study plan</li>
-                            <li>Periodic assessments</li>
-                            <li>Dedicated faculty support</li>
-                        </ul>
-                    </div>
 
-                    <!-- Competitive Exams -->
-                    <div class="program-card" data-category="competitive">
-                        <div class="program-icon">
-                            <i class="fas fa-trophy"></i>
+                        <div class="swiper-slide">
+                            <div class="faculty-card">
+                                <div class="faculty-content">
+                                    <div class="faculty-name">Vikas Kumar</div>
+                                    <div class="faculty-role">Chemistry Faculty</div>
+                                    <div class="faculty-meta">M.Sc · Ex. Bansal Classes</div>
+                                </div>
+                                <div class="faculty-photo">
+                                    <img src="images/vikaskumar.jpg" alt="Photo of Vikas Kumar" onerror="this.onerror=null;this.src='images/11.jpg';">
+                                </div>
+                            </div>
                         </div>
-                        <div class="program-header">
-                            <h3>Competitive Exam Prep</h3>
+
+                        <div class="swiper-slide">
+                            <div class="faculty-card">
+                                <div class="faculty-content">
+                                    <div class="faculty-name">Ramprasad Nandi</div>
+                                    <div class="faculty-role">Chemistry Faculty</div>
+                                    <div class="faculty-meta">M.Sc (Organic)</div>
+                                </div>
+                                <div class="faculty-photo">
+                                    <img src="images/ramprasad.jpg" alt="Photo of Ramprasad Nandi" onerror="this.onerror=null;this.src='images/12.jpg';">
+                                </div>
+                            </div>
                         </div>
-                        <p>Comprehensive preparation for various competitive examinations.</p>
-                        <ul class="program-features">
-                            <li>NDA, CDS, Banking, SSC</li>
-                            <li>State PSC exams</li>
-                            <li>Comprehensive study material</li>
-                            <li>Mock test series</li>
-                        </ul>
+
+                        <div class="swiper-slide">
+                            <div class="faculty-card">
+                                <div class="faculty-content">
+                                    <div class="faculty-name">Imtiaz Iman</div>
+                                    <div class="faculty-role">Senior Biology</div>
+                                    <div class="faculty-meta">M.Sc · Ex. Allen Faculty</div>
+                                </div>
+                                <div class="faculty-photo">
+                                    <img src="images/imtiaz.jpg" alt="Photo of Imtiaz Iman" onerror="this.onerror=null;this.src='images/15.jpg';">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="faculty-card">
+                                <div class="faculty-content">
+                                    <div class="faculty-name">Sabina Yasmin</div>
+                                    <div class="faculty-role">Biology Faculty</div>
+                                    <div class="faculty-meta">M.Sc (Zoology) · Ex. Ajmal Super 40</div>
+                                </div>
+                                <div class="faculty-photo">
+                                    <img src="images/sabina.jpg" alt="Photo of Sabina Yasmin" onerror="this.onerror=null;this.src='images/1.jpg';">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="faculty-card">
+                                <div class="faculty-content">
+                                    <div class="faculty-name">Md Kalim</div>
+                                    <div class="faculty-role">Biology Faculty</div>
+                                    <div class="faculty-meta">M.Sc · Ex. Senior Division Bansal Faculty</div>
+                                </div>
+                                <div class="faculty-photo">
+                                    <img src="images/kalim.jpg" alt="Photo of Md Kalim" onerror="this.onerror=null;this.src='images/3.jpg';">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="faculty-card">
+                                <div class="faculty-content">
+                                    <div class="faculty-name">Suman Sutradhar</div>
+                                    <div class="faculty-role">Physics Faculty</div>
+                                    <div class="faculty-meta">B.Tech · NIT Silchar</div>
+                                </div>
+                                <div class="faculty-photo">
+                                    <img src="images/suman.jpg" alt="Photo of Suman Sutradhar" onerror="this.onerror=null;this.src='images/5.jpg';">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="faculty-card">
+                                <div class="faculty-content">
+                                    <div class="faculty-name">Deepak Kumar Dixit</div>
+                                    <div class="faculty-role">Senior Physics Faculty</div>
+                                    <div class="faculty-meta">M.Tech · IIT Roorkee · Ex. Bansal, Aakash, Career Point</div>
+                                </div>
+                                <div class="faculty-photo">
+                                    <img src="images/deepak.jpg" alt="Photo of Deepak Kumar Dixit" onerror="this.onerror=null;this.src='images/10.jpg';">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="faculty-card">
+                                <div class="faculty-content">
+                                    <div class="faculty-name">Nitish Bhardwaj</div>
+                                    <div class="faculty-role">Chemistry Faculty & Academic Coordinator</div>
+                                    <div class="faculty-meta"></div>
+                                </div>
+                                <div class="faculty-photo">
+                                    <img src="images/nitish.jpg" alt="Photo of Nitish Bhardwaj" onerror="this.onerror=null;this.src='images/11.jpg';">
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <div class="swiper-pagination faculty-pagination"></div>
                 </div>
             </div>
         </section>
+
 
         <!-- Showcase Section (semi-circle graphic + text) -->
         <section class="showcase">
@@ -1857,49 +2119,121 @@
             <div class="container">
                 <div class="section-title">
                     <span class="section-subtitle">Testimonials</span>
+                    <h2>What Principals Say</h2>
+                    <p>Words from Principals of our centers</p>
+                </div>
+
+                <!-- Swiper-based testimonial slider -->
+                <div class="testimonial-swiper swiper">
+                    <div class="swiper-wrapper">
+                        <!-- Principal: Samarjit Dasgupta -->
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <div class="testimonial-content">
+                                    <p>“The projects have truly engaged our students—boosting creativity, collaboration, and confidence. It’s commendable how these initiatives promote interdisciplinary learning and sharpen critical thinking.”</p>
+                                </div>
+                                <div class="testimonial-author">
+                                    <img class="author-avatar" src="images/samarjit.jpg" alt="Photo of Principal Samarjit Dasgupta">
+                                    <div class="author-info">
+                                        <h4>Samarjit Dasgupta</h4>
+                                        <span>Principal, Reality Public School, Kokrajhar</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Principal: Sutradhar (DPS Itanagar) -->
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <div class="testimonial-content">
+                                    <p>“I would like to commend the outstanding work by Nucleon Coaching Institute in implementing integrated projects at DPS Itanagar. These initiatives enrich learning while fostering collaboration and creativity—preparing students for future challenges.”</p>
+                                </div>
+                                <div class="testimonial-author">
+                                    <img class="author-avatar" src="images/sutradhar.jpg" alt="Photo of Principal Sutradhar">
+                                    <div class="author-info">
+                                        <h4>Sutradhar</h4>
+                                        <span>Principal, DPS Itanagar</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Principal: Mrs Nilakshi Doimary -->
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <div class="testimonial-content">
+                                    <p>“The dedicated teachers from Nucleon, with deep expertise in NEET and JEE Mains, have greatly enriched our academic environment. Their guidance elevates learning while encouraging critical thinking and meaningful collaboration.”</p>
+                                </div>
+                                <div class="testimonial-author">
+                                    <img class="author-avatar" src="images/principal.jpg" alt="Photo of Principal Mrs Nilakshi Doimary">
+                                    <div class="author-info">
+                                        <h4>Mrs Nilakshi Doimary</h4>
+                                        <span>Principal</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination testimonial-pagination"></div>
+                </div>
+
+                <div class="section-title">
                     <h2>What Our Students Say</h2>
                     <p>Success stories from our students and their parents</p>
                 </div>
-                
-                <div class="testimonial-slider">
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <p>"Nucleon's faculty and study material helped me crack JEE Advanced. The regular tests and doubt-solving sessions were extremely helpful."</p>
+
+                <!-- Swiper-based testimonial slider -->
+                <div class="testimonial-swiper swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <div class="testimonial-content">
+                                    <p>"Nucleon's faculty and study material helped me crack JEE Advanced. The regular tests and doubt-solving sessions were extremely helpful."</p>
+                                </div>
+                                <div class="testimonial-author">
+                                    <div class="author-info">
+                                        <h4>Rahul Sharma</h4>
+                                        <span>JEE Advanced 2023</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="testimonial-author">
-                            <div class="author-info">
-                                <h4>Rahul Sharma</h4>
-                                <span>JEE Advanced 2023</span>
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <div class="testimonial-content">
+                                    <p>"The Foundation Program at Nucleon gave my child a strong base in Science and Mathematics. The teachers are very supportive."</p>
+                                </div>
+                                <div class="testimonial-author">
+                                    <div class="author-info">
+                                        <h4>Priya Patel</h4>
+                                        <span>Parent of Class X Student</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="testimonial-card">
+                                <div class="testimonial-content">
+                                    <p>"The NEET coaching at Nucleon is exceptional. The faculty's guidance and the test series helped me secure a seat in IIT. Thank you, Nucleon!"</p>
+                                </div>
+                                <div class="testimonial-author">
+                                    <div class="author-info">
+                                        <h4>Ananya Gupta</h4>
+                                        <span>Student, IIT</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <p>"The Foundation Program at Nucleon gave my child a strong base in Science and Mathematics. The teachers are very supportive."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-info">
-                                <h4>Priya Patel</h4>
-                                <span>Parent of Class X Student</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <p>"The NEET coaching at Nucleon is exceptional. The faculty's guidance and the test series helped me secure a seat in IIT. Thank you, Nucleon!"</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-info">
-                                <h4>Ananya Gupta</h4>
-                                <span>Student, IIT</span>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="swiper-pagination testimonial-pagination"></div>
                 </div>
+
             </div>
         </section>
+
+        
     </main>
 
    <!-- Footer -->
@@ -1911,6 +2245,7 @@
             <div style="flex:1; min-width:200px;">
                 <h3 style="margin-bottom:15px; color:#fff;">Nucleon Coaching</h3>
                 <p>Empowering students with quality education and proven results. Join thousands of successful students across India.</p>
+                <li class="footer-admin"><a href="admin.html" aria-label="Admin login"><span class="material-symbols-outlined" aria-hidden="true">lock</span> Admin</a></li>
             </div>
             
           <div style="flex:1; min-width:200px;">
@@ -1947,7 +2282,8 @@
         </div>
         
         <div style="text-align:center; border-top:1px solid rgba(255,255,255,0.2); padding-top:15px; font-size:14px; opacity:0.8;">
-            <p>&copy; 2024 Nucleon Coaching Institutes. All rights reserved.</p>
+            <p>&copy; 2024 Nucleon Coaching Institutes. All rights reserved.</p><br>
+            <p>Developed by <a href="https://www.growtez.com" target="_blank" style="color:#fff; text-decoration:none; transition:all 0.3s;" onmouseover="this.style.color='#ffff'; this.style.textShadow='0 0 8px #FFD700';" onmouseout="this.style.color='#ffff'; this.style.textShadow='none';">growtez</a></p>
         </div>
     </div>
 </footer>
@@ -1980,6 +2316,46 @@
             const preloader = document.querySelector('.preloader');
             preloader.style.opacity = '0';
             setTimeout(() => preloader.style.display = 'none', 500);
+        });
+
+        // Initialize Swiper for testimonials
+        const testimonialSwiper = new Swiper('.testimonial-swiper', {
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            slidesPerView: 1,
+            spaceBetween: 24,
+            pagination: {
+                el: '.testimonial-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                640: { slidesPerView: 1 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 }
+            }
+        });
+
+        // Initialize Swiper for faculty
+        const facultySwiper = new Swiper('.faculty-swiper', {
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            slidesPerView: 1,
+            spaceBetween: 20,
+            pagination: {
+                el: '.faculty-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                640: { slidesPerView: 1, spaceBetween: 20 },
+                768: { slidesPerView: 2, spaceBetween: 24 },
+                1024: { slidesPerView: 3, spaceBetween: 28 }
+            }
         });
 
         // Mobile Menu Toggle
