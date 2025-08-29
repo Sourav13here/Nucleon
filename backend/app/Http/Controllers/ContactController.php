@@ -27,4 +27,16 @@ class ContactController extends Controller
             'data' => $contact
         ]);
     }
+
+    public function index()
+{
+    $contacts = Contact::orderBy('submitted_at', 'desc')->get();
+
+    return response()->json([
+        'success' => true,
+        'data' => $contacts
+    ]);
+}
+
+
 }

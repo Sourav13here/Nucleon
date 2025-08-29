@@ -5,3 +5,5 @@ use App\Http\Controllers\ContactController;
 
 // POST /api/contacts → ContactController@store
 Route::post('/contacts', [ContactController::class, 'store']);
+
+Route::get('/contacts', [ContactController::class, 'index']);   // Fetch all contacts
