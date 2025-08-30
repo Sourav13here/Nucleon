@@ -426,3 +426,15 @@ table.submissions-table tr:hover {
         padding: 16px
     }
 }
+
+/* Hide the menu button by default (desktop) */
+#menuToggle {
+  display: none;
+}
+
+/* Show the menu button on small screens (mobile) */
+@media (max-width: 768px) {
+  #menuToggle {
+    display: block;
+  }
+}
