@@ -6,15 +6,12 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Admin Panel | Nucleon Coaching Institutes</title>
 
-    <!-- Favicon -->
     <link rel="icon" href="https://img.icons8.com/ios-filled/50/800000/graduation-cap.png" type="image/x-icon">
 
-    <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <link rel="stylesheet" href="./admin.css">
@@ -35,19 +32,15 @@
 
 
     <div class="admin-container">
-        <!-- Sidebar -->
         <aside class="admin-sidebar" aria-label="Sidebar">
             <ul class="admin-nav">
                 <li class="nav-item">
-                    <a href="#" class="nav-link active" data-target="dashboard"><i class="fas fa-tachometer-alt"></i>
+                    <a href="#" class="nav-link" data-target="dashboard"><i class="fas fa-tachometer-alt"></i>
                         Dashboard</a>
                 </li>
-
                 <li class="nav-item">
-                    <!-- Partnerships: disabled and not clickable, submenu visible by default -->
                     <a href="#" class="submenu-toggle disabled" aria-disabled="true" tabindex="-1"><i
                             class="fas fa-handshake"></i> Partnerships</a>
-
                     <ul class="submenu active" aria-hidden="false">
                         <li class="nav-item submenu-item">
                             <a href="#" class="nav-link" data-target="school-integration"><i class="fas fa-school"></i>
@@ -63,76 +56,65 @@
                         </li>
                     </ul>
                 </li>
-
                 <li class="nav-item">
                     <a href="#" class="nav-link" data-target="educators"><i class="fas fa-chalkboard-teacher"></i>
                         Educators</a>
                 </li>
-
                 <li class="nav-item">
                     <a href="#" class="nav-link" data-target="contacts"><i class="fas fa-envelope"></i> Contact Form
                         Submissions</a>
                 </li>
-
                 <li class="nav-item">
                     <a href="#" class="nav-link" data-target="trash"><i class="fas fa-trash"></i> Trash</a>
                 </li>
-
                 <li class="nav-item">
                     <a href="#" class="nav-link" data-target="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </li>
             </ul>
         </aside>
 
-        <!-- Main -->
         <main class="admin-main" role="main">
             <div id="statsCards" class="stats-cards">
                 <div class="stat-card">
                     <div class="stat-label">Active Submissions</div>
                     <div id="stat-total" class="stat-number">0</div>
                 </div>
-
                 <div class="stat-card">
                     <div class="stat-label">School Integration Projects</div>
-                    <div id="stat-partnership" class="stat-number">0</div>
+                    <div id="stat-partnership-school" class="stat-number">0</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Study Center Establishment</div>
-                    <div id="stat-partnership" class="stat-number">0</div>
+                    <div id="stat-partnership-study" class="stat-number">0</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Distance Learning Program</div>
-                    <div id="stat-partnership" class="stat-number">0</div>
+                    <div id="stat-partnership-distance" class="stat-number">0</div>
                 </div>
-
                 <div class="stat-card">
                     <div class="stat-label">Educators</div>
                     <div id="stat-educator" class="stat-number">0</div>
                 </div>
-
                 <div class="stat-card">
                     <div class="stat-label">Contact Form Submissions</div>
                     <div id="stat-contact" class="stat-number">0</div>
                 </div>
             </div>
 
-
-            <div class="panel-header">
+            <div id="panelHeader" class="panel-header">
                 <div>
                     <div id="panelTitle" class="panel-title">School Integration Projects</div>
-                    <div id="panelSub" class="panel-sub">24 Active Projects</div>
+                    <div id="panelSub" class="panel-sub"></div>
                 </div>
-                <div><!-- place for controls if needed --></div>
+                <div></div>
             </div>
 
-            <!-- Panels -->
             <section id="dashboard" class="content-panel">
                 <div class="panel">
                     <h3>Recent Submissions</h3>
                     <p>Welcome — quick stats are shown above. Click sidebar items to view detailed lists.</p>
                 </div>
             </section>
-
             <section id="school-integration" class="content-panel active">
                 <div class="panel">
                     <div class="search-bar">
@@ -142,7 +124,6 @@
                     <div id="school-table-container" class="table-wrapper"></div>
                 </div>
             </section>
-
             <section id="study-centers" class="content-panel">
                 <div class="panel">
                     <div class="search-bar">
@@ -152,7 +133,6 @@
                     <div id="study-table-container" class="table-wrapper"></div>
                 </div>
             </section>
-
             <section id="distance-learning" class="content-panel">
                 <div class="panel">
                     <div class="search-bar">
@@ -162,7 +142,6 @@
                     <div id="distance-table-container" class="table-wrapper"></div>
                 </div>
             </section>
-
             <section id="educators" class="content-panel">
                 <div class="panel">
                     <div class="search-bar">
@@ -172,7 +151,6 @@
                     <div id="educators-table-container" class="table-wrapper"></div>
                 </div>
             </section>
-
             <section id="contacts" class="content-panel">
                 <div class="panel">
                     <div class="search-bar">
@@ -182,7 +160,6 @@
                     <div id="contacts-table-container" class="table-wrapper"></div>
                 </div>
             </section>
-
             <section id="trash" class="content-panel">
                 <div class="panel">
                     <h3>Trash</h3>
@@ -190,7 +167,6 @@
                     <div id="trash-table-container" class="table-wrapper"></div>
                 </div>
             </section>
-
             <section id="logout" class="content-panel">
                 <div class="panel">
                     <h3>Logout</h3>
@@ -198,28 +174,18 @@
                 </div>
             </section>
 
+            <section id="application-detail-view" class="content-panel">
+                </section>
+
+
             <footer class="admin-footer">
                 <p>&copy; 2023 Nucleon Coaching Institutes. All rights reserved.</p>
             </footer>
         </main>
     </div>
 
-    <!-- Modal (single reusable) -->
-    <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
-        <div class="modal" role="document" aria-labelledby="modalTitle">
-            <div class="modal-header">
-                <div id="modalTitle" class="modal-title">Details</div>
-                <button id="modalClose" class="modal-close" aria-label="Close">&times;</button>
-            </div>
-            <div id="modalBody" class="modal-body">
-                <!-- details inserted here -->
-            </div>
-        </div>
-    </div>
-
     <div id="sidebarBackdrop" class="sidebar-backdrop"></div>
     <script src="./adminscript.js"></script>
-
 
 </body>
 

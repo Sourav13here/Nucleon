@@ -62,8 +62,6 @@ a {
     margin-top: 64px
 }
 
-/* leave space for fixed header */
-
 /* --- Sidebar --- */
 .admin-sidebar {
     width: 280px;
@@ -112,12 +110,10 @@ a {
     color: #fff
 }
 
-/* Submenu toggle styling (disabled look) */
 .submenu-toggle {
     display: flex;
     align-items: center;
     gap: 10px;
-    /* keep icon + label left-aligned */
     padding: 12px 16px;
     color: inherit;
     border-radius: 6px;
@@ -132,7 +128,6 @@ a {
     background: transparent;
 }
 
-/* Submenu */
 .submenu {
     list-style: none;
     padding-left: 0;
@@ -140,7 +135,6 @@ a {
     background: rgba(255, 255, 255, 0.02);
     border-radius: 6px;
     overflow: hidden;
-    /* we'll control visibility via classes */
 }
 
 .submenu-item a {
@@ -159,7 +153,6 @@ a {
 }
 
 .submenu.active {
-    /* visible by default */
     max-height: 1000px;
     transition: max-height .25s ease;
 }
@@ -246,18 +239,14 @@ a {
     color: #fff;
     cursor: pointer
 }
+
 .table-wrapper {
-  overflow-x: auto;
-  width: 100%;
+    overflow-x: auto;
+    width: 100%;
 }
 
 table.submissions-table {
-  min-width: 600px; /* optional: ensure readability */
-  width: 100%;
-}
-
-
-table.submissions-table {
+    min-width: 600px;
     width: 100%;
     border-collapse: collapse
 }
@@ -285,7 +274,8 @@ table.submissions-table tr:hover {
     border-radius: 6px;
     font-size: .86rem;
     cursor: pointer;
-    margin-right: 6px
+    margin-right: 6px;
+    margin-bottom: 6px;
 }
 
 .view-btn {
@@ -302,7 +292,6 @@ table.submissions-table tr:hover {
     display: none
 }
 
-/* panels hidden by default, JS will show one */
 .content-panel.active {
     display: block
 }
@@ -314,82 +303,75 @@ table.submissions-table tr:hover {
     font-size: .9rem
 }
 
-/* --- Modal styles --- */
-.modal-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.45);
-    display: none;
+/* --- NEW: Detail View Styles --- */
+.back-btn {
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    background: #f8f9fa;
+    color: #333;
+    cursor: pointer;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    z-index: 120
+    gap: 8px;
+    transition: background 0.2s;
 }
 
-.modal-backdrop.show {
-    display: flex
+.back-btn:hover {
+    background: #eef1f4;
 }
 
-.modal {
-    background: #fff;
-    border-radius: 8px;
-    max-width: 720px;
-    width: 92%;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
-    overflow: hidden;
-    max-height: 86vh;
+.detail-row {
     display: flex;
     flex-direction: column;
+    gap: 4px;
+    padding: 12px 0;
+    border-bottom: 1px solid #eef1f4;
 }
 
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 18px;
-    border-bottom: 1px solid #eef1f4
+.detail-label {
+    font-weight: 600;
+    color: #555;
+    font-size: 0.9rem;
 }
 
-.modal-title {
-    font-weight: 700;
-    font-size: 1rem
+.detail-value {
+    font-size: 1rem;
+    word-break: break-word;
 }
 
-.modal-close {
-    background: transparent;
-    border: none;
-    font-size: 1.1rem;
-    cursor: pointer
+
+/* --- Table Column Widths --- */
+.submissions-table .col-application-date {
+    white-space: nowrap;
+    width: 160px;
 }
 
-.modal-body {
-    padding: 14px 18px;
-    overflow: auto
+.submissions-table .col-school-name,
+.submissions-table .col-principal-name {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.modal-body dl {
-    display: grid;
-    grid-template-columns: 150px 1fr;
-    gap: 8px 14px
+.submissions-table .col-contact {
+    width: 130px;
+    white-space: nowrap;
 }
 
-.modal-body dt {
-    color: #7f8c8d;
-    font-weight: 600
+.submissions-table .col-email {
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.modal-body dd {
-    margin: 0;
-    word-break: break-word
-}
-
-@media (max-width:520px) {
-    .modal-body dl {
-        grid-template-columns: 1fr
-    }
-
-    .modal-body dt {
-        font-size: .92rem
-    }
+.submissions-table .col-action {
+    width: 90px;
+    text-align: center;
 }
 
 /* Responsive */
@@ -408,65 +390,39 @@ table.submissions-table tr:hover {
         flex-direction: column
     }
 
+    .hamburger {
+        display: block;
+    }
+
     .admin-sidebar {
-        position: relative;
-        width: 100%;
-        height: auto;
-        top: 0;
-        padding-bottom: 12px
+        position: fixed;
+        top: 64px;
+        left: -260px;
+        width: 240px;
+        height: 100%;
+        background: #2c3e50;
+        transition: left 0.3s ease;
+        z-index: 200;
+    }
+
+    .admin-sidebar.open {
+        left: 0;
+    }
+
+    .sidebar-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        display: none;
+        z-index: 150;
+    }
+
+    .sidebar-backdrop.show {
+        display: block;
     }
 
     .admin-main {
         margin-left: 0;
         padding: 16px
     }
-}
-
-/* Hamburger button */
-.hamburger {
-  background: transparent;
-  border: none;
-  color: #fff;
-  font-size: 1.4rem;
-  cursor: pointer;
-  display: none; /* hidden by default */
-}
-
-/* Sidebar overlay mode (mobile) */
-@media (max-width: 768px) {
-  .hamburger {
-    display: block;
-  }
-
-  .admin-sidebar {
-    position: fixed;
-    top: 64px; /* below header */
-    left: -260px; /* hidden offscreen */
-    width: 240px;
-    height: 100%;
-    background: #2c3e50;
-    transition: left 0.3s ease;
-    z-index: 200;
-  }
-
-  .admin-sidebar.open {
-    left: 0;
-  }
-
-  /* Dim background when sidebar open */
-  .sidebar-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.4);
-    display: none;
-    z-index: 150;
-  }
-  .sidebar-backdrop.show {
-    display: block;
-  }
-
-  /* Push main content */
-  .admin-main {
-    margin-left: 0;
-  }
 }
