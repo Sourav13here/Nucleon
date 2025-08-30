@@ -28,6 +28,30 @@
         ]
     };
 
+    async function loadContactsFromApi() {
+        try {
+            let response = await fetch("http://127.0.0.1:8000/api/contacts");
+            let result = await response.json();
+
+            if (result.success) {
+                SAMPLE.contacts = result.data.map(c => ({
+                    name: c.name,
+                    email: c.email,
+                    phone: c.phone,
+                    subject: c.message,      // map Laravel "message" field → "subject"
+                    submittedOn: c.submitted_at
+                }));
+                renderTable(
+                    '#contacts-table-container',
+                    SAMPLE.contacts,
+                    ['name', 'email', 'phone', 'subject', 'submittedOn']
+                );
+                updateActiveStats();
+            }
+        } catch (err) {
+            console.error("Error loading contacts:", err);
+        }
+    }
     // === Active-count helpers ===
     function isActiveRow(row) {
         if (!row) return false;
@@ -285,6 +309,9 @@
 
     // initial render
     renderAll();
+
+    // Load real contacts from Laravel API after rendering
+    loadContactsFromApi();
 
     // Expose showPanel to window for debugging if needed
     window.showPanel = showPanel;
