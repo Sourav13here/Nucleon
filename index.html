@@ -394,8 +394,8 @@
         /* Header brand responsiveness (tablet and down) */
         .brand { gap: 0.5rem; }
         .logo img { width: 52px; }
-        .brand-line-1 { font-size: 1.15rem; }
-        .brand-text { white-space: normal; }
+        .brand-line-1 { font-size: 1.05rem; }
+        .brand-tagline { font-size: 0.74rem; }
     }
 
     /* ===== HEADER ===== */
@@ -467,13 +467,21 @@
 
     .brand-text {
         display: flex;
-        flex-direction: row; /* single line */
-        align-items: center;
+        flex-direction: column; /* stack rows + tagline */
+        align-items: flex-start;
         justify-content: center;
-        gap: 0.35rem;
+        gap: 0.15rem;
         line-height: 1.1;
         text-align: left;
-        white-space: nowrap; /* prevent wrap */
+        white-space: normal; /* allow layout */
+    }
+    .brand-row { display: inline-flex; gap: 0.35rem; align-items: baseline; }
+    .brand-tagline {
+        font-family: var(--font-secondary);
+        font-weight: 600;
+        font-size: 0.82rem;
+        color: var(--primary);
+        letter-spacing: 0.2px;
     }
 
     .brand-line-1 {
@@ -1809,8 +1817,11 @@
                 <a href="index.html" class="brand" aria-label="Nucleon Coaching Institutes">
                     <span class="logo"><img src="images/logo.png" alt="Nucleon Coaching Institutes"></span>
                     <span class="brand-text">
-                        <span class="brand-line-1">Nucleon Coaching</span>
-                        <span class="brand-line-1">Institutes</span>
+                        <span class="brand-row">
+                            <span class="brand-line-1">Nucleon Coaching</span>
+                            <span class="brand-line-1">Institutes</span>
+                        </span>
+                        <span class="brand-tagline">Asli Padhai Yahi Pe!</span>
                     </span>
                 </a>
                 <ul class="nav-links">
@@ -2061,6 +2072,30 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="swiper-slide">
+                            <div class="faculty-card">
+                                <div class="faculty-content">
+                                    <div class="faculty-name">Vipin Kumar</div>
+                                    <div class="faculty-role">Math Faculty</div>
+                                    <div class="faculty-meta">NIT SHIBPUR</div>
+                                </div>
+                                <div class="faculty-photo">
+                                    <img src="images/vipin.jpg" alt="Photo of Vipin Kumar" onerror="this.onerror=null;this.src='images/11.jpg';">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="faculty-card">
+                                <div class="faculty-content">
+                                    <div class="faculty-name">Md. Irshad Alam </div>
+                                    <div class="faculty-role">Math Faculty </div>
+                                    <div class="faculty-meta">NIT SHIBPUR · Ex. Aakash, Resonance Faculty</div>
+                                </div>
+                                <div class="faculty-photo">
+                                    <img src="images/irshad.jpg" alt="Photo of Md. Irshad Alam" onerror="this.onerror=null;this.src='images/11.jpg';">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="swiper-pagination faculty-pagination"></div>
                 </div>
@@ -2135,8 +2170,8 @@
                                 <div class="testimonial-author">
                                     <img class="author-avatar" src="images/samarjit.jpg" alt="Photo of Principal Samarjit Dasgupta">
                                     <div class="author-info">
-                                        <h4>Samarjit Dasgupta</h4>
-                                        <span>Principal, Reality Public School, Kokrajhar</span>
+                                        <h4>Mr. Samarjit Dasgupta</h4>
+                                        <span>Principal<br> Reality Public School, Kokrajhar</span>
                                     </div>
                                 </div>
                             </div>
@@ -2151,8 +2186,8 @@
                                 <div class="testimonial-author">
                                     <img class="author-avatar" src="images/sutradhar.jpg" alt="Photo of Principal Sutradhar">
                                     <div class="author-info">
-                                        <h4>Sutradhar</h4>
-                                        <span>Principal, DPS Itanagar</span>
+                                        <h4>Mr. Sutradhar</h4>
+                                        <span>Principal<br> DPS Itanagar</span>
                                     </div>
                                 </div>
                             </div>
@@ -2167,8 +2202,8 @@
                                 <div class="testimonial-author">
                                     <img class="author-avatar" src="images/principal.jpg" alt="Photo of Principal Mrs Nilakshi Doimary">
                                     <div class="author-info">
-                                        <h4>Mrs Nilakshi Doimary</h4>
-                                        <span>Principal</span>
+                                        <h4>Mrs. Nilakshi Doimary</h4>
+                                        <span>Principal<br> Brahma BaBa Techno School Kokrajhar</span>
                                     </div>
                                 </div>
                             </div>
