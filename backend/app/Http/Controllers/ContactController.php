@@ -38,5 +38,37 @@ class ContactController extends Controller
         ]);
     }
 
+    public function show($id)
+    {
+        $contact = Contact::find($id);
+        if (!$contact) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Contact not found.'
+            ], 404);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $contact
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        $contact = Contact::find($id);
+        if (!$contact) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Contact not found.'
+            ], 404);
+        }
+
+        $contact->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Contact deleted successfully.'
+        ]);
+    }
 
 }

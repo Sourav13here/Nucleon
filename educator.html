@@ -16,142 +16,108 @@
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        <!-- Custom CSS -->
         <link rel="stylesheet" href="style.css">
-        <!-- Form css -->
         <link rel="stylesheet" href="form.css">
+
 
          <!-- Favicon -->
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     
-        <!-- <style>
-            /* Header Styles */
-            .header {
-                background: rgba(255, 255, 255, 0.98);
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                z-index: 1000;
-                padding: 0.5rem 0; /* reduced header height */
-                backdrop-filter: blur(10px);
-                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                transform: translateY(0);
-            }
+       
 
-            .header.scrolled {
-                padding: 0.6rem 0;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            }
-
-            .header.menu-open {
-                background: rgba(255, 255, 255, 0.98);
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            }
-            .nav {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                padding: 15px 20px;
-                max-width: 1200px;
-                margin: 0 auto;
-            }
-
-            .brand {
-                display: flex;
-                align-items: center;
-                text-decoration: none;
-                color: #a00000;
-            }
-
-            .brand img {
-                height: 50px;
-                margin-right: 15px;
-            }
-
-            .brand-text {
-                font-family: 'Oswald', sans-serif;
-                font-weight: 600;
-                font-size: 1.2rem;
-            }
-
-            .nav-links {
-                display: flex;
-                list-style: none;
-                gap: 30px;
-                margin: 0;
-                padding: 0;
-            }
-
-            .nav-links a {
-                text-decoration: none;
-                color: #333;
-                font-weight: 500;
-                transition: color 0.3s ease;
-            }
-
-            .nav-links a:hover,
-            .nav-links a.active {
-                color: #a00000;
-            }
-
-            .mobile-menu-btn {
+        <style>
+            .alert {
+                padding: 15px;
+                margin-bottom: 20px;
+                border: 1px solid transparent;
+                border-radius: 8px;
                 display: none;
-                background: none;
-                border: none;
-                font-size: 1.5rem;
-                color: #a00000;
+
             }
 
-            @media (max-width: 968px) {
-                .nav-links {
-                    display: none;
-                }
-
-                .mobile-menu-btn {
-                    display: block;
-                }
+            .alert-success {
+                color: #155724;
+                background-color: #d4edda;
+                border-color: #c3e6cb;
             }
-        </style> -->
+
+            .alert-danger {
+                color: #721c24;
+                background-color: #f8d7da;
+                border-color: #f5c6cb;
+            }
+
+            button[type="submit"]:disabled {
+                background: #ccc !important;
+                cursor: not-allowed !important;
+                transform: none !important;
+                box-shadow: none !important;
+            }
+
+            .loading {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                border: 3px solid rgba(255,255,255,.3);
+                border-radius: 50%;
+                border-top-color: #fff;
+                animation: spin 1s ease-in-out infinite;
+                margin-right: 10px;
+            }
+
+            @keyframes spin {
+                to { transform: rotate(360deg); }
+            }
+
+            .form-errors {
+                background-color: #f8d7da;
+                color: #721c24;
+                border: 1px solid #f5c6cb;
+                border-radius: 8px;
+                padding: 15px;
+                margin-bottom: 20px;
+                display: none;
+            }
+
+            .form-errors ul {
+                margin: 0;
+                padding-left: 20px;
+            }
+        </style>
     </head>
 
-    <body
-        style="margin: 0; padding: 0; font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
+    <body style="margin: 0; padding: 0; font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
 
-    <!-- Header -->
-<header class="header">
-    <div class="container">
-        <nav class="nav">
-            <a href="index.html" class="brand" aria-label="Nucleon Coaching Institutes">
-                <span class="logo"><img src="images/logo.png" alt="Nucleon Coaching Institutes"></span>
-                <span class="brand-text">
-                    <span class="brand-line-1">Nucleon Coaching</span>
-                    <span class="brand-line-1">Institutes</span>
-                </span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="programs.html">Programs</a></li>
-                <li><a href="centers.html">Centers</a></li>
-                <li><a href="educator.html" class="active">Educator</a></li>
-                <li><a href="partnership.html" >Partnership</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </nav>
-    </div>
-</header>
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <nav class="nav">
+                    <a href="index.html" class="brand" aria-label="Nucleon Coaching Institutes">
+                        <span class="logo"><img src="images/logo.png" alt="Nucleon Coaching Institutes"></span>
+                        <span class="brand-text">
+                            <span class="brand-line-1">Nucleon Coaching</span>
+                            <span class="brand-line-1">Institutes</span>
+                        </span>
+                    </a>
+                    <ul class="nav-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="centers.html">Centers</a></li>
+                        <li><a href="educator.html" class="active">Educator</a></li>
+                        <li><a href="partnership.html">Partnership</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <button class="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </nav>
+            </div>
+        </header>
 
         <!-- Hero Section -->
-        <section
-            style="background: linear-gradient(135deg,  #5a1e1e 0%, #a00000 100%); color: white; padding: 120px 20px 80px; text-align: center;">
-            <h1
-                style="font-family: 'Oswald', sans-serif; font-size: 3rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;color:white">
+        <section style="background: linear-gradient(135deg, #5a1e1e 0%, #a00000 100%); color: white; padding: 120px 20px 80px; text-align: center;">
+            <h1 style="font-family: 'Oswald', sans-serif; font-size: 3rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; color: white">
                 Inspire The Future
             </h1>
             <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.6;">
@@ -162,351 +128,261 @@
 
         <!-- Main Content -->
         <main style="flex: 1; padding: 60px 20px;">
-            <div style="max-width: 1000px; margin: 0 auto;">
+            <div style="max-width: 800px; margin: 0 auto;">
 
                 <!-- Educator Application Form -->
                 <section class="application-form">
                     <h2><i class="fas fa-chalkboard-teacher"></i> Educator Application Form</h2>
 
-                    <!-- <div class="institute-info">
-                        <p><strong>Nucleon Coaching Institute, Durgapur</strong></p>
-                        <p>Address: [Institute Address]</p>
-                        <p>Contact: [Phone] | Email: [Email]</p>
-                    </div> -->
+                    <!-- Alert Messages -->
+                    <div id="alert-success" class="alert alert-success">
+                        <i class="fas fa-check-circle"></i> Application submitted successfully! We will contact you soon.
+                    </div>
+
+                    <div id="alert-error" class="alert alert-danger">
+                        <i class="fas fa-exclamation-triangle"></i> <span id="error-message">An error occurred. Please try again.</span>
+                    </div>
+
+                    <div id="form-errors" class="form-errors">
+                        <strong>Please fix the following errors:</strong>
+                        <ul id="error-list"></ul>
+                    </div>
 
                     <div class="date-input">
                         <label>Application Date:</label>
                         <span id="application_date"></span>
                     </div>
-                
-                <script>
-                    const now = new Date();
-                    document.getElementById("application_date").textContent =
-                        now.toLocaleString(); // shows date + time in local format
-                </script>
 
-                    <!-- Personal Info -->
-                    <fieldset>
-                        <legend><i class="fas fa-user"></i> Personal Information</legend>
+                    <form id="educatorForm" enctype="multipart/form-data">
+                        <!-- Personal Info -->
+                        <fieldset>
+                            <legend><i class="fas fa-user"></i> Personal Information</legend>
 
-                        <div class="form-group">
-                            <label>Full Name:</label>
-                            <input type="text" name="full_name" placeholder="Enter your full name">
-                        </div>
-
-                        <div class="two-column">
                             <div class="form-group">
-                                <label>Date of Birth:</label>
-                                <input type="date" name="dob">
+                                <label>Full Name:</label>
+                                <input type="text" id="full_name" name="full_name" placeholder="Enter your full name" required>
                             </div>
-                            <div class="form-group">
-                                <label>Gender</label>
-                                <select name="gender" required>
-                                    <option value="" disabled selected>Select Gender</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Other">Other</option>
-                                    <option value="Prefer not to say">Prefer not to say</option>
-                                </select>
-                            </div>
-                        </div>
 
-                    <div class="form-group">
-                        <label>Address:</label>
-                        <div style="margin-top: 8px;">
-                            <input type="text" name="street" placeholder="Street"
-                                style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
-                            <input type="text" name="city" placeholder="City"
-                                style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
-                            <input type="text" name="state" placeholder="State"
-                                style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
-                            <input type="text" name="zipcode" placeholder="Zip Code"
-                                style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
-                        </div>
-                    </div>
-
-                        <div class="two-column">
-                            <div class="form-group">
-                                <label>Contact Number:</label>
-                                <input type="tel" name="phone" placeholder="+91 XXXXX XXXXX">
-                            </div>
-                            <div class="form-group">
-                                <label>Email Address:</label>
-                                <input type="email" name="email" placeholder="your.email@example.com">
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <!-- Education -->
-                    <fieldset>
-                        <legend><i class="fas fa-graduation-cap"></i> Educational Background</legend>
-
-                        <div class="form-group">
-                            <label>Highest Degree Obtained:</label>
-                            <input type="text" name="degree" placeholder="Please specify degree, major, and institution.">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Additional Qualifications/Certifications:</label>
-                            <textarea name="certifications" rows="3"
-                                placeholder="List any relevant certifications or courses completed."></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Subject(s) of Expertise:</label>
-                            <input type="text" name="subjects" placeholder="Please specify the subjects you are qualified to teach.">
-                        </div>
-                    </fieldset>
-
-                    <!-- Experience -->
-                    <fieldset>
-                        <legend><i class="fas fa-briefcase"></i> Teaching Experience</legend>
-
-                        <div class="form-group">
-                            <label>Current/Most Recent Position:</label>
-                            <div style="margin-top: 8px;">
-                                <input type="text" name="institution_name" placeholder="Institution Name">
-                                    
-                                <input type="text" name="position_held" placeholder="Position Held">
-
-                                <div class="experience-dates">
-                                    <input type="date" name="duration_from" placeholder="From">
-
-                                    <input type="date" name="duration_to" placeholder="To">
+                            <div class="two-column">
+                                <div class="form-group">
+                                    <label>Date of Birth:</label>
+                                    <input type="date" id="dob" name="dob" required>
                                 </div>
-                        
-                                <textarea name="key_responsibilities" rows="3" placeholder="List your key responsibilities"></textarea>
-                                
+                                <div class="form-group">
+                                    <label>Gender:</label>
+                                    <select id="gender" name="gender" required>
+                                        <option value="" disabled selected>Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
 
-
-                        <div class="form-group">
-                            <label>Previous Teaching Experience:</label>
-                            <textarea name="previous_experience" rows="4"
-                                placeholder="Detail your previous teaching experience, including institutions and duration"></textarea>
-                        </div>
-                    </fieldset>
-
-                    <!-- Skills -->
-                    <fieldset>
-                        <legend><i class="fas fa-lightbulb"></i> Skills and Competencies</legend>
-
-                        <div class="form-group">
-                            <label>Teaching Philosophy:</label>
-                            <textarea name="philosophy" rows="4"
-                                placeholder="Describe your teaching philosophy and approach"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Technological Proficiency:</label>
-                            <textarea name="tech_skills" rows="3"
-                                placeholder="List your technical skills relevant to modern teaching"></textarea>
-                        </div>
-                    </fieldset>
-
-                    <!-- Availability -->
-                    <fieldset>
-                        <legend><i class="fas fa-calendar-alt"></i> Availability</legend>
-
-                        <div class="form-group">
-                            <label>Preferred Subjects to Teach:</label>
-                            <input type="text" name="preferred_subjects"
-                                placeholder="List subjects you prefer to teach">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Available Days and Times:</label>
-                            <textarea name="availability" rows="3"
-                                placeholder="Specify your available days and preferred time slots"></textarea>
-                        </div>
-                    </fieldset>
-
-                    <!-- References -->
-                    <fieldset>
-                        <legend><i class="fas fa-users"></i> References</legend>
-
-                    <div class="form-group">
-                        <label>Reference 1:</label>
-                        <div style="margin-top: 8px;">
-                            <input type="text" name="ref1_name" placeholder="Reference Name"
-                                style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
-                    
-                            <input type="text" name="ref1_relation" placeholder="Relation to Applicant"
-                                style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
-                    
-                            <input type="text" name="ref1_contact" placeholder="Contact Number"
-                                style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
-                    
-                            <input type="email" name="ref1_email" placeholder="Email Address"
-                                style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
-                        </div>
-                    </div>
-
-                        <div class="form-group">
-                            <label>Reference 2:</label>
-                                <div style="margin-top: 8px;">
-                                    <input type="text" name="ref1_name" placeholder="Reference Name"
-                                        style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
-
-                                    <input type="text" name="ref1_relation" placeholder="Relation to Applicant"
-                                        style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
-
-                                    <input type="text" name="ref1_contact" placeholder="Contact Number"
-                                        style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
-
-                                    <input type="email" name="ref1_email" placeholder="Email Address"
-                                        style="display:block; margin-bottom:10px; width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
-                                </div>                       
-                             </div>
-                    </fieldset>
-
-                    <!-- Declaration -->
-                    <fieldset>
-                        <legend><i class="fas fa-file-signature"></i> Declaration</legend>
-
-                        <div class="declaration-text">
-                            <p><strong>Declaration:</strong> I declare that the above information is true and accurate
-                                to the best of my knowledge. I understand that submitting this application does not
-                                guarantee employment. I agree to provide additional documentation if required during the
-                                selection process.</p>
-                        </div>
-
-                        <div class="two-column">
                             <div class="form-group">
-                                <label>Applicant's Name:</label>
-                                <input type="text" name="applicant_name" placeholder="Type your full name as signature">
+                                <label>Address:</label>
+                                <textarea id="address" name="address" rows="4" placeholder="Enter your complete address including city, state, and zip code" required></textarea>
                             </div>
+
+                            <div class="two-column">
+                                <div class="form-group">
+                                    <label>Contact Number:</label>
+                                    <input type="tel" id="phone" name="phone" placeholder="+91 " required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email Address:</label>
+                                    <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                                </div>
+                            </div>
+
                             <div class="form-group">
-                                <label>Signature Date:</label>
-                                <input type="date" name="signature_date">
+                                <label>Upload Resume:</label>
+                                <div class="file-upload">
+                                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                                    <div class="file-upload-btn">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <span id="file-label">Choose Resume File (PDF, DOC, DOCX)</span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </fieldset>
+                        </fieldset>
 
-                    <button type="submit"><i class="fas fa-paper-plane"></i> Submit Application</button>
-                </section>
-
-                <!-- Educator Benefits Cards -->
-                <div
-                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; margin: 60px 0;">
-                    <div style="background: white; border-radius: 20px; padding: 35px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); transition: all 0.4s ease; border-top: 5px solid #a00000; text-align: center;"
-                        onmouseover="this.style.transform='translateY(-15px)'; this.style.boxShadow='0 25px 50px rgba(0,0,0,0.15)'"
-                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.1)'">
-                        <i class="fas fa-chalkboard-teacher"
-                            style="font-size: 3.5rem; color: #a00000; margin-bottom: 25px;"></i>
-                        <h3
-                            style="font-family: 'Oswald', sans-serif; font-size: 1.6rem; color: #a00000; margin-bottom: 20px;">
-                            Shape Future Leaders</h3>
-                        <p style="color: #666; line-height: 1.7; font-size: 1rem;">Guide and mentor students to excel in
-                            academics and prepare them for competitive challenges.</p>
-                    </div>
-                    <div style="background: white; border-radius: 20px; padding: 35px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); transition: all 0.4s ease; border-top: 5px solid #a00000; text-align: center;"
-                        onmouseover="this.style.transform='translateY(-15px)'; this.style.boxShadow='0 25px 50px rgba(0,0,0,0.15)'"
-                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.1)'">
-                        <i class="fas fa-users" style="font-size: 3.5rem; color: #a00000; margin-bottom: 25px;"></i>
-                        <h3
-                            style="font-family: 'Oswald', sans-serif; font-size: 1.6rem; color: #a00000; margin-bottom: 20px;">
-                            Collaborative Environment</h3>
-                        <p style="color: #666; line-height: 1.7; font-size: 1rem;">Work with experienced educators and
-                            be part of a supportive academic community.</p>
-                    </div>
-                    <div style="background: white; border-radius: 20px; padding: 35px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); transition: all 0.4s ease; border-top: 5px solid #a00000; text-align: center;"
-                        onmouseover="this.style.transform='translateY(-15px)'; this.style.boxShadow='0 25px 50px rgba(0,0,0,0.15)'"
-                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.1)'">
-                        <i class="fas fa-book-open" style="font-size: 3.5rem; color: #a00000; margin-bottom: 25px;"></i>
-                        <h3
-                            style="font-family: 'Oswald', sans-serif; font-size: 1.6rem; color: #a00000; margin-bottom: 20px;">
-                            Continuous Growth</h3>
-                        <p style="color: #666; line-height: 1.7; font-size: 1rem;">Access training, workshops, and
-                            resources to enhance your teaching skills.</p>
-                    </div>
-                </div>
-
-                <!-- Why Join as Educator -->
-                <section
-                    style="margin-top: 60px; padding: 50px 40px; background: linear-gradient(135deg, rgba(160,0,0,0.08), rgba(200,0,0,0.12)); border-radius: 25px;">
-                    <h2
-                        style="font-family: 'Oswald', sans-serif; font-size: 2rem; color: #a00000; text-align: center; margin-bottom: 40px;">
-                        Why Join Nucleon as an Educator?</h2>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px;">
-                        <div style="text-align: center; padding: 30px 25px; background: rgba(255,255,255,0.9); border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); transition: all 0.3s ease;"
-                            onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.12)'"
-                            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.08)'">
-                            <i class="fas fa-award" style="font-size: 2.5rem; color: #a00000; margin-bottom: 15px;"></i>
-                            <p style="font-weight: 600; color: #333; margin: 0; font-size: 1rem;">National Recognition
-                            </p>
-                        </div>
-                        <div style="text-align: center; padding: 30px 25px; background: rgba(255,255,255,0.9); border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); transition: all 0.3s ease;"
-                            onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.12)'"
-                            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.08)'">
-                            <i class="fas fa-laptop"
-                                style="font-size: 2.5rem; color: #a00000; margin-bottom: 15px;"></i>
-                            <p style="font-weight: 600; color: #333; margin: 0; font-size: 1rem;">Modern Teaching Tools
-                            </p>
-                        </div>
-                        <div style="text-align: center; padding: 30px 25px; background: rgba(255,255,255,0.9); border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); transition: all 0.3s ease;"
-                            onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.12)'"
-                            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.08)'">
-                            <i class="fas fa-handshake"
-                                style="font-size: 2.5rem; color: #a00000; margin-bottom: 15px;"></i>
-                            <p style="font-weight: 600; color: #333; margin: 0; font-size: 1rem;">Mentorship & Support
-                            </p>
-                        </div>
-                        <div style="text-align: center; padding: 30px 25px; background: rgba(255,255,255,0.9); border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); transition: all 0.3s ease;"
-                            onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.12)'"
-                            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.08)'">
-                            <i class="fas fa-graduation-cap"
-                                style="font-size: 2.5rem; color: #a00000; margin-bottom: 15px;"></i>
-                            <p style="font-weight: 600; color: #333; margin: 0; font-size: 1rem;">Impact Thousands of
-                                Students</p>
-                        </div>
-                    </div>
+                        <button type="submit" id="submitBtn">
+                            <span id="submit-text"><i class="fas fa-paper-plane"></i> Submit Application</span>
+                        </button>
+                    </form>
                 </section>
 
             </div>
         </main>
-            <!-- Footer -->
-        <footer style="background:#800000; color:#fff; padding:40px 20px 20px; margin-top:auto; width:100%;">
-            <div style="max-width:1200px; margin:0 auto;">
-                <div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:20px; margin-bottom:20px;">
+
+        <!-- Footer -->
+        <footer style="background: #800000; color: #fff; padding: 40px 20px 20px; margin-top: auto; width: 100%;">
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; margin-bottom: 20px;">
                     
-                    <div style="flex:1; min-width:200px;">
-                        <h3 style="margin-bottom:15px; color:#fff;">Nucleon Coaching</h3>
+                    <div style="flex: 1; min-width: 200px;">
+                        <h3 style="margin-bottom: 15px; color: #fff;">Nucleon Coaching</h3>
                         <p>Empowering students with quality education and proven results. Join thousands of successful students across India.</p>
                     </div>
                     
-                    <div style="flex:1; min-width:200px;">
-                        <h3 style="margin-bottom:15px; color:#fff;">Quick Links</h3>
-                        <p><a href="about.html" style="color:#fff; text-decoration:none; transition:all 0.3s;" onmouseover="this.style.color='#ffff'; this.style.textShadow='0 0 8px #FFD700';" onmouseout="this.style.color='#ffff'; this.style.textShadow='none';">About Us</a></p>
-                        <p><a href="centers.html" style="color:#fff; text-decoration:none; transition:all 0.3s;" onmouseover="this.style.color='#ffff'; this.style.textShadow='0 0 8px #FFD700';" onmouseout="this.style.color='#ffff'; this.style.textShadow='none';">Our Centers</a></p>
-                        <p><a href="educator.html" style="color:#fff; text-decoration:none; transition:all 0.3s;" onmouseover="this.style.color='#ffff'; this.style.textShadow='0 0 8px #FFD700';" onmouseout="this.style.color='#ffff'; this.style.textShadow='none';">Join as Educator</a></p>
-                        <p><a href="partnership.html" style="color:#fff; text-decoration:none; transition:all 0.3s;" onmouseover="this.style.color='#ffff'; this.style.textShadow='0 0 8px #FFD700';" onmouseout="this.style.color='#ffff'; this.style.textShadow='none';">Partnership</a></p>
+                    <div style="flex: 1; min-width: 200px;">
+                        <h3 style="margin-bottom: 15px; color: #fff;">Quick Links</h3>
+                        <p><a href="about.html" style="color: #fff; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.color='#ffff'; this.style.textShadow='0 0 8px #FFD700';" onmouseout="this.style.color='#ffff'; this.style.textShadow='none';">About Us</a></p>
+                        <p><a href="centers.html" style="color: #fff; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.color='#ffff'; this.style.textShadow='0 0 8px #FFD700';" onmouseout="this.style.color='#ffff'; this.style.textShadow='none';">Our Centers</a></p>
+                        <p><a href="educator.html" style="color: #fff; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.color='#ffff'; this.style.textShadow='0 0 8px #FFD700';" onmouseout="this.style.color='#ffff'; this.style.textShadow='none';">Join as Educator</a></p>
+                        <p><a href="partnership.html" style="color: #fff; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.color='#ffff'; this.style.textShadow='0 0 8px #FFD700';" onmouseout="this.style.color='#ffff'; this.style.textShadow='none';">Partnership</a></p>
                     </div>
                     
-                    <div style="flex:1; min-width:200px;">
-                        <h3 style="margin-bottom:15px; color:#ffff;">Contact Info</h3>
+                    <div style="flex: 1; min-width: 200px;">
+                        <h3 style="margin-bottom: 15px; color: #fff;">Contact Info</h3>
                         <p><i class="fas fa-map-marker-alt"></i> Durgapur, West Bengal</p>
                         <p><i class="fas fa-phone"></i> +91-XXXX-XXXXXX</p>
                         <p><i class="fas fa-envelope"></i> info@nucleoncoaching.com</p>
                     </div>
                 </div>
                 
-                <div style="text-align:center; border-top:1px solid rgba(255,255,255,0.2); padding-top:15px; font-size:14px; opacity:0.8;">
+                <div style="text-align: center; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px; font-size: 14px; opacity: 0.8;">
                     <p>&copy; 2024 Nucleon Coaching Institutes. All rights reserved.</p>
                 </div>
             </div>
         </footer>
+
         <!-- Back to Top Button -->
-            <a href="#" style="position:fixed; bottom:20px; right:20px; width:50px; height:50px; background:#800000; color:#fff; display:flex; align-items:center; justify-content:center; border:2px solid #fff; border-radius:50%; text-decoration:none; font-size:20px; box-shadow:0 0 10px rgba(0,0,0,0.3); transition:all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(128,0,0,0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 0 10px rgba(0,0,0,0.3)'" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});">
-                <i class="fas fa-arrow-up"></i>
-            </a>
+        <a href="#" style="position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; background: #800000; color: #fff; display: flex; align-items: center; justify-content: center; border: 2px solid #fff; border-radius: 50%; text-decoration: none; font-size: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.3); transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(128,0,0,0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 0 10px rgba(0,0,0,0.3)'" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+
         <script>
+            // Set application date
+            const now = new Date();
+            document.getElementById("application_date").textContent = now.toLocaleString();
+
+            // Mobile menu functionality
             const menuBtn = document.querySelector('.mobile-menu-btn');
             const navLinks = document.querySelector('.nav-links');
 
             menuBtn.addEventListener('click', () => {
                 navLinks.classList.toggle('active');
+            });
+
+            // File upload functionality
+            const fileInput = document.getElementById('resume');
+            const fileLabel = document.getElementById('file-label');
+
+            fileInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const fileName = this.files[0].name;
+                    fileLabel.textContent = `Selected: ${fileName}`;
+                } else {
+                    fileLabel.textContent = 'Choose Resume File (PDF, DOC, DOCX)';
+                }
+            });
+
+            // Form submission
+            const form = document.getElementById('educatorForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submit-text');
+            const alertSuccess = document.getElementById('alert-success');
+            const alertError = document.getElementById('alert-error');
+            const errorMessage = document.getElementById('error-message');
+            const formErrors = document.getElementById('form-errors');
+            const errorList = document.getElementById('error-list');
+
+            // Hide all alerts initially
+            function hideAlerts() {
+                alertSuccess.style.display = 'none';
+                alertError.style.display = 'none';
+                formErrors.style.display = 'none';
+            }
+
+            // Show success message
+            function showSuccess() {
+                hideAlerts();
+                alertSuccess.style.display = 'block';
+                alertSuccess.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // Show error message
+            function showError(message) {
+                hideAlerts();
+                errorMessage.textContent = message;
+                alertError.style.display = 'block';
+                alertError.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // Show validation errors
+            function showValidationErrors(errors) {
+                hideAlerts();
+                errorList.innerHTML = '';
+                
+                for (const field in errors) {
+                    errors[field].forEach(error => {
+                        const li = document.createElement('li');
+                        li.textContent = error;
+                        errorList.appendChild(li);
+                    });
+                }
+                
+                formErrors.style.display = 'block';
+                formErrors.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // Set loading state
+            function setLoading(loading) {
+                if (loading) {
+                    submitBtn.disabled = true;
+                    submitText.innerHTML = '<div class="loading"></div>Submitting...';
+                } else {
+                    submitBtn.disabled = false;
+                    submitText.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Application';
+                }
+            }
+
+            // Reset form
+            function resetForm() {
+                form.reset();
+                fileLabel.textContent = 'Choose Resume File (PDF, DOC, DOCX)';
+            }
+
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                hideAlerts();
+                setLoading(true);
+
+                try {
+                    const formData = new FormData(form);
+                    
+                    // Replace with your actual API endpoint
+                    const response = await fetch('http://127.0.0.1:8000/api/educators', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                            // Add CSRF token if using Laravel
+                            // 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        }
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        showSuccess();
+                        resetForm();
+                    } else {
+                        if (data.errors) {
+                            showValidationErrors(data.errors);
+                        } else {
+                            showError(data.message || 'An error occurred while submitting your application.');
+                        }
+                    }
+
+                } catch (error) {
+                    console.error('Error:', error);
+                    showError('Network error. Please check your connection and try again.');
+                } finally {
+                    setLoading(false);
+                }
             });
         </script>
     </body>
