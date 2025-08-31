@@ -1616,9 +1616,26 @@
             submitBtn.disabled = true;
 
             try {
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                const username = document.getElementById('username').value;
+                const password = passwordInput.value;
                 
-                if (document.getElementById('username').value && passwordInput.value) {
+                if (!username || !password) {
+                    throw new Error('Please fill in all fields');
+                }
+
+                // Send credentials to PHP backend for validation
+                const formData = new FormData();
+                formData.append('username', username);
+                formData.append('password', password);
+
+                const response = await fetch('admin_login.php', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
                     showNotification('Login successful!', 'success');
                     setTimeout(() => {
                         loginScreen.classList.add("hidden");
@@ -1626,7 +1643,7 @@
                         initializeDashboard();
                     }, 500);
                 } else {
-                    throw new Error('Please fill in all fields');
+                    throw new Error('Invalid username or password');
                 }
             } catch (err) {
                 showNotification(err.message || 'Login failed.', 'error');
