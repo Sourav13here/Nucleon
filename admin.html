@@ -1368,38 +1368,6 @@
         opacity: 1;
       }
     }
-
-    /* Panel Header Styles */
-    .panel-header {
-      background: var(--white);
-      border-bottom: 1px solid var(--gray-200);
-      padding: 1.5rem 2rem;
-      margin-bottom: 0;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 70px;
-      z-index: 100;
-    }
-
-    .panel-header h2 {
-      margin: 0 0 0.5rem 0;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--gray-900);
-    }
-
-    .panel-breadcrumb {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.875rem;
-      color: var(--gray-600);
-    }
-
-    .panel-breadcrumb i {
-      font-size: 0.75rem;
-      color: var(--gray-400);
-    }
   </style>
 
    <!-- Favicon -->
@@ -1457,6 +1425,9 @@
       </button>
       <h1>Nucleon Admin</h1>
       <div class="admin-user">
+        <a href="index.html" class="btn-sm" style="background: var(--primary); color: var(--white); text-decoration: none; margin-right: 10px;">
+          <i class="fas fa-home"></i> Go to Main Site
+        </a>
         <button class="btn-sm" style="background: var(--danger); color: var(--white);" id="performLogoutBtn">
           <i class="fas fa-sign-out-alt"></i> Logout
         </button>
@@ -1502,39 +1473,88 @@
       </aside>
 
       <main class="admin-main" role="main">
-        <!-- Panel Header -->
-        <div class="panel-header">
-          <h2 id="panel-title">School Integration</h2>
-          <div class="panel-breadcrumb">
-            <span>Admin</span> <i class="fas fa-chevron-right"></i> <span id="panel-breadcrumb-current">School Integration</span>
+        <!-- <div id="statsCards" class="stats-cards">
+          <div class="stat-card">
+            <div class="stat-label">Total Submissions</div>
+            <div id="stat-total" class="stat-number">0</div>
           </div>
-        </div>
+          <div class="stat-card">
+            <div class="stat-label">School Integration</div>
+            <div id="stat-partnership-school" class="stat-number">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Study Centers</div>
+            <div id="stat-partnership-study" class="stat-number">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Distance Learning</div>
+            <div id="stat-partnership-distance" class="stat-number">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Educators</div>
+            <div id="stat-educator" class="stat-number">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Contact Forms</div>
+            <div id="stat-contact" class="stat-number">0</div>
+          </div>
+        </div>         -->
 
         <section id="school-integration" class="content-panel">
+          <div class="panel-header">
+            <h2><i class="fas fa-school"></i> School Integration Applications</h2>
+            <div class="panel-breadcrumb">
+              <span>Admin</span> <i class="fas fa-chevron-right"></i> <span>Partnerships</span> <i class="fas fa-chevron-right"></i> <span>School Integration</span>
+            </div>
+          </div>
           <div class="table-wrapper">
              <div id="school-table-container"><div class="loading"><div class="spinner"></div>Loading...</div></div>
           </div>
         </section>
 
         <section id="study-centers" class="content-panel">
+            <div class="panel-header">
+              <h2><i class="fas fa-building"></i> Study Center Applications</h2>
+              <div class="panel-breadcrumb">
+                <span>Admin</span> <i class="fas fa-chevron-right"></i> <span>Partnerships</span> <i class="fas fa-chevron-right"></i> <span>Study Centers</span>
+              </div>
+            </div>
             <div class="table-wrapper">
                 <div id="study-table-container"><div class="loading"><div class="spinner"></div>Loading...</div></div>
             </div>
         </section>
 
         <section id="distance-learning" class="content-panel">
+            <div class="panel-header">
+              <h2><i class="fas fa-laptop"></i> Distance Learning Applications</h2>
+              <div class="panel-breadcrumb">
+                <span>Admin</span> <i class="fas fa-chevron-right"></i> <span>Partnerships</span> <i class="fas fa-chevron-right"></i> <span>Distance Learning</span>
+              </div>
+            </div>
             <div class="table-wrapper">
                 <div id="distance-table-container"><div class="loading"><div class="spinner"></div>Loading...</div></div>
             </div>
         </section>
         
         <section id="educators" class="content-panel">
+            <div class="panel-header">
+              <h2><i class="fas fa-chalkboard-teacher"></i> Educator Applications</h2>
+              <div class="panel-breadcrumb">
+                <span>Admin</span> <i class="fas fa-chevron-right"></i> <span>Educators</span>
+              </div>
+            </div>
             <div class="table-wrapper">
                 <div id="educators-table-container"><div class="loading"><div class="spinner"></div>Loading...</div></div>
             </div>
         </section>
 
         <section id="contacts" class="content-panel">
+            <div class="panel-header">
+              <h2><i class="fas fa-envelope"></i> Contact Form Submissions</h2>
+              <div class="panel-breadcrumb">
+                <span>Admin</span> <i class="fas fa-chevron-right"></i> <span>Contact Submissions</span>
+              </div>
+            </div>
             <div class="table-wrapper">
                 <div id="contacts-table-container"><div class="loading"><div class="spinner"></div>Loading...</div></div>
             </div>
@@ -2791,23 +2811,10 @@
             if(panelToShow) panelToShow.classList.add('active');
             if(activeLink) activeLink.classList.add('active');
             
-            // Update panel header title and breadcrumb
-            const panelTitleElement = document.getElementById('panel-title');
-            const panelBreadcrumbElement = document.getElementById('panel-breadcrumb-current');
-            
-            const titleMap = {
-                'school-integration': 'School Integration',
-                'study-centers': 'Study Centers',
-                'distance-learning': 'Distance Learning',
-                'educators': 'Educators',
-                'contacts': 'Contact Submissions',
-                'logout': 'Logout'
-            };
-            
-            const title = titleMap[id] || 'Dashboard';
-            if (panelTitleElement) panelTitleElement.textContent = title;
-            if (panelBreadcrumbElement) panelBreadcrumbElement.textContent = title;
-            
+            const panelTitleElement = document.getElementById('panelTitle');
+            if (panelTitleElement) {
+                panelTitleElement.textContent = activeLink ? activeLink.textContent.trim() : 'Dashboard';
+            }
             if (statsCardsContainer) statsCardsContainer.style.display = (id === 'dashboard') ? 'grid' : 'none';
             if (panelHeaderContainer) panelHeaderContainer.style.display = (id === 'dashboard') ? 'block' : 'block';
 
