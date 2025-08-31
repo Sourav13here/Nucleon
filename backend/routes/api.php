@@ -11,6 +11,8 @@ use App\Http\Controllers\EducatorController;
 // Contact form routes
 Route::post('/contacts', [ContactController::class, 'store']);
 Route::get('/contacts', [ContactController::class, 'index']);
+Route::get('/contacts/{id}', [ContactController::class, 'show']);
+Route::delete('/contacts/{id}', [ContactController::class, 'destroy']);
 
 // School project routes
 Route::post('/school-projects', [SchoolProjectController::class, 'store']);

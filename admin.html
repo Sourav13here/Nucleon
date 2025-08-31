@@ -24,8 +24,10 @@
       --danger: #dc2626;
       --info: #0284c7;
 
+      --gray-25: #fafbfc;
       --gray-50: #f9fafb;
       --gray-100: #f3f4f6;
+      --gray-150: #ebedef;
       --gray-200: #e5e7eb;
       --gray-300: #d1d5db;
       --gray-400: #9ca3af;
@@ -636,107 +638,382 @@
       font-size: 0.875rem;
     }
 
-    /* Table Styles from script.js */
+    /* Enhanced Table Styles */
     .submissions-table {
         width: 100%;
         border-collapse: collapse;
         font-size: 0.9rem;
+        background: var(--white);
+        border: 2px solid var(--gray-300);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
     }
+    
     .submissions-table th, .submissions-table td {
-        padding: 12px 15px;
-        border-bottom: 1px solid var(--gray-200);
+        padding: 15px 18px;
+        border: 1px solid var(--gray-200);
         text-align: left;
+        vertical-align: middle;
     }
+    
     .submissions-table th {
-        background-color: var(--gray-50);
-        font-weight: 600;
-        color: var(--gray-700);
+        background: linear-gradient(135deg, var(--gray-50), var(--gray-100));
+        font-weight: 700;
+        color: var(--gray-800);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        position: sticky;
+        top: 0;
+        z-index: 10;
     }
+    
+    .submissions-table tbody tr {
+        transition: var(--transition);
+    }
+    
     .submissions-table tbody tr:hover {
-        background-color: var(--gray-50);
+        background-color: var(--gray-25);
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
+    
+    .submissions-table tbody tr:last-child td {
+        border-bottom: none;
+    }
+    
     .submissions-table td {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         max-width: 200px;
+        color: var(--gray-700);
+        font-weight: 500;
     }
+    
+    /* Mobile table optimization */
+    @media (max-width: 768px) {
+        .submissions-table td {
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            max-width: 120px;
+            min-width: 80px;
+        }
+        
+        .submissions-table td:nth-child(2),
+        .submissions-table td:nth-child(3) {
+            max-width: 100px;
+        }
+        
+        .submissions-table th:nth-child(2),
+        .submissions-table th:nth-child(3) {
+            max-width: 100px;
+        }
+    }
+    
+    .submissions-table td:first-child {
+        font-weight: 600;
+        color: var(--gray-800);
+    }
+    
     .action-btn {
-        padding: 5px 10px;
+        padding: 6px 12px;
         border: 1px solid var(--gray-300);
         background-color: var(--white);
         color: var(--gray-700);
         cursor: pointer;
-        border-radius: var(--radius-sm);
-        margin-right: 5px;
-        transition: background-color 0.2s;
+        border-radius: var(--radius);
+        margin-right: 6px;
+        transition: all 0.2s ease;
+        font-weight: 500;
+        font-size: 0.8rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
     }
-    .action-btn.view-btn:hover { background-color: var(--info); color: white; border-color: var(--info); }
-    .action-btn.delete-btn:hover { background-color: var(--danger); color: white; border-color: var(--danger); }
-    .col-action { text-align: right; white-space: nowrap; width: 1%; }
-
-    /* Detail View Styles */
-    #application-detail-view .panel {
-        background: white;
-        padding: 2rem;
-        border-radius: var(--radius-lg);
+    
+    .action-btn:last-child {
+        margin-right: 0;
+    }
+    
+    .action-btn.view-btn {
+        border-color: var(--info);
+        color: var(--info);
+    }
+    
+    .action-btn.view-btn:hover {
+        background-color: var(--info);
+        color: var(--white);
+        transform: translateY(-1px);
         box-shadow: var(--shadow-md);
     }
+    
+    .action-btn.delete-btn {
+        border-color: var(--danger);
+        color: var(--danger);
+    }
+    
+    .action-btn.delete-btn:hover {
+        background-color: var(--danger);
+        color: var(--white);
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .col-action {
+        text-align: right;
+        white-space: nowrap;
+        width: 1%;
+        min-width: 120px;
+    }
+
+    /* Detail View Styles - Enhanced */
+    #application-detail-view .panel {
+        background: var(--white);
+        padding: 2.5rem;
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-xl);
+        border: 1px solid var(--gray-100);
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
     #application-detail-view .back-btn {
-        margin-bottom: 1.5rem;
-        background: none;
-        border: none;
+        margin-bottom: 2rem;
+        background: var(--gray-100);
+        border: 1px solid var(--gray-200);
         color: var(--primary);
         font-weight: 600;
         cursor: pointer;
         display: inline-flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.75rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: var(--radius);
+        transition: var(--transition);
+        font-size: 0.9rem;
     }
+    
+    #application-detail-view .back-btn:hover {
+        background: var(--primary);
+        color: var(--white);
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-md);
+    }
+    
     #application-detail-view h3 {
         margin-top: 0;
-        margin-bottom: 2rem;
-        border-bottom: 1px solid var(--gray-200);
+        margin-bottom: 2.5rem;
+        border-bottom: 2px solid var(--primary);
         padding-bottom: 1rem;
+        color: var(--gray-900);
+        font-size: 1.75rem;
+        font-weight: 700;
+        position: relative;
     }
-    .details-container .detail-row {
+    
+    #application-detail-view h3::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 60px;
+        height: 2px;
+        background: var(--primary-light);
+    }
+    
+    .form-view-container {
         display: grid;
-        grid-template-columns: 200px 1fr;
-        gap: 1rem;
-        padding: 1rem 0;
-        border-bottom: 1px solid var(--gray-100);
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 1.5rem;
+        width: 100%;
+        overflow: hidden;
     }
-    .details-container .detail-row:last-child {
-        border-bottom: none;
+    
+    .form-field {
+        margin-bottom: 1.75rem;
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
     }
-    .detail-label {
-        font-weight: 500;
-        color: var(--gray-600);
+    
+    .field-label {
+        display: block;
+        font-weight: 700;
+        color: var(--gray-700);
+        margin-bottom: 0.75rem;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.75px;
+        position: relative;
+        padding-left: 1rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 100%;
     }
-    .detail-value {
+    
+    .field-label::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(135deg, var(--primary), var(--primary-light));
+        border-radius: 2px;
+    }
+    
+    .field-value {
+        background: var(--white);
+        border: 2px solid var(--gray-200);
+        border-radius: var(--radius-lg);
+        padding: 1rem 1.25rem;
         color: var(--gray-800);
+        font-size: 1rem;
+        line-height: 1.6;
+        min-height: 3rem;
+        display: flex;
+        align-items: flex-start;
         white-space: pre-wrap;
+        word-wrap: break-word;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        transition: var(--transition);
+        box-shadow: var(--shadow-sm);
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .field-value:hover {
+        border-color: var(--primary-light);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .field-value:empty::before {
+        content: '[Not provided]';
+        color: var(--gray-400);
+        font-style: italic;
+        opacity: 0.7;
+    }
+    
+    /* Desktop specific enhancements */
+    @media (min-width: 1024px) {
+        .form-view-container {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+        
+        .field-value {
+            font-size: 1.05rem;
+            padding: 1.25rem 1.5rem;
+        }
+        
+        #application-detail-view .panel {
+            padding: 3rem;
+        }
+    }
+    
+    /* Tablet responsive */
+    @media (max-width: 1023px) and (min-width: 769px) {
+        .form-view-container {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        #application-detail-view .panel {
+            padding: 2rem;
+        }
+    }
+    
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+        .form-view-container {
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+            padding: 0;
+            margin: 0;
+        }
+        
+        #application-detail-view .panel {
+            padding: 1.5rem;
+            margin: 1rem;
+            border-radius: var(--radius-lg);
+            max-width: calc(100vw - 2rem);
+            overflow-x: hidden;
+        }
+        
+        #application-detail-view h3 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .form-field {
+            width: 100%;
+            max-width: 100%;
+            margin-bottom: 1.5rem;
+        }
+        
+        .field-label {
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            padding-left: 0.75rem;
+        }
+        
+        .field-value {
+            padding: 0.875rem 1rem;
+            font-size: 0.95rem;
+            min-height: 2.5rem;
+            width: 100%;
+            max-width: 100%;
+        }
+        
+        #application-detail-view .back-btn {
+            padding: 0.625rem 1.25rem;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
     }
 
 
-    /* Empty State */
+    /* Enhanced Empty State */
     .empty-state {
       text-align: center;
       padding: 4rem 2rem;
       color: var(--gray-500);
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      border: 2px dashed var(--gray-200);
+      margin: 1rem 0;
     }
 
     .empty-state i {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
       color: var(--gray-300);
+      opacity: 0.7;
     }
 
     .empty-state h3 {
-      font-size: 1.25rem;
+      font-size: 1.35rem;
       font-weight: 600;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
       color: var(--gray-700);
+    }
+    
+    .empty-state p {
+      color: var(--gray-500);
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
     }
 
     /* Footer */
@@ -766,13 +1043,16 @@
       display: block;
     }
 
-    /* Loading State */
+    /* Enhanced Loading State */
     .loading {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 3rem;
+      padding: 4rem 2rem;
       color: var(--gray-500);
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      margin: 1rem 0;
     }
 
     .spinner {
@@ -790,14 +1070,47 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
+    /* Enhanced Responsive Design */
+    
+    /* Large Desktop */
+    @media (min-width: 1440px) {
+      .admin-main {
+        padding: 2rem 3rem;
+      }
+      
+      .table-wrapper {
+        border-radius: var(--radius-xl);
+      }
+      
+      .submissions-table {
+        font-size: 1rem;
+      }
+      
+      .submissions-table th, .submissions-table td {
+        padding: 16px 20px;
+      }
+    }
+    
+    /* Desktop */
+    @media (min-width: 1024px) and (max-width: 1439px) {
+      .admin-main {
+        padding: 1.75rem 2rem;
+      }
+      
+      .submissions-table th, .submissions-table td {
+        padding: 14px 18px;
+      }
+    }
+    
+    /* Tablet */
+    @media (max-width: 1023px) and (min-width: 769px) {
       .hamburger {
         display: block;
       }
 
       .admin-sidebar {
         transform: translateX(-100%);
+        width: 260px;
       }
 
       .admin-sidebar.open {
@@ -806,6 +1119,219 @@
 
       .admin-main {
         margin-left: 0;
+        padding: 1.5rem;
+      }
+      
+      .submissions-table {
+        font-size: 0.9rem;
+      }
+      
+      .submissions-table th, .submissions-table td {
+        padding: 12px 15px;
+      }
+      
+      .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      .action-btn {
+        padding: 4px 8px;
+        font-size: 0.8rem;
+      }
+    }
+    
+    /* Mobile */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      .admin-sidebar {
+        transform: translateX(-100%);
+        width: 280px;
+        z-index: 60;
+      }
+
+      .admin-sidebar.open {
+        transform: translateX(0);
+      }
+
+      .admin-main {
+        margin-left: 0;
+        padding: 1rem;
+        overflow-x: hidden;
+      }
+      
+      .admin-header {
+        padding: 0 1rem;
+        height: 60px;
+      }
+      
+      .admin-header h1 {
+        font-size: 1.25rem;
+      }
+      
+      .submissions-table {
+        font-size: 0.8rem;
+        table-layout: fixed;
+        width: 100%;
+      }
+      
+      .submissions-table th, .submissions-table td {
+        padding: 8px 4px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+      }
+      
+      .submissions-table th:nth-child(1),
+      .submissions-table td:nth-child(1) {
+        width: 25%;
+        min-width: 70px;
+      }
+      
+      .submissions-table th:nth-child(2),
+      .submissions-table td:nth-child(2) {
+        width: 35%;
+        min-width: 80px;
+      }
+      
+      .submissions-table th:nth-child(3),
+      .submissions-table td:nth-child(3) {
+        width: 25%;
+        min-width: 70px;
+      }
+      
+      .submissions-table th:nth-child(4),
+      .submissions-table td:nth-child(4) {
+        width: 15%;
+        min-width: 90px;
+      }
+      
+      .table-wrapper {
+        overflow-x: hidden;
+        border-radius: var(--radius);
+        margin: 0 -1rem;
+        padding: 0 1rem;
+      }
+      
+      .action-btn {
+        padding: 2px 4px;
+        font-size: 0.7rem;
+        margin-right: 2px;
+        display: inline-block;
+        margin-bottom: 2px;
+      }
+      
+      .col-action {
+        text-align: center;
+      }
+      
+      .empty-state {
+        padding: 2rem 1rem;
+      }
+      
+      .empty-state h3 {
+        font-size: 1.1rem;
+      }
+      
+      .loading {
+        padding: 2rem 1rem;
+      }
+    }
+    
+    /* Small Mobile */
+    @media (max-width: 480px) {
+      .admin-main {
+        padding: 0.5rem;
+        overflow-x: hidden;
+      }
+      
+      .admin-header {
+        padding: 0 0.5rem;
+      }
+      
+      .admin-sidebar {
+        width: 260px;
+      }
+      
+      .submissions-table {
+        font-size: 0.75rem;
+        table-layout: fixed;
+      }
+      
+      .submissions-table th, .submissions-table td {
+        padding: 6px 2px;
+        font-size: 0.75rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+      }
+      
+      .submissions-table th:nth-child(1),
+      .submissions-table td:nth-child(1) {
+        width: 22%;
+        min-width: 60px;
+      }
+      
+      .submissions-table th:nth-child(2),
+      .submissions-table td:nth-child(2) {
+        width: 38%;
+        min-width: 70px;
+      }
+      
+      .submissions-table th:nth-child(3),
+      .submissions-table td:nth-child(3) {
+        width: 25%;
+        min-width: 60px;
+      }
+      
+      .submissions-table th:nth-child(4),
+      .submissions-table td:nth-child(4) {
+        width: 15%;
+        min-width: 80px;
+      }
+      
+      .action-btn {
+        padding: 1px 3px;
+        font-size: 0.65rem;
+        margin-right: 1px;
+        margin-bottom: 1px;
+        display: block;
+        width: 100%;
+        text-align: center;
+      }
+      
+      .table-wrapper {
+        margin: 0 -0.5rem;
+        padding: 0 0.5rem;
+        border-radius: 0;
+        overflow-x: hidden;
+      }
+      
+      /* Enhanced small mobile form view */
+      .form-view-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0;
+      }
+      
+      #application-detail-view .panel {
+        padding: 1rem;
+        margin: 0.5rem;
+        max-width: calc(100vw - 1rem);
+      }
+      
+      .field-value {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+        min-height: 2rem;
+      }
+      
+      .field-label {
+        font-size: 0.75rem;
+        padding-left: 0.5rem;
       }
     }
 
@@ -905,11 +1431,11 @@
     <div class="admin-container">
       <aside class="admin-sidebar" id="sidebar" aria-label="Navigation">
         <ul class="admin-nav">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="#" class="nav-link" data-target="dashboard">
               <i class="fas fa-chart-line"></i> Dashboard
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <button class="submenu-toggle expanded">
                 <i class="fas fa-handshake"></i> Partnerships
@@ -941,7 +1467,7 @@
       </aside>
 
       <main class="admin-main" role="main">
-        <div id="statsCards" class="stats-cards">
+        <!-- <div id="statsCards" class="stats-cards">
           <div class="stat-card">
             <div class="stat-label">Total Submissions</div>
             <div id="stat-total" class="stat-number">0</div>
@@ -966,7 +1492,7 @@
             <div class="stat-label">Contact Forms</div>
             <div id="stat-contact" class="stat-number">0</div>
           </div>
-        </div>        
+        </div>         -->
 
         <section id="school-integration" class="content-panel">
           <div class="table-wrapper">
@@ -1016,9 +1542,9 @@
         
         <div id="application-detail-view" class="content-panel"></div>
 
-        <footer class="admin-footer">
+        <!-- <footer class="admin-footer">
           <p>&copy; 2025 Nucleon Coaching Institutes. All rights reserved.</p>
-        </footer>
+        </footer> -->
       </main>
     </div>
     <div id="sidebarBackdrop" class="sidebar-backdrop"></div>
@@ -1059,6 +1585,18 @@
             document.body.appendChild(notification);
 
             setTimeout(() => notification.remove(), 3000);
+        }
+
+        // Format a date/time input into `12 Jan 25`. Falls back gracefully if invalid
+        function formatDateShort(val) {
+            if (!val) return 'N/A';
+            const d = new Date(val);
+            if (isNaN(d)) return val; // keep original if not a valid date
+            const day = d.getDate();
+            const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            const mon = months[d.getMonth()];
+            const yr = String(d.getFullYear()).slice(-2);
+            return `${day} ${mon} ${yr}`;
         }
         
         // --- LOGIN & LOGOUT ---
@@ -1153,8 +1691,7 @@
                 const result = await response.json();
                 if (result.success) {
                     SAMPLE.contacts = result.data;
-                    const columns = ['name', 'email', 'phone', 'program', 'submitted_at'];
-                    renderTable('#contacts-table-container', SAMPLE.contacts, columns, true, 'contact');
+                    renderContactsTable(result.data);
                     updateActiveStats();
                 }
             } catch (err) { console.error("Error loading contacts:", err); }
@@ -1171,12 +1708,19 @@
             };
             counts.total = counts.school + counts.study + counts.distance + counts.educator + counts.contact;
 
-            document.getElementById('stat-total').textContent = counts.total;
-            document.getElementById('stat-partnership-school').textContent = counts.school;
-            document.getElementById('stat-partnership-study').textContent = counts.study;
-            document.getElementById('stat-partnership-distance').textContent = counts.distance;
-            document.getElementById('stat-educator').textContent = counts.educator;
-            document.getElementById('stat-contact').textContent = counts.contact;
+            const statTotal = document.getElementById('stat-total');
+            const statSchool = document.getElementById('stat-partnership-school');
+            const statStudy = document.getElementById('stat-partnership-study');
+            const statDistance = document.getElementById('stat-partnership-distance');
+            const statEducator = document.getElementById('stat-educator');
+            const statContact = document.getElementById('stat-contact');
+            
+            if (statTotal) statTotal.textContent = counts.total;
+            if (statSchool) statSchool.textContent = counts.school;
+            if (statStudy) statStudy.textContent = counts.study;
+            if (statDistance) statDistance.textContent = counts.distance;
+            if (statEducator) statEducator.textContent = counts.educator;
+            if (statContact) statContact.textContent = counts.contact;
         }
 
         // --- RENDERING ---
@@ -1193,7 +1737,12 @@
             const actionHeader = includeActions ? `<th class="col-action">Actions</th>` : '';
 
             const rows = data.map(item => {
-                const cells = columnOrder.map(key => `<td title="${item[key]}">${item[key] || 'N/A'}</td>`).join('');
+                const cells = columnOrder.map(key => {
+                    const raw = item[key];
+                    const isDateKey = /date|submitted/i.test(key);
+                    const value = isDateKey ? formatDateShort(raw) : (raw || 'N/A');
+                    return `<td title="${raw}">${value}</td>`;
+                }).join('');
                 const actionCell = includeActions ? `
                     <td class="col-action">
                         <button class="action-btn delete-btn" data-id="${item.id}" data-type="${dataType}">Delete</button>
@@ -1215,13 +1764,14 @@
         function renderDetailView(entries, title) {
             let detailHtml = `<div class="panel">
                 <button class="back-btn"><i class="fas fa-arrow-left"></i> Back to List</button>
-                <h3>${title}</h3><div class="details-container">`;
+                <h3>${title}</h3>
+                <div class="form-view-container">`;
 
             for (const [label, value] of Object.entries(entries)) {
                 detailHtml += `
-                    <div class="detail-row">
-                        <span class="detail-label">${label}</span>
-                        <span class="detail-value">${value || 'N/A'}</span>
+                    <div class="form-field">
+                        <label class="field-label">${label}:</label>
+                        <div class="field-value">${value || '[Not provided]'}</div>
                     </div>`;
             }
             detailHtml += `</div></div>`;
@@ -1240,7 +1790,7 @@
                 <tbody>
                   ${data.map(app => `
                     <tr>
-                      <td>${app.application_date || 'N/A'}</td>
+                      <td>${formatDateShort(app.application_date)}</td>
                       <td title="${app.school_name}">${app.school_name}</td>
                       <td title="${app.principal_name}">${app.principal_name}</td>
                       <td class="col-action">
@@ -1271,7 +1821,7 @@
                 <tbody>
                   ${data.map(app => `
                     <tr>
-                      <td>${app.application_date || 'N/A'}</td>
+                      <td>${formatDateShort(app.application_date)}</td>
                       <td>${app.centre_name}</td>
                       <td>${app.principal_name}</td>
                       <td class="col-action">
@@ -1302,7 +1852,7 @@
                 <tbody>
                   ${data.map(app => `
                     <tr>
-                      <td>${app.application_date || 'N/A'}</td>
+                      <td>${formatDateShort(app.application_date)}</td>
                       <td>${app.applicant_name}</td>
                       <td>${app.contact_number}</td>
                       <td class="col-action">
@@ -1320,6 +1870,37 @@
                 btn.addEventListener('click', () => handleDelete(btn.dataset.id, btn.dataset.type))
             );
         }
+        
+        function renderContactsTable(data) {
+            const container = document.querySelector('#contacts-table-container');
+            if (!data || data.length === 0) {
+                container.innerHTML = '<div class="empty-state"><h3>No contact submissions found.</h3></div>';
+                return;
+            }
+            const html = `
+              <table class="submissions-table">
+                <thead><tr><th>Date</th><th>Name</th><th>Program</th><th class="col-action">Actions</th></tr></thead>
+                <tbody>
+                  ${data.map(contact => `
+                    <tr>
+                      <td>${formatDateShort(contact.submitted_at)}</td>
+                      <td title="${contact.name}">${contact.name}</td>
+                      <td title="${contact.program}">${contact.program}</td>
+                      <td class="col-action">
+                        <button class="action-btn view-btn" data-id="${contact.id}">View</button>
+                        <button class="action-btn delete-btn" data-id="${contact.id}" data-type="contact">Delete</button>
+                      </td>
+                    </tr>`).join("")}
+                </tbody>
+              </table>`;
+            container.innerHTML = html;
+            container.querySelectorAll('.view-btn').forEach(btn => 
+                btn.addEventListener('click', () => viewContactSubmission(btn.dataset.id))
+            );
+            container.querySelectorAll('.delete-btn').forEach(btn => 
+                btn.addEventListener('click', () => handleDelete(btn.dataset.id, btn.dataset.type))
+            );
+        }
 
         // --- VIEW HANDLERS ---
         async function viewSchoolApplication(id) {
@@ -1328,10 +1909,26 @@
                 const json = await res.json();
                 if (json.success) {
                     const app = json.data;
-                    const detailEntries = { "Date": app.application_date, "School": app.school_name, "Address": app.address, "Principal": app.principal_name, "Contact": app.contact_number, "Email": app.email, "Board": app.affiliated_board, "Objective": app.objective, "Target Audience": app.target_audience, "Duration": app.duration, "Resources": app.resources_required, "Benefits": app.benefits };
-                    renderDetailView(detailEntries, "School Project Application");
+                    const detailEntries = {
+                        "Application Date": app.application_date,
+                        "School Name": app.school_name,
+                        "School Address": app.address,
+                        "Principal Name": app.principal_name,
+                        "Contact Number": app.contact_number,
+                        "Email Address": app.email,
+                        "Affiliated Board": app.affiliated_board,
+                        "Project Objective": app.objective,
+                        "Target Audience": app.target_audience,
+                        "Project Duration": app.duration,
+                        "Resources Required": app.resources_required,
+                        "Expected Benefits": app.benefits
+                    };
+                    renderDetailView(detailEntries, "School Integration Partnership Application");
                 }
-            } catch (err) { console.error("Error loading application:", err); }
+            } catch (err) { 
+                console.error("Error loading application:", err);
+                showNotification('Failed to load application details.', 'error');
+            }
         }
         
         async function viewStudyCenterApplication(id) {
@@ -1340,10 +1937,25 @@
                 const json = await res.json();
                 if (json.success) {
                     const app = json.data;
-                    const detailEntries = { "Date": app.application_date, "Centre Name": app.centre_name, "Principal": app.principal_name, "Address": app.address, "Contact": app.contact_number, "Email": app.email, "Infrastructure": app.infrastructure, "Staff": app.staff_strength, "Capacity": app.student_capacity, "Experience": app.previous_experience, "Benefits": app.benefits };
-                    renderDetailView(detailEntries, "Study Center Application");
+                    const detailEntries = {
+                        "Application Date": app.application_date,
+                        "Study Centre Name": app.centre_name,
+                        "Principal Name": app.principal_name,
+                        "Centre Address": app.address,
+                        "Contact Number": app.contact_number,
+                        "Email Address": app.email,
+                        "Infrastructure Details": app.infrastructure,
+                        "Staff Strength": app.staff_strength,
+                        "Student Capacity": app.student_capacity,
+                        "Previous Experience": app.previous_experience,
+                        "Expected Benefits": app.benefits
+                    };
+                    renderDetailView(detailEntries, "Study Centre Partnership Application");
                 }
-            } catch (err) { console.error("Error loading study center:", err); }
+            } catch (err) { 
+                console.error("Error loading study center:", err);
+                showNotification('Failed to load study center details.', 'error');
+            }
         }
 
         async function viewDistanceLearningApplication(id) {
@@ -1352,10 +1964,45 @@
                 const json = await res.json();
                 if (json.success) {
                     const app = json.data;
-                    const detailEntries = { "Date": app.application_date, "Name": app.applicant_name, "Address": app.applicant_address, "Contact": app.contact_number, "Email": app.email_address, "Qualification": app.educational_qualification, "Area (sq.ft)": app.center_area, "Investment": app.investment_amount, "# Schools": app.number_of_schools };
-                    renderDetailView(detailEntries, "Distance Learning Application");
+                    const detailEntries = {
+                        "Application Date": app.application_date,
+                        "Applicant Name": app.applicant_name,
+                        "Applicant Address": app.applicant_address,
+                        "Contact Number": app.contact_number,
+                        "Email Address": app.email_address,
+                        "Educational Qualification": app.educational_qualification,
+                        "Center Area (sq.ft)": app.center_area,
+                        "Investment Amount": app.investment_amount,
+                        "Number of Schools": app.number_of_schools
+                    };
+                    renderDetailView(detailEntries, "Distance Learning Partnership Application");
                 }
-            } catch (err) { console.error("Error loading distance learning app:", err); }
+            } catch (err) { 
+                console.error("Error loading distance learning app:", err);
+                showNotification('Failed to load distance learning details.', 'error');
+            }
+        }
+
+        async function viewContactSubmission(id) {
+            try {
+                const res = await fetch(`${API_BASE}/contacts/${id}`);
+                const json = await res.json();
+                if (json.success) {
+                    const contact = json.data;
+                    const detailEntries = {
+                        "Submission Date": contact.submitted_at,
+                        "Full Name": contact.name,
+                        "Email Address": contact.email,
+                        "Phone Number": contact.phone,
+                        "Program Interest": contact.program,
+                        "Message": contact.message
+                    };
+                    renderDetailView(detailEntries, "Contact Submission Details");
+                }
+            } catch (err) { 
+                console.error("Error loading contact:", err);
+                showNotification('Failed to load contact details.', 'error');
+            }
         }
 
         async function handleDelete(id, type) {
@@ -1392,8 +2039,8 @@
         function showListView() {
             applicationDetailView.classList.remove('active');
             applicationDetailView.innerHTML = '';
-            statsCardsContainer.style.display = 'grid';
-            panelHeaderContainer.style.display = 'block';
+            if (statsCardsContainer) statsCardsContainer.style.display = 'grid';
+            if (panelHeaderContainer) panelHeaderContainer.style.display = 'block';
 
             const currentPanelId = (location.hash || '').replace('#', '') || 'dashboard';
             allContentPanels.forEach(p => p.classList.remove('active'));
@@ -1401,7 +2048,7 @@
             const panelToShow = document.getElementById(currentPanelId);
             if (panelToShow) {
                 panelToShow.classList.add('active');
-                if (currentPanelId !== 'dashboard') {
+                if (currentPanelId !== 'dashboard' && statsCardsContainer) {
                     statsCardsContainer.style.display = 'none';
                 }
             }
@@ -1410,8 +2057,8 @@
 
         function showDetailView(htmlContent) {
             allContentPanels.forEach(section => section.classList.remove('active'));
-            statsCardsContainer.style.display = 'none';
-            panelHeaderContainer.style.display = 'none';
+            if (statsCardsContainer) statsCardsContainer.style.display = 'none';
+            if (panelHeaderContainer) panelHeaderContainer.style.display = 'none';
 
             applicationDetailView.innerHTML = htmlContent;
             applicationDetailView.classList.add('active');
@@ -1436,9 +2083,12 @@
             if(panelToShow) panelToShow.classList.add('active');
             if(activeLink) activeLink.classList.add('active');
             
-            document.getElementById('panelTitle').textContent = activeLink ? activeLink.textContent.trim() : 'Dashboard';
-            statsCardsContainer.style.display = (id === 'dashboard') ? 'grid' : 'none';
-            panelHeaderContainer.style.display = (id === 'dashboard') ? 'block' : 'block';
+            const panelTitleElement = document.getElementById('panelTitle');
+            if (panelTitleElement) {
+                panelTitleElement.textContent = activeLink ? activeLink.textContent.trim() : 'Dashboard';
+            }
+            if (statsCardsContainer) statsCardsContainer.style.display = (id === 'dashboard') ? 'grid' : 'none';
+            if (panelHeaderContainer) panelHeaderContainer.style.display = (id === 'dashboard') ? 'block' : 'block';
 
             updateActiveStats();
         }
@@ -1469,6 +2119,12 @@
                     if (!target) return;
                     history.pushState({ panel: target }, '', '#' + target);
                     showPanel(target);
+
+                    // Auto-close mobile sidebar upon navigation
+                    const sb = document.getElementById('sidebar');
+                    const sbBackdrop = document.getElementById('sidebarBackdrop');
+                    if (sb && sb.classList.contains('open')) sb.classList.remove('open');
+                    if (sbBackdrop && sbBackdrop.classList.contains('show')) sbBackdrop.classList.remove('show');
                 });
             });
             
