@@ -1516,7 +1516,9 @@
         </section>
         
         <section id="educators" class="content-panel">
-            <p>Educators section is not yet connected to the backend.</p>
+            <div class="table-wrapper">
+                <div id="educators-table-container"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+            </div>
         </section>
 
         <section id="contacts" class="content-panel">
@@ -1688,6 +1690,18 @@
             } catch (e) { console.error("Error loading distance learning:", e); }
         }
         
+        async function loadEducators() {
+            try {
+                const res = await fetch(`${API_BASE}/educators`);
+                const json = await res.json();
+                if (json.success) {
+                    SAMPLE.educators = json.data;
+                    renderEducatorsTable(json.data);
+                    updateActiveStats();
+                }
+            } catch (e) { console.error("Error loading educators:", e); }
+        }
+        
         async function loadContactsFromApi() {
             try {
                 const response = await fetch(`${API_BASE}/contacts`);
@@ -1812,6 +1826,37 @@
             );
         }
         
+        function renderEducatorsTable(data) {
+            const container = document.querySelector('#educators-table-container');
+            if (!data || data.length === 0) {
+                container.innerHTML = '<div class="empty-state"><h3>No educator applications found.</h3></div>';
+                return;
+            }
+            const html = `
+              <table class="submissions-table">
+                <thead><tr><th>Date</th><th>Full Name</th><th>Email</th><th class="col-action">Actions</th></tr></thead>
+                <tbody>
+                  ${data.map(app => `
+                    <tr>
+                      <td>${formatDateShort(app.submitted_at || app.created_at)}</td>
+                      <td title="${app.full_name}">${app.full_name}</td>
+                      <td title="${app.email}">${app.email}</td>
+                      <td class="col-action">
+                        <button class="action-btn view-btn" data-id="${app.id}">View</button>
+                        <button class="action-btn delete-btn" data-id="${app.id}" data-type="educator">Delete</button>
+                      </td>
+                    </tr>`).join("")}
+                </tbody>
+              </table>`;
+            container.innerHTML = html;
+            container.querySelectorAll('.view-btn').forEach(btn => 
+                btn.addEventListener('click', () => viewEducatorApplication(btn.dataset.id))
+            );
+            container.querySelectorAll('.delete-btn').forEach(btn => 
+                btn.addEventListener('click', () => handleDelete(btn.dataset.id, btn.dataset.type))
+            );
+        }
+
         function renderStudyCentersTable(data) {
             const container = document.querySelector('#study-table-container');
             if (!data || data.length === 0) {
@@ -1912,21 +1957,52 @@
                 const json = await res.json();
                 if (json.success) {
                     const app = json.data;
-                    const detailEntries = {
-                        "Application Date": app.application_date,
-                        "School Name": app.school_name,
-                        "School Address": app.address,
-                        "Principal Name": app.principal_name,
-                        "Contact Number": app.contact_number,
-                        "Email Address": app.email,
-                        "Affiliated Board": app.affiliated_board,
-                        "Project Objective": app.objective,
-                        "Target Audience": app.target_audience,
-                        "Project Duration": app.duration,
-                        "Resources Required": app.resources_required,
-                        "Expected Benefits": app.benefits
-                    };
-                    renderDetailView(detailEntries, "School Integration Partnership Application");
+                    const html = `
+                    <div class="panel school-detail-panel">
+                      <style>
+                        .school-detail-panel .application-form { background:#fff; border-radius:12px; padding:24px; box-shadow:0 4px 16px rgba(0,0,0,0.06); }
+                        .school-detail-panel h2 { font-family:'Oswald',sans-serif; color:#800000; margin:0 0 12px; display:flex; align-items:center; gap:10px; }
+                        .school-detail-panel .date-input { margin:8px 0 20px; font-weight:600; }
+                        .school-detail-panel fieldset { border:2px solid #800000; border-radius:12px; padding:16px; margin:14px 0 22px; background:#fafbfc; }
+                        .school-detail-panel legend { padding:4px 12px; border:2px solid #800000; border-radius:12px; color:#800000; font-weight:700; background:#fff; display:inline-flex; align-items:center; gap:8px; }
+                        .school-detail-panel .form-group { margin-bottom:14px; }
+                        .school-detail-panel label { display:block; font-weight:600; margin-bottom:6px; }
+                        .school-detail-panel .readonly-box { background:#fff; border:1px solid #e0e0e0; border-radius:10px; padding:12px 14px; }
+                        .school-detail-actions { display:flex; justify-content:space-between; align-items:center; gap:0; width:100%; max-width:960px; margin:0 auto 14px; padding:0 8px; }
+                        .school-detail-actions .btn { background:#800000; color:#fff; border:none; padding:10px 14px; border-radius:8px; cursor:pointer; display:inline-flex; align-items:center; width:auto !important; max-width:none; flex:0 0 auto !important; white-space:nowrap; }
+                        .school-detail-actions .btn.secondary { background:#555; }
+                        @media print { body *{visibility:hidden;} #application-detail-view, #application-detail-view *{visibility:visible;} #application-detail-view{position:absolute; inset:0;} .school-detail-actions{display:none!important;} }
+                      </style>
+                      <div class="school-detail-actions">
+                        <button class="back-btn btn secondary"><i class="fas fa-arrow-left"></i> Back</button>
+                        <button class="btn" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
+                      </div>
+                      <section class="application-form">
+                        <h2><i class="fas fa-school"></i> School Integration Partnership Application</h2>
+                        <div class="date-input"><label>Application Date:</label> <span>${app.application_date || ''}</span></div>
+                        <fieldset>
+                          <legend><i class="fas fa-user-tie"></i> School Details</legend>
+                          <div class="form-group"><label>School Name:</label><div class="readonly-box">${app.school_name || ''}</div></div>
+                          <div class="form-group"><label>School Address:</label><div class="readonly-box">${app.address || ''}</div></div>
+                          <div class="form-group"><label>Affiliated Board:</label><div class="readonly-box">${app.affiliated_board || ''}</div></div>
+                        </fieldset>
+                        <fieldset>
+                          <legend><i class="fas fa-user"></i> Contact</legend>
+                          <div class="form-group"><label>Principal Name:</label><div class="readonly-box">${app.principal_name || ''}</div></div>
+                          <div class="form-group"><label>Contact Number:</label><div class="readonly-box">${app.contact_number || ''}</div></div>
+                          <div class="form-group"><label>Email Address:</label><div class="readonly-box">${app.email || ''}</div></div>
+                        </fieldset>
+                        <fieldset>
+                          <legend><i class="fas fa-list"></i> Project</legend>
+                          <div class="form-group"><label>Project Objective:</label><div class="readonly-box">${app.objective || ''}</div></div>
+                          <div class="form-group"><label>Target Audience:</label><div class="readonly-box">${app.target_audience || ''}</div></div>
+                          <div class="form-group"><label>Project Duration:</label><div class="readonly-box">${app.duration || ''}</div></div>
+                          <div class="form-group"><label>Resources Required:</label><div class="readonly-box">${app.resources_required || ''}</div></div>
+                          <div class="form-group"><label>Expected Benefits:</label><div class="readonly-box">${app.benefits || ''}</div></div>
+                        </fieldset>
+                      </section>
+                    </div>`;
+                    showDetailView(html);
                 }
             } catch (err) { 
                 console.error("Error loading application:", err);
@@ -1940,20 +2016,51 @@
                 const json = await res.json();
                 if (json.success) {
                     const app = json.data;
-                    const detailEntries = {
-                        "Application Date": app.application_date,
-                        "Study Centre Name": app.centre_name,
-                        "Principal Name": app.principal_name,
-                        "Centre Address": app.address,
-                        "Contact Number": app.contact_number,
-                        "Email Address": app.email,
-                        "Infrastructure Details": app.infrastructure,
-                        "Staff Strength": app.staff_strength,
-                        "Student Capacity": app.student_capacity,
-                        "Previous Experience": app.previous_experience,
-                        "Expected Benefits": app.benefits
-                    };
-                    renderDetailView(detailEntries, "Study Centre Partnership Application");
+                    const html = `
+                    <div class="panel study-detail-panel">
+                      <style>
+                        .study-detail-panel .application-form { background:#fff; border-radius:12px; padding:24px; box-shadow:0 4px 16px rgba(0,0,0,0.06); }
+                        .study-detail-panel h2 { font-family:'Oswald',sans-serif; color:#800000; margin:0 0 12px; display:flex; align-items:center; gap:10px; }
+                        .study-detail-panel .date-input { margin:8px 0 20px; font-weight:600; }
+                        .study-detail-panel fieldset { border:2px solid #800000; border-radius:12px; padding:16px; margin:14px 0 22px; background:#fafbfc; }
+                        .study-detail-panel legend { padding:4px 12px; border:2px solid #800000; border-radius:12px; color:#800000; font-weight:700; background:#fff; display:inline-flex; align-items:center; gap:8px; }
+                        .study-detail-panel .form-group { margin-bottom:14px; }
+                        .study-detail-panel label { display:block; font-weight:600; margin-bottom:6px; }
+                        .study-detail-panel .readonly-box { background:#fff; border:1px solid #e0e0e0; border-radius:10px; padding:12px 14px; }
+                        .study-detail-actions { display:flex; justify-content:space-between; align-items:center; gap:0; width:100%; max-width:960px; margin:0 auto 14px; padding:0 8px; }
+                        .study-detail-actions .btn { background:#800000; color:#fff; border:none; padding:10px 14px; border-radius:8px; cursor:pointer; display:inline-flex; align-items:center; width:auto !important; max-width:none; flex:0 0 auto !important; white-space:nowrap; }
+                        .study-detail-actions .btn.secondary { background:#555; }
+                        @media print { body *{visibility:hidden;} #application-detail-view, #application-detail-view *{visibility:visible;} #application-detail-view{position:absolute; inset:0;} .study-detail-actions{display:none!important;} }
+                      </style>
+                      <div class="study-detail-actions">
+                        <button class="back-btn btn secondary"><i class="fas fa-arrow-left"></i> Back</button>
+                        <button class="btn" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
+                      </div>
+                      <section class="application-form">
+                        <h2><i class="fas fa-university"></i> Study Centre Partnership Application</h2>
+                        <div class="date-input"><label>Application Date:</label> <span>${app.application_date || ''}</span></div>
+                        <fieldset>
+                          <legend><i class="fas fa-building"></i> Centre Details</legend>
+                          <div class="form-group"><label>Study Centre Name:</label><div class="readonly-box">${app.centre_name || ''}</div></div>
+                          <div class="form-group"><label>Centre Address:</label><div class="readonly-box">${app.address || ''}</div></div>
+                          <div class="form-group"><label>Infrastructure Details:</label><div class="readonly-box">${app.infrastructure || ''}</div></div>
+                        </fieldset>
+                        <fieldset>
+                          <legend><i class="fas fa-users"></i> People</legend>
+                          <div class="form-group"><label>Principal Name:</label><div class="readonly-box">${app.principal_name || ''}</div></div>
+                          <div class="form-group"><label>Staff Strength:</label><div class="readonly-box">${app.staff_strength || ''}</div></div>
+                          <div class="form-group"><label>Student Capacity:</label><div class="readonly-box">${app.student_capacity || ''}</div></div>
+                        </fieldset>
+                        <fieldset>
+                          <legend><i class="fas fa-info-circle"></i> Additional</legend>
+                          <div class="form-group"><label>Contact Number:</label><div class="readonly-box">${app.contact_number || ''}</div></div>
+                          <div class="form-group"><label>Email Address:</label><div class="readonly-box">${app.email || ''}</div></div>
+                          <div class="form-group"><label>Previous Experience:</label><div class="readonly-box">${app.previous_experience || ''}</div></div>
+                          <div class="form-group"><label>Expected Benefits:</label><div class="readonly-box">${app.benefits || ''}</div></div>
+                        </fieldset>
+                      </section>
+                    </div>`;
+                    showDetailView(html);
                 }
             } catch (err) { 
                 console.error("Error loading study center:", err);
@@ -1967,18 +2074,46 @@
                 const json = await res.json();
                 if (json.success) {
                     const app = json.data;
-                    const detailEntries = {
-                        "Application Date": app.application_date,
-                        "Applicant Name": app.applicant_name,
-                        "Applicant Address": app.applicant_address,
-                        "Contact Number": app.contact_number,
-                        "Email Address": app.email_address,
-                        "Educational Qualification": app.educational_qualification,
-                        "Center Area (sq.ft)": app.center_area,
-                        "Investment Amount": app.investment_amount,
-                        "Number of Schools": app.number_of_schools
-                    };
-                    renderDetailView(detailEntries, "Distance Learning Partnership Application");
+                    const html = `
+                    <div class="panel distance-detail-panel">
+                      <style>
+                        .distance-detail-panel .application-form { background:#fff; border-radius:12px; padding:24px; box-shadow:0 4px 16px rgba(0,0,0,0.06); }
+                        .distance-detail-panel h2 { font-family:'Oswald',sans-serif; color:#800000; margin:0 0 12px; display:flex; align-items:center; gap:10px; }
+                        .distance-detail-panel .date-input { margin:8px 0 20px; font-weight:600; }
+                        .distance-detail-panel fieldset { border:2px solid #800000; border-radius:12px; padding:16px; margin:14px 0 22px; background:#fafbfc; }
+                        .distance-detail-panel legend { padding:4px 12px; border:2px solid #800000; border-radius:12px; color:#800000; font-weight:700; background:#fff; display:inline-flex; align-items:center; gap:8px; }
+                        .distance-detail-panel .form-group { margin-bottom:14px; }
+                        .distance-detail-panel label { display:block; font-weight:600; margin-bottom:6px; }
+                        .distance-detail-panel .readonly-box { background:#fff; border:1px solid #e0e0e0; border-radius:10px; padding:12px 14px; }
+                        .distance-detail-actions { display:flex; justify-content:space-between; align-items:center; gap:0; width:100%; max-width:960px; margin:0 auto 14px; padding:0 8px; }
+                        .distance-detail-actions .btn { background:#800000; color:#fff; border:none; padding:10px 14px; border-radius:8px; cursor:pointer; display:inline-flex; align-items:center; width:auto !important; max-width:none; flex:0 0 auto !important; white-space:nowrap; }
+                        .distance-detail-actions .btn.secondary { background:#555; }
+                        @media print { body *{visibility:hidden;} #application-detail-view, #application-detail-view *{visibility:visible;} #application-detail-view{position:absolute; inset:0;} .distance-detail-actions{display:none!important;} }
+                      </style>
+                      <div class="distance-detail-actions">
+                        <button class="back-btn btn secondary"><i class="fas fa-arrow-left"></i> Back</button>
+                        <button class="btn" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
+                      </div>
+                      <section class="application-form">
+                        <h2><i class="fas fa-satellite-dish"></i> Distance Learning Partnership Application</h2>
+                        <div class="date-input"><label>Application Date:</label> <span>${app.application_date || ''}</span></div>
+                        <fieldset>
+                          <legend><i class="fas fa-user"></i> Applicant</legend>
+                          <div class="form-group"><label>Applicant Name:</label><div class="readonly-box">${app.applicant_name || ''}</div></div>
+                          <div class="form-group"><label>Applicant Address:</label><div class="readonly-box">${app.applicant_address || ''}</div></div>
+                          <div class="form-group"><label>Educational Qualification:</label><div class="readonly-box">${app.educational_qualification || ''}</div></div>
+                        </fieldset>
+                        <fieldset>
+                          <legend><i class="fas fa-info-circle"></i> Details</legend>
+                          <div class="form-group"><label>Contact Number:</label><div class="readonly-box">${app.contact_number || ''}</div></div>
+                          <div class="form-group"><label>Email Address:</label><div class="readonly-box">${app.email_address || ''}</div></div>
+                          <div class="form-group"><label>Center Area (sq.ft):</label><div class="readonly-box">${app.center_area || ''}</div></div>
+                          <div class="form-group"><label>Investment Amount:</label><div class="readonly-box">${app.investment_amount || ''}</div></div>
+                          <div class="form-group"><label>Number of Schools:</label><div class="readonly-box">${app.number_of_schools || ''}</div></div>
+                        </fieldset>
+                      </section>
+                    </div>`;
+                    showDetailView(html);
                 }
             } catch (err) { 
                 console.error("Error loading distance learning app:", err);
@@ -1991,20 +2126,134 @@
                 const res = await fetch(`${API_BASE}/contacts/${id}`);
                 const json = await res.json();
                 if (json.success) {
-                    const contact = json.data;
-                    const detailEntries = {
-                        "Submission Date": contact.submitted_at,
-                        "Full Name": contact.name,
-                        "Email Address": contact.email,
-                        "Phone Number": contact.phone,
-                        "Program Interest": contact.program,
-                        "Message": contact.message
-                    };
-                    renderDetailView(detailEntries, "Contact Submission Details");
+                    const c = json.data;
+                    const html = `
+                    <div class="panel contact-detail-panel">
+                      <style>
+                        .contact-detail-panel .application-form { background:#fff; border-radius:12px; padding:24px; box-shadow:0 4px 16px rgba(0,0,0,0.06); }
+                        .contact-detail-panel h2 { font-family:'Oswald',sans-serif; color:#800000; margin:0 0 12px; display:flex; align-items:center; gap:10px; }
+                        .contact-detail-panel .date-input { margin:8px 0 20px; font-weight:600; }
+                        .contact-detail-panel fieldset { border:2px solid #800000; border-radius:12px; padding:16px; margin:14px 0 22px; background:#fafbfc; }
+                        .contact-detail-panel legend { padding:4px 12px; border:2px solid #800000; border-radius:12px; color:#800000; font-weight:700; background:#fff; display:inline-flex; align-items:center; gap:8px; }
+                        .contact-detail-panel .form-group { margin-bottom:14px; }
+                        .contact-detail-panel label { display:block; font-weight:600; margin-bottom:6px; }
+                        .contact-detail-panel .readonly-box { background:#fff; border:1px solid #e0e0e0; border-radius:10px; padding:12px 14px; }
+                        .contact-detail-actions { display:flex; justify-content:space-between; align-items:center; gap:0; width:100%; max-width:960px; margin:0 auto 14px; padding:0 8px; }
+                        .contact-detail-actions .btn { background:#800000; color:#fff; border:none; padding:10px 14px; border-radius:8px; cursor:pointer; display:inline-flex; align-items:center; width:auto !important; max-width:none; flex:0 0 auto !important; white-space:nowrap; }
+                        .contact-detail-actions .btn.secondary { background:#555; }
+                        @media print { body *{visibility:hidden;} #application-detail-view, #application-detail-view *{visibility:visible;} #application-detail-view{position:absolute; inset:0;} .contact-detail-actions{display:none!important;} }
+                      </style>
+                      <div class="contact-detail-actions">
+                        <button class="back-btn btn secondary"><i class="fas fa-arrow-left"></i> Back</button>
+                        <button class="btn" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
+                      </div>
+                      <section class="application-form">
+                        <h2><i class="fas fa-envelope-open-text"></i> Contact Submission Details</h2>
+                        <div class="date-input"><label>Submission Date:</label> <span>${c.submitted_at || ''}</span></div>
+                        <fieldset>
+                          <legend><i class="fas fa-user"></i> Contact</legend>
+                          <div class="form-group"><label>Full Name:</label><div class="readonly-box">${c.name || ''}</div></div>
+                          <div class="form-group"><label>Email Address:</label><div class="readonly-box">${c.email || ''}</div></div>
+                          <div class="form-group"><label>Phone Number:</label><div class="readonly-box">${c.phone || ''}</div></div>
+                        </fieldset>
+                        <fieldset>
+                          <legend><i class="fas fa-book"></i> Program</legend>
+                          <div class="form-group"><label>Program Interest:</label><div class="readonly-box">${c.program || ''}</div></div>
+                          <div class="form-group"><label>Message:</label><div class="readonly-box">${c.message || ''}</div></div>
+                        </fieldset>
+                      </section>
+                    </div>`;
+                    showDetailView(html);
                 }
             } catch (err) { 
                 console.error("Error loading contact:", err);
                 showNotification('Failed to load contact details.', 'error');
+            }
+        }
+
+        async function viewEducatorApplication(id) {
+            try {
+                const res = await fetch(`${API_BASE}/educators/${id}`);
+                const json = await res.json();
+                if (json.success) {
+                    const app = json.data;
+                    const submitted = app.submitted_at || app.created_at || '';
+                    const submittedDate = formatDateShort(submitted);
+                    const dobDate = app.dob ? formatDateShort(app.dob) : '';
+                    const html = `
+                    <div class="panel educator-detail-panel">
+                      <style>
+                        .educator-detail-panel .application-form { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+                        .educator-detail-panel h2 { font-family: 'Oswald', sans-serif; color: #800000; margin: 0 0 12px; display:flex; align-items:center; gap:10px; }
+                        .educator-detail-panel .date-input { margin: 8px 0 20px; font-weight: 600; }
+                        .educator-detail-panel fieldset { border:2px solid #800000; border-radius: 12px; padding: 16px; margin: 14px 0 22px; background:#fafbfc; }
+                        .educator-detail-panel legend { padding: 4px 12px; border:2px solid #800000; border-radius: 12px; color:#800000; font-weight:700; background:#fff; display:inline-flex; align-items:center; gap:8px; }
+                        .educator-detail-panel .form-group { margin-bottom: 14px; }
+                        .educator-detail-panel label { display:block; font-weight:600; margin-bottom:6px; }
+                        .educator-detail-panel .readonly-box { background:#fff; border:1px solid #e0e0e0; border-radius:10px; padding:12px 14px; }
+                        .educator-detail-panel .two-column { display:grid; grid-template-columns: repeat(2,1fr); gap:14px; }
+                        .educator-detail-actions { display:flex; justify-content:space-between; align-items:center; gap:0; width:100%; max-width:960px; margin:0 auto 14px; padding:0 8px; }
+                        .educator-detail-actions .btn { background:#800000; color:#fff; border:none; padding:10px 14px; border-radius:8px; cursor:pointer; display:inline-flex; align-items:center; width:auto !important; max-width:none; flex:0 0 auto !important; white-space:nowrap; }
+                        .educator-detail-actions .btn.secondary { background:#555; }
+                        @media print {
+                          body * { visibility: hidden; }
+                          #application-detail-view, #application-detail-view * { visibility: visible; }
+                          #application-detail-view { position: absolute; inset: 0; }
+                          .educator-detail-actions { display:none !important; }
+                        }
+                      </style>
+                      <div class="educator-detail-actions">
+                        <button class="back-btn btn secondary"><i class="fas fa-arrow-left"></i> Back</button>
+                        <button class="btn" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
+                      </div>
+                      <section class="application-form">
+                        <h2><i class="fas fa-chalkboard-teacher"></i> Educator Application Form</h2>
+                        <div class="date-input">
+                          <label>Application Date:</label>
+                          <span>${submittedDate}</span>
+                        </div>
+                        <fieldset>
+                          <legend><i class="fas fa-user"></i> Personal Information</legend>
+                          <div class="form-group">
+                            <label>Full Name:</label>
+                            <div class="readonly-box">${app.full_name || ''}</div>
+                          </div>
+                          <div class="two-column">
+                            <div class="form-group">
+                              <label>Date of Birth:</label>
+                              <div class="readonly-box">${dobDate}</div>
+                            </div>
+                            <div class="form-group">
+                              <label>Gender:</label>
+                              <div class="readonly-box">${app.gender || ''}</div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label>Address:</label>
+                            <div class="readonly-box">${app.address || ''}</div>
+                          </div>
+                          <div class="two-column">
+                            <div class="form-group">
+                              <label>Contact Number:</label>
+                              <div class="readonly-box">${app.phone || ''}</div>
+                            </div>
+                            <div class="form-group">
+                              <label>Email Address:</label>
+                              <div class="readonly-box">${app.email || ''}</div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label>Resume:</label>
+                            <div class="readonly-box"><a href="${API_BASE}/educators/${app.id}/resume" target="_blank" rel="noopener">Download</a></div>
+                          </div>
+                        </fieldset>
+                      </section>
+                    </div>`;
+                    showDetailView(html);
+                }
+            } catch (err) {
+                console.error('Error loading educator:', err);
+                showNotification('Failed to load educator details.', 'error');
             }
         }
 
@@ -2015,13 +2264,15 @@
                 'school-project': `${API_BASE}/school-projects/${id}`,
                 'study-center': `${API_BASE}/study-centre-applications/${id}`,
                 'distance-learning': `${API_BASE}/distance-learning/${id}`,
-                'contact': `${API_BASE}/contacts/${id}`
+                'contact': `${API_BASE}/contacts/${id}`,
+                'educator': `${API_BASE}/educators/${id}`
             };
             const loadFunctions = {
                 'school-project': loadSchoolProjects,
                 'study-center': loadStudyCenters,
                 'distance-learning': loadDistanceLearning,
-                'contact': loadContactsFromApi
+                'contact': loadContactsFromApi,
+                'educator': loadEducators
             };
 
             try {
@@ -2112,6 +2363,7 @@
                 loadSchoolProjects(),
                 loadStudyCenters(),
                 loadDistanceLearning(),
+                loadEducators(),
                 loadContactsFromApi()
             ]);
 
