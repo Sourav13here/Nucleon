@@ -1425,6 +1425,9 @@
       </button>
       <h1>Nucleon Admin</h1>
       <div class="admin-user">
+        <a href="index.html" class="btn-sm" style="background: var(--primary); color: var(--white); text-decoration: none; margin-right: 10px;">
+          <i class="fas fa-home"></i> Go to Main Site
+        </a>
         <button class="btn-sm" style="background: var(--danger); color: var(--white);" id="performLogoutBtn">
           <i class="fas fa-sign-out-alt"></i> Logout
         </button>
@@ -1498,30 +1501,60 @@
         </div>         -->
 
         <section id="school-integration" class="content-panel">
+          <div class="panel-header">
+            <h2><i class="fas fa-school"></i> School Integration Applications</h2>
+            <div class="panel-breadcrumb">
+              <span>Admin</span> <i class="fas fa-chevron-right"></i> <span>Partnerships</span> <i class="fas fa-chevron-right"></i> <span>School Integration</span>
+            </div>
+          </div>
           <div class="table-wrapper">
              <div id="school-table-container"><div class="loading"><div class="spinner"></div>Loading...</div></div>
           </div>
         </section>
 
         <section id="study-centers" class="content-panel">
+            <div class="panel-header">
+              <h2><i class="fas fa-building"></i> Study Center Applications</h2>
+              <div class="panel-breadcrumb">
+                <span>Admin</span> <i class="fas fa-chevron-right"></i> <span>Partnerships</span> <i class="fas fa-chevron-right"></i> <span>Study Centers</span>
+              </div>
+            </div>
             <div class="table-wrapper">
                 <div id="study-table-container"><div class="loading"><div class="spinner"></div>Loading...</div></div>
             </div>
         </section>
 
         <section id="distance-learning" class="content-panel">
+            <div class="panel-header">
+              <h2><i class="fas fa-laptop"></i> Distance Learning Applications</h2>
+              <div class="panel-breadcrumb">
+                <span>Admin</span> <i class="fas fa-chevron-right"></i> <span>Partnerships</span> <i class="fas fa-chevron-right"></i> <span>Distance Learning</span>
+              </div>
+            </div>
             <div class="table-wrapper">
                 <div id="distance-table-container"><div class="loading"><div class="spinner"></div>Loading...</div></div>
             </div>
         </section>
         
         <section id="educators" class="content-panel">
+            <div class="panel-header">
+              <h2><i class="fas fa-chalkboard-teacher"></i> Educator Applications</h2>
+              <div class="panel-breadcrumb">
+                <span>Admin</span> <i class="fas fa-chevron-right"></i> <span>Educators</span>
+              </div>
+            </div>
             <div class="table-wrapper">
                 <div id="educators-table-container"><div class="loading"><div class="spinner"></div>Loading...</div></div>
             </div>
         </section>
 
         <section id="contacts" class="content-panel">
+            <div class="panel-header">
+              <h2><i class="fas fa-envelope"></i> Contact Form Submissions</h2>
+              <div class="panel-breadcrumb">
+                <span>Admin</span> <i class="fas fa-chevron-right"></i> <span>Contact Submissions</span>
+              </div>
+            </div>
             <div class="table-wrapper">
                 <div id="contacts-table-container"><div class="loading"><div class="spinner"></div>Loading...</div></div>
             </div>
@@ -1616,9 +1649,26 @@
             submitBtn.disabled = true;
 
             try {
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                const username = document.getElementById('username').value;
+                const password = passwordInput.value;
                 
-                if (document.getElementById('username').value && passwordInput.value) {
+                if (!username || !password) {
+                    throw new Error('Please fill in all fields');
+                }
+
+                // Send credentials to PHP backend for validation
+                const formData = new FormData();
+                formData.append('username', username);
+                formData.append('password', password);
+
+                const response = await fetch('admin_login.php', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
                     showNotification('Login successful!', 'success');
                     setTimeout(() => {
                         loginScreen.classList.add("hidden");
@@ -1626,7 +1676,7 @@
                         initializeDashboard();
                     }, 500);
                 } else {
-                    throw new Error('Please fill in all fields');
+                    throw new Error('Invalid username or password');
                 }
             } catch (err) {
                 showNotification(err.message || 'Login failed.', 'error');
@@ -1957,50 +2007,161 @@
                 const json = await res.json();
                 if (json.success) {
                     const app = json.data;
+                    
+                    // Format project types
+                    const projectTypes = [];
+                    if (app.project_science) projectTypes.push('<i class="fas fa-flask" style="color:#800000; margin-right:6px;"></i>Science');
+                    if (app.project_math) projectTypes.push('<i class="fas fa-calculator" style="color:#800000; margin-right:6px;"></i>Math');
+                    if (app.project_language) projectTypes.push('<i class="fas fa-book" style="color:#800000; margin-right:6px;"></i>Language');
+                    if (app.project_social) projectTypes.push('<i class="fas fa-globe" style="color:#800000; margin-right:6px;"></i>Social');
+                    if (app.project_other) projectTypes.push(`<i class="fas fa-plus" style="color:#800000; margin-right:6px;"></i>Other: ${app.project_other}`);
+                    
                     const html = `
                     <div class="panel school-detail-panel">
                       <style>
-                        .school-detail-panel .application-form { background:#fff; border-radius:12px; padding:24px; box-shadow:0 4px 16px rgba(0,0,0,0.06); }
-                        .school-detail-panel h2 { font-family:'Oswald',sans-serif; color:#800000; margin:0 0 12px; display:flex; align-items:center; gap:10px; }
-                        .school-detail-panel .date-input { margin:8px 0 20px; font-weight:600; }
-                        .school-detail-panel fieldset { border:2px solid #800000; border-radius:12px; padding:16px; margin:14px 0 22px; background:#fafbfc; }
-                        .school-detail-panel legend { padding:4px 12px; border:2px solid #800000; border-radius:12px; color:#800000; font-weight:700; background:#fff; display:inline-flex; align-items:center; gap:8px; }
-                        .school-detail-panel .form-group { margin-bottom:14px; }
-                        .school-detail-panel label { display:block; font-weight:600; margin-bottom:6px; }
-                        .school-detail-panel .readonly-box { background:#fff; border:1px solid #e0e0e0; border-radius:10px; padding:12px 14px; }
+                        .school-detail-panel { background: linear-gradient(145deg, #f8f9fa, #ffffff); border: 2px solid #800000; border-radius: 15px; padding: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
                         .school-detail-actions { display:flex; justify-content:space-between; align-items:center; gap:0; width:100%; max-width:960px; margin:0 auto 14px; padding:0 8px; }
                         .school-detail-actions .btn { background:#800000; color:#fff; border:none; padding:10px 14px; border-radius:8px; cursor:pointer; display:inline-flex; align-items:center; width:auto !important; max-width:none; flex:0 0 auto !important; white-space:nowrap; }
                         .school-detail-actions .btn.secondary { background:#555; }
+                        .school-form-title { color:#800000; font-family:'Oswald',sans-serif; margin-bottom:25px; text-align:center; font-size:1.8rem; border-bottom:3px solid #800000; padding-bottom:10px; }
+                        .school-institute-header { background: rgba(128,0,0,0.05); border-left: 4px solid #800000; padding: 15px; margin-bottom: 25px; border-radius: 0 8px 8px 0; }
+                        .school-date-section { background: white; border: 1px solid #e9ecef; border-radius: 8px; padding: 15px; margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+                        .school-info-section { background: white; border: 1px solid #e9ecef; border-radius: 12px; padding: 25px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+                        .school-section-title { color:#800000; font-family:'Oswald',sans-serif; margin-bottom:20px; font-size:1.4rem; border-bottom:2px solid #800000; padding-bottom:8px; display:inline-block; }
+                        .school-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px; }
+                        .school-field { margin-bottom: 20px; }
+                        .school-label { display:block; font-weight:600; color:#333; margin-bottom:8px; }
+                        .school-value { width:100%; border:2px solid #e9ecef; border-radius:8px; padding:12px; font-size:1rem; background:#f8f9fa; color:#333; min-height:20px; }
+                        .school-project-types { background:rgba(128,0,0,0.03); padding:15px; border-radius:8px; margin-bottom:20px; }
+                        .school-project-list { display:flex; flex-wrap:wrap; gap:10px; }
+                        .school-project-item { display:flex; align-items:center; padding:8px 12px; background:rgba(255,255,255,0.9); border-radius:5px; box-shadow:0 2px 4px rgba(0,0,0,0.08); }
+                        .school-declaration-section { background: linear-gradient(135deg, rgba(128,0,0,0.05), rgba(128,0,0,0.1)); border: 2px solid #800000; border-radius: 12px; padding: 25px; margin-bottom: 25px; }
+                        .school-declaration-text { color:#333; line-height:1.6; margin-bottom:20px; text-align:justify; background:white; padding:15px; border-radius:8px; border-left:4px solid #800000; }
+                        .school-signature-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; background:white; padding:20px; border-radius:8px; }
                         @media print { body *{visibility:hidden;} #application-detail-view, #application-detail-view *{visibility:visible;} #application-detail-view{position:absolute; inset:0;} .school-detail-actions{display:none!important;} }
                       </style>
                       <div class="school-detail-actions">
                         <button class="back-btn btn secondary"><i class="fas fa-arrow-left"></i> Back</button>
                         <button class="btn" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
                       </div>
-                      <section class="application-form">
-                        <h2><i class="fas fa-school"></i> School Integration Partnership Application</h2>
-                        <div class="date-input"><label>Application Date:</label> <span>${app.application_date || ''}</span></div>
-                        <fieldset>
-                          <legend><i class="fas fa-user-tie"></i> School Details</legend>
-                          <div class="form-group"><label>School Name:</label><div class="readonly-box">${app.school_name || ''}</div></div>
-                          <div class="form-group"><label>School Address:</label><div class="readonly-box">${app.address || ''}</div></div>
-                          <div class="form-group"><label>Affiliated Board:</label><div class="readonly-box">${app.affiliated_board || ''}</div></div>
-                        </fieldset>
-                        <fieldset>
-                          <legend><i class="fas fa-user"></i> Contact</legend>
-                          <div class="form-group"><label>Principal Name:</label><div class="readonly-box">${app.principal_name || ''}</div></div>
-                          <div class="form-group"><label>Contact Number:</label><div class="readonly-box">${app.contact_number || ''}</div></div>
-                          <div class="form-group"><label>Email Address:</label><div class="readonly-box">${app.email || ''}</div></div>
-                        </fieldset>
-                        <fieldset>
-                          <legend><i class="fas fa-list"></i> Project</legend>
-                          <div class="form-group"><label>Project Objective:</label><div class="readonly-box">${app.objective || ''}</div></div>
-                          <div class="form-group"><label>Target Audience:</label><div class="readonly-box">${app.target_audience || ''}</div></div>
-                          <div class="form-group"><label>Project Duration:</label><div class="readonly-box">${app.duration || ''}</div></div>
-                          <div class="form-group"><label>Resources Required:</label><div class="readonly-box">${app.resources_required || ''}</div></div>
-                          <div class="form-group"><label>Expected Benefits:</label><div class="readonly-box">${app.benefits || ''}</div></div>
-                        </fieldset>
-                      </section>
+                      
+                      <h2 class="school-form-title">
+                        <i class="fas fa-school" style="margin-right:10px;"></i>Application for School Integrated Projects
+                      </h2>
+                      
+                      <div class="school-institute-header">
+                        <p style="margin:0; font-weight:600; color:#800000; font-size:1.1rem;"><i class="fas fa-university" style="margin-right:8px;"></i>Nucleon Coaching Institute, Durgapur</p>
+                      </div>
+
+                      <div class="school-date-section">
+                        <label style="font-weight: 600; color: #333; display: block; margin-bottom: 8px;"><i class="fas fa-calendar-alt" style="color:#800000; margin-right:8px;"></i>Application Date:</label>
+                        <div class="school-value">${app.application_date || 'Not specified'}</div>
+                      </div>
+
+                      <div class="school-info-section">
+                        <h3 class="school-section-title">
+                          <i class="fas fa-info-circle" style="margin-right:8px;"></i>School Information
+                        </h3>
+                        
+                        <div class="school-grid">
+                          <div class="school-field">
+                            <label class="school-label"><i class="fas fa-school" style="color:#800000; margin-right:5px;"></i>School Name:</label>
+                            <div class="school-value">${app.school_name || ''}</div>
+                          </div>
+                          <div class="school-field">
+                            <label class="school-label"><i class="fas fa-map-marker-alt" style="color:#800000; margin-right:5px;"></i>Address:</label>
+                            <div class="school-value" style="white-space:pre-wrap;">${app.address || ''}</div>
+                          </div>
+                          <div class="school-field">
+                            <label class="school-label"><i class="fas fa-user-tie" style="color:#800000; margin-right:5px;"></i>Principal's Name:</label>
+                            <div class="school-value">${app.principal_name || ''}</div>
+                          </div>
+                          <div class="school-field">
+                            <label class="school-label"><i class="fas fa-phone" style="color:#800000; margin-right:5px;"></i>Contact Number:</label>
+                            <div class="school-value">${app.contact_number || ''}</div>
+                          </div>
+                          <div class="school-field">
+                            <label class="school-label"><i class="fas fa-envelope" style="color:#800000; margin-right:5px;"></i>Email Address:</label>
+                            <div class="school-value">${app.email || ''}</div>
+                          </div>
+                          <div class="school-field">
+                            <label class="school-label"><i class="fas fa-certificate" style="color:#800000; margin-right:5px;"></i>Affiliated Board:</label>
+                            <div class="school-value">${app.affiliated_board || ''}</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="school-project-types">
+                        <label style="display:block; font-weight:600; color:#333; margin-bottom:12px; font-size:1.1rem;">
+                          <i class="fas fa-tasks" style="color:#800000; margin-right:5px;"></i>Type of Integrated Project Requested:
+                        </label>
+                        <div class="school-project-list">
+                          ${projectTypes.length > 0 ? projectTypes.map(type => `<div class="school-project-item">${type}</div>`).join('') : '<div class="school-project-item">No project types specified</div>'}
+                        </div>
+                      </div>
+
+                      <div class="school-info-section">
+                        <div class="school-field">
+                          <label class="school-label"><i class="fas fa-bullseye" style="color:#800000; margin-right:5px;"></i>Objective of the Project:</label>
+                          <div class="school-value" style="white-space:pre-wrap; min-height:60px;">${app.objective || ''}</div>
+                        </div>
+                        <div class="school-field">
+                          <label class="school-label"><i class="fas fa-users" style="color:#800000; margin-right:5px;"></i>Target Audience:</label>
+                          <div class="school-value" style="white-space:pre-wrap;">${app.target_audience || ''}</div>
+                        </div>
+                        
+                        <div class="school-grid" style="margin-top:20px;">
+                          <div class="school-field">
+                            <label class="school-label"><i class="fas fa-clock" style="color:#800000; margin-right:5px;"></i>Expected Duration:</label>
+                            <div class="school-value">${app.duration || ''}</div>
+                          </div>
+                          <div class="school-field">
+                            <label class="school-label"><i class="fas fa-user-friends" style="color:#800000; margin-right:5px;"></i>Students Involved:</label>
+                            <div class="school-value">${app.students_involved || ''}</div>
+                          </div>
+                        </div>
+
+                        <div class="school-field" style="margin-top:20px;">
+                          <label class="school-label"><i class="fas fa-tools" style="color:#800000; margin-right:5px;"></i>Resources Required from Nucleon:</label>
+                          <div class="school-value" style="white-space:pre-wrap; min-height:60px;">${app.resources_required || ''}</div>
+                        </div>
+                      </div>
+
+                      <div class="school-info-section">
+                        <h3 class="school-section-title">
+                          <i class="fas fa-plus-circle" style="margin-right:8px;"></i>Additional Information
+                        </h3>
+                        
+                        <div class="school-field">
+                          <label class="school-label"><i class="fas fa-history" style="color:#800000; margin-right:5px;"></i>Previous Projects Implemented (if any):</label>
+                          <div class="school-value" style="white-space:pre-wrap; min-height:60px;">${app.previous_projects || ''}</div>
+                        </div>
+                        <div class="school-field">
+                          <label class="school-label"><i class="fas fa-lightbulb" style="color:#800000; margin-right:5px;"></i>Why will this project benefit your students?</label>
+                          <div class="school-value" style="white-space:pre-wrap; min-height:60px;">${app.benefits || ''}</div>
+                        </div>
+                      </div>
+
+                      <div class="school-declaration-section">
+                        <h3 style="color:#800000; font-family:'Oswald',sans-serif; margin-bottom:20px; font-size:1.4rem; text-align:center;">
+                          <i class="fas fa-file-signature" style="margin-right:8px;"></i>Declaration & Signature
+                        </h3>
+                        
+                        <div class="school-declaration-text">
+                          <p style="margin:0;">I, the undersigned, hereby declare that the information provided above is true and accurate to the best of my knowledge. I understand that submitting this application does not guarantee approval and that further discussions may be required.</p>
+                        </div>
+                        
+                        <div class="school-signature-grid">
+                          <div class="school-field">
+                            <label class="school-label"><i class="fas fa-user" style="color:#800000; margin-right:5px;"></i>Principal's Name:</label>
+                            <div class="school-value">${app.declaration_principal || app.principal_name || ''}</div>
+                          </div>
+                          <div class="school-field">
+                            <label class="school-label"><i class="fas fa-calendar" style="color:#800000; margin-right:5px;"></i>Signature Date:</label>
+                            <div class="school-value">${app.declaration_date || app.application_date || ''}</div>
+                          </div>
+                        </div>
+                      </div>
                     </div>`;
                     showDetailView(html);
                 }
@@ -2019,46 +2180,198 @@
                     const html = `
                     <div class="panel study-detail-panel">
                       <style>
-                        .study-detail-panel .application-form { background:#fff; border-radius:12px; padding:24px; box-shadow:0 4px 16px rgba(0,0,0,0.06); }
-                        .study-detail-panel h2 { font-family:'Oswald',sans-serif; color:#800000; margin:0 0 12px; display:flex; align-items:center; gap:10px; }
-                        .study-detail-panel .date-input { margin:8px 0 20px; font-weight:600; }
-                        .study-detail-panel fieldset { border:2px solid #800000; border-radius:12px; padding:16px; margin:14px 0 22px; background:#fafbfc; }
-                        .study-detail-panel legend { padding:4px 12px; border:2px solid #800000; border-radius:12px; color:#800000; font-weight:700; background:#fff; display:inline-flex; align-items:center; gap:8px; }
-                        .study-detail-panel .form-group { margin-bottom:14px; }
-                        .study-detail-panel label { display:block; font-weight:600; margin-bottom:6px; }
-                        .study-detail-panel .readonly-box { background:#fff; border:1px solid #e0e0e0; border-radius:10px; padding:12px 14px; }
+                        .study-detail-panel { background: linear-gradient(145deg, #f8f9fa, #ffffff); border: 2px solid #800000; border-radius: 15px; padding: 30px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
                         .study-detail-actions { display:flex; justify-content:space-between; align-items:center; gap:0; width:100%; max-width:960px; margin:0 auto 14px; padding:0 8px; }
                         .study-detail-actions .btn { background:#800000; color:#fff; border:none; padding:10px 14px; border-radius:8px; cursor:pointer; display:inline-flex; align-items:center; width:auto !important; max-width:none; flex:0 0 auto !important; white-space:nowrap; }
                         .study-detail-actions .btn.secondary { background:#555; }
+                        .study-form-title { color:#800000; font-family:'Oswald',sans-serif; margin-bottom:25px; text-align:center; font-size:1.8rem; border-bottom:3px solid #800000; padding-bottom:10px; }
+                        .study-institute-header { background: rgba(128,0,0,0.05); border-left: 4px solid #800000; padding: 15px; margin-bottom: 25px; border-radius: 0 8px 8px 0; }
+                        .study-intro-section { font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px; color: #444; background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #800000; }
+                        .study-info-section { background: white; border: 1px solid #e9ecef; border-radius: 12px; padding: 25px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+                        .study-section-title { color:#800000; font-family:'Oswald',sans-serif; margin-bottom:20px; font-size:1.4rem; border-bottom:2px solid #800000; padding-bottom:8px; display:inline-block; }
+                        .study-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:20px; }
+                        .study-field { margin-bottom: 20px; }
+                        .study-label { display:block; font-weight:600; color:#333; margin-bottom:8px; }
+                        .study-value { width:100%; border:2px solid #e9ecef; border-radius:8px; padding:12px; font-size:1rem; background:#f8f9fa; color:#333; min-height:20px; }
+                        .study-terms-section { background: rgba(128,0,0,0.02); padding: 20px; border-radius: 8px; border-left: 4px solid #800000; }
+                        .study-responsibilities-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+                        .study-responsibility-box { background: rgba(128,0,0,0.03); padding: 20px; border-radius: 8px; border: 1px solid rgba(128,0,0,0.1); }
+                        .study-declaration-section { background: linear-gradient(135deg, rgba(128,0,0,0.05), rgba(128,0,0,0.1)); border: 2px solid #800000; border-radius: 12px; padding: 25px; margin-bottom: 25px; }
+                        .study-declaration-text { background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #800000; margin-bottom: 20px; }
+                        .study-signature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; background: white; padding: 20px; border-radius: 8px; }
                         @media print { body *{visibility:hidden;} #application-detail-view, #application-detail-view *{visibility:visible;} #application-detail-view{position:absolute; inset:0;} .study-detail-actions{display:none!important;} }
                       </style>
                       <div class="study-detail-actions">
                         <button class="back-btn btn secondary"><i class="fas fa-arrow-left"></i> Back</button>
                         <button class="btn" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
                       </div>
-                      <section class="application-form">
-                        <h2><i class="fas fa-university"></i> Study Centre Partnership Application</h2>
-                        <div class="date-input"><label>Application Date:</label> <span>${app.application_date || ''}</span></div>
-                        <fieldset>
-                          <legend><i class="fas fa-building"></i> Centre Details</legend>
-                          <div class="form-group"><label>Study Centre Name:</label><div class="readonly-box">${app.centre_name || ''}</div></div>
-                          <div class="form-group"><label>Centre Address:</label><div class="readonly-box">${app.address || ''}</div></div>
-                          <div class="form-group"><label>Infrastructure Details:</label><div class="readonly-box">${app.infrastructure || ''}</div></div>
-                        </fieldset>
-                        <fieldset>
-                          <legend><i class="fas fa-users"></i> People</legend>
-                          <div class="form-group"><label>Principal Name:</label><div class="readonly-box">${app.principal_name || ''}</div></div>
-                          <div class="form-group"><label>Staff Strength:</label><div class="readonly-box">${app.staff_strength || ''}</div></div>
-                          <div class="form-group"><label>Student Capacity:</label><div class="readonly-box">${app.student_capacity || ''}</div></div>
-                        </fieldset>
-                        <fieldset>
-                          <legend><i class="fas fa-info-circle"></i> Additional</legend>
-                          <div class="form-group"><label>Contact Number:</label><div class="readonly-box">${app.contact_number || ''}</div></div>
-                          <div class="form-group"><label>Email Address:</label><div class="readonly-box">${app.email || ''}</div></div>
-                          <div class="form-group"><label>Previous Experience:</label><div class="readonly-box">${app.previous_experience || ''}</div></div>
-                          <div class="form-group"><label>Expected Benefits:</label><div class="readonly-box">${app.benefits || ''}</div></div>
-                        </fieldset>
-                      </section>
+                      
+                      <h2 class="study-form-title">
+                        <i class="fas fa-graduation-cap" style="margin-right:10px;"></i>Application for Study Centre Partnership
+                      </h2>
+                      
+                      <div class="study-institute-header">
+                        <p style="margin:0; font-weight:600; color:#800000; font-size:1.1rem;"><i class="fas fa-university" style="margin-right:8px;"></i>Nucleon Coaching Institute, Durgapur</p>
+                      </div>
+
+                      <div class="study-intro-section">
+                        I, <strong style="color:#800000;">${app.principal_name_intro || app.principal_name || ''}</strong>, propose to establish a <strong>Nucleon Study Center</strong> at <strong style="color:#800000;">${app.centre_name || ''}</strong> in collaboration with Nucleon Coaching Institutes to provide quality education and support to local students in achieving their academic goals.
+                      </div>
+
+                      <div class="study-info-section">
+                        <h3 class="study-section-title">
+                          <i class="fas fa-user" style="margin-right:8px;"></i>Applicant Information
+                        </h3>
+                        
+                        <div class="study-grid">
+                          <div class="study-field">
+                            <label class="study-label"><i class="fas fa-calendar-alt" style="color:#800000; margin-right:5px;"></i>Application Date:</label>
+                            <div class="study-value">${app.application_date || 'Not specified'}</div>
+                          </div>
+                          <div class="study-field">
+                            <label class="study-label"><i class="fas fa-user-circle" style="color:#800000; margin-right:5px;"></i>Principal Name:</label>
+                            <div class="study-value">${app.principal_name || ''}</div>
+                          </div>
+                          <div class="study-field">
+                            <label class="study-label"><i class="fas fa-phone" style="color:#800000; margin-right:5px;"></i>Contact Number:</label>
+                            <div class="study-value">${app.contact_number || ''}</div>
+                          </div>
+                          <div class="study-field">
+                            <label class="study-label"><i class="fas fa-envelope" style="color:#800000; margin-right:5px;"></i>Email Address:</label>
+                            <div class="study-value">${app.email || ''}</div>
+                          </div>
+                          <div class="study-field">
+                            <label class="study-label"><i class="fas fa-graduation-cap" style="color:#800000; margin-right:5px;"></i>Affiliated Board:</label>
+                            <div class="study-value">${app.affiliated_board || ''}</div>
+                          </div>
+                          <div class="study-field">
+                            <label class="study-label"><i class="fas fa-clock" style="color:#800000; margin-right:5px;"></i>Experience (Years):</label>
+                            <div class="study-value">${app.experience || ''}</div>
+                          </div>
+                        </div>
+
+                        <div style="margin-top: 20px;">
+                          <label class="study-label"><i class="fas fa-map-marker-alt" style="color:#800000; margin-right:5px;"></i>Complete Address:</label>
+                          <div class="study-value" style="white-space:pre-wrap; min-height:60px;">${app.address || ''}</div>
+                        </div>
+                      </div>
+
+                      <div class="study-info-section">
+                        <h3 class="study-section-title">
+                          <i class="fas fa-building" style="margin-right:8px;"></i>Study Centre Details
+                        </h3>
+                        
+                        <div class="study-grid">
+                          <div class="study-field">
+                            <label class="study-label"><i class="fas fa-book" style="color:#800000; margin-right:5px;"></i>Available Courses:</label>
+                            <div class="study-value" style="white-space:pre-wrap; min-height:60px;">${app.available_courses || ''}</div>
+                          </div>
+                          <div class="study-field">
+                            <label class="study-label"><i class="fas fa-laptop" style="color:#800000; margin-right:5px;"></i>Infrastructure:</label>
+                            <div class="study-value" style="white-space:pre-wrap; min-height:60px;">${app.infrastructure || ''}</div>
+                          </div>
+                          <div class="study-field">
+                            <label class="study-label"><i class="fas fa-users" style="color:#800000; margin-right:5px;"></i>Staff Strength:</label>
+                            <div class="study-value">${app.staff_strength || ''}</div>
+                          </div>
+                          <div class="study-field">
+                            <label class="study-label"><i class="fas fa-user-graduate" style="color:#800000; margin-right:5px;"></i>Student Capacity:</label>
+                            <div class="study-value">${app.student_capacity || ''}</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="study-info-section">
+                        <h3 class="study-section-title">
+                          <i class="fas fa-info-circle" style="margin-right:8px;"></i>Additional Information
+                        </h3>
+                        
+                        <div class="study-grid">
+                          <div class="study-field">
+                            <label class="study-label"><i class="fas fa-tools" style="color:#800000; margin-right:5px;"></i>Resources Required:</label>
+                            <div class="study-value" style="white-space:pre-wrap; min-height:60px;">${app.resources_required || ''}</div>
+                          </div>
+                          <div class="study-field">
+                            <label class="study-label"><i class="fas fa-briefcase" style="color:#800000; margin-right:5px;"></i>Previous Experience:</label>
+                            <div class="study-value" style="white-space:pre-wrap; min-height:60px;">${app.previous_experience || ''}</div>
+                          </div>
+                          <div class="study-field">
+                            <label class="study-label"><i class="fas fa-star" style="color:#800000; margin-right:5px;"></i>Benefits of Partnership:</label>
+                            <div class="study-value" style="white-space:pre-wrap; min-height:60px;">${app.benefits || ''}</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="study-info-section">
+                        <h3 class="study-section-title">
+                          <i class="fas fa-file-contract" style="margin-right:8px;"></i>Agreement Terms & Conditions
+                        </h3>
+                        
+                        <div class="study-terms-section">
+                          <h4 style="color: #800000; margin-bottom: 15px; font-size: 1.2rem;"><i class="fas fa-info-circle" style="margin-right: 8px;"></i>Key Terms:</h4>
+                          <ul style="color: #444; line-height: 1.6; margin: 0; padding-left: 20px;">
+                            <li><strong>Duration:</strong> This Agreement shall be valid for a period of three (3) years from the date of signing.</li>
+                            <li><strong>Investment:</strong> The total investment amount is ₹3,00,000/- for the duration of three years.</li>
+                            <li><strong>Renewal:</strong> The agreement will be renewed after mutual consent of both parties.</li>
+                            <li><strong>Study Materials:</strong> Must procure study materials and Daily Practice Papers (DPPs) from Nucleon Coaching Institute, Durgapur.</li>
+                            <li><strong>Initial Package:</strong> Must receive 30 copies including foundation crash course materials, dropper materials, and regular study materials combined.</li>
+                            <li><strong>Jurisdiction:</strong> Any disputes shall be settled in Guwahati, Assam.</li>
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div class="study-info-section">
+                        <h3 class="study-section-title">
+                          <i class="fas fa-handshake" style="margin-right:8px;"></i>Responsibilities
+                        </h3>
+                        
+                        <div class="study-responsibilities-grid">
+                          <div class="study-responsibility-box">
+                            <h4 style="color: #800000; margin-bottom: 15px; font-size: 1.1rem;"><i class="fas fa-user-check" style="margin-right: 8px;"></i>Applicant Responsibilities:</h4>
+                            <ul style="color: #555; line-height: 1.5; margin: 0; padding-left: 18px; font-size: 0.95rem;">
+                              <li>Establish and operate the Study Centre according to Nucleon guidelines</li>
+                              <li>Procure study materials and DPPs from Nucleon Coaching Institute</li>
+                              <li>Maintain quality standards as set by the Institute</li>
+                              <li>Ensure proper management of the Study Centre</li>
+                            </ul>
+                          </div>
+                          <div class="study-responsibility-box">
+                            <h4 style="color: #800000; margin-bottom: 15px; font-size: 1.1rem;"><i class="fas fa-university" style="margin-right: 8px;"></i>Institute Responsibilities:</h4>
+                            <ul style="color: #555; line-height: 1.5; margin: 0; padding-left: 18px; font-size: 0.95rem;">
+                              <li>Provide necessary support, training and resources</li>
+                              <li>Facilitate marketing and promotional activities</li>
+                              <li>Supply quality study materials and resources</li>
+                              <li>Ongoing guidance and support for center success</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="study-declaration-section">
+                        <h3 style="color:#800000; font-family:'Oswald',sans-serif; margin-bottom:20px; font-size:1.4rem; text-align:center;">
+                          <i class="fas fa-file-signature" style="margin-right:8px;"></i>Declaration & Agreement
+                        </h3>
+                        
+                        <div class="study-declaration-text">
+                          <p style="color:#333; line-height:1.6; margin-bottom:15px; text-align:justify; font-size: 1rem;">
+                            I, the undersigned, hereby declare that the information provided above is true and accurate to the best of my knowledge. I understand and agree to all the terms and conditions mentioned in this agreement. I acknowledge that submitting this application does not guarantee approval and that further discussions may be required.
+                          </p>
+                          <p style="color:#333; line-height:1.6; margin:0; text-align:justify; font-size: 1rem;">
+                            I agree to establish and operate the Study Centre in accordance with the guidelines and standards set forth by Nucleon Coaching Institute and understand that this agreement shall be governed by the laws mentioned herein.
+                          </p>
+                        </div>
+                        
+                        <div class="study-signature-grid">
+                          <div class="study-field">
+                            <label class="study-label"><i class="fas fa-signature" style="color:#800000; margin-right:5px;"></i>Principal's Name (for Signature):</label>
+                            <div class="study-value">${app.declaration_principal || app.principal_name || ''}</div>
+                          </div>
+                          <div class="study-field">
+                            <label class="study-label"><i class="fas fa-calendar" style="color:#800000; margin-right:5px;"></i>Declaration Date:</label>
+                            <div class="study-value">${app.declaration_date || app.application_date || ''}</div>
+                          </div>
+                        </div>
+                      </div>
                     </div>`;
                     showDetailView(html);
                 }
@@ -2077,41 +2390,202 @@
                     const html = `
                     <div class="panel distance-detail-panel">
                       <style>
-                        .distance-detail-panel .application-form { background:#fff; border-radius:12px; padding:24px; box-shadow:0 4px 16px rgba(0,0,0,0.06); }
-                        .distance-detail-panel h2 { font-family:'Oswald',sans-serif; color:#800000; margin:0 0 12px; display:flex; align-items:center; gap:10px; }
-                        .distance-detail-panel .date-input { margin:8px 0 20px; font-weight:600; }
-                        .distance-detail-panel fieldset { border:2px solid #800000; border-radius:12px; padding:16px; margin:14px 0 22px; background:#fafbfc; }
-                        .distance-detail-panel legend { padding:4px 12px; border:2px solid #800000; border-radius:12px; color:#800000; font-weight:700; background:#fff; display:inline-flex; align-items:center; gap:8px; }
-                        .distance-detail-panel .form-group { margin-bottom:14px; }
-                        .distance-detail-panel label { display:block; font-weight:600; margin-bottom:6px; }
-                        .distance-detail-panel .readonly-box { background:#fff; border:1px solid #e0e0e0; border-radius:10px; padding:12px 14px; }
+                        .distance-detail-panel { background: linear-gradient(145deg, #f8f9fa, #ffffff); border: 2px solid #800000; border-radius: 15px; padding: 30px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
                         .distance-detail-actions { display:flex; justify-content:space-between; align-items:center; gap:0; width:100%; max-width:960px; margin:0 auto 14px; padding:0 8px; }
                         .distance-detail-actions .btn { background:#800000; color:#fff; border:none; padding:10px 14px; border-radius:8px; cursor:pointer; display:inline-flex; align-items:center; width:auto !important; max-width:none; flex:0 0 auto !important; white-space:nowrap; }
                         .distance-detail-actions .btn.secondary { background:#555; }
+                        .distance-form-title { color:#800000; font-family:'Oswald',sans-serif; margin-bottom:25px; text-align:center; font-size:1.8rem; border-bottom:3px solid #800000; padding-bottom:10px; }
+                        .distance-institute-header { background: rgba(128,0,0,0.05); border-left: 4px solid #800000; padding: 15px; margin-bottom: 25px; border-radius: 0 8px 8px 0; }
+                        .distance-intro-section { font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px; color: #444; background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #800000; }
+                        .distance-info-section { background: white; border: 1px solid #e9ecef; border-radius: 12px; padding: 25px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+                        .distance-section-title { color:#800000; font-family:'Oswald',sans-serif; margin-bottom:20px; font-size:1.4rem; border-bottom:2px solid #800000; padding-bottom:8px; display:inline-block; }
+                        .distance-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:20px; }
+                        .distance-field { margin-bottom: 20px; }
+                        .distance-label { display:block; font-weight:600; color:#333; margin-bottom:8px; }
+                        .distance-value { width:100%; border:2px solid #e9ecef; border-radius:8px; padding:12px; font-size:1rem; background:#f8f9fa; color:#333; min-height:20px; }
+                        .distance-terms-section { background: rgba(128,0,0,0.02); padding: 20px; border-radius: 8px; border-left: 4px solid #800000; }
+                        .distance-responsibilities-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+                        .distance-responsibility-box { background: rgba(128,0,0,0.03); padding: 20px; border-radius: 8px; border: 1px solid rgba(128,0,0,0.1); }
+                        .distance-declaration-section { background: linear-gradient(135deg, rgba(128,0,0,0.05), rgba(128,0,0,0.1)); border: 2px solid #800000; border-radius: 12px; padding: 25px; margin-bottom: 25px; }
+                        .distance-declaration-text { background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #800000; margin-bottom: 20px; }
+                        .distance-signature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; background: white; padding: 20px; border-radius: 8px; }
                         @media print { body *{visibility:hidden;} #application-detail-view, #application-detail-view *{visibility:visible;} #application-detail-view{position:absolute; inset:0;} .distance-detail-actions{display:none!important;} }
                       </style>
                       <div class="distance-detail-actions">
                         <button class="back-btn btn secondary"><i class="fas fa-arrow-left"></i> Back</button>
                         <button class="btn" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
                       </div>
-                      <section class="application-form">
-                        <h2><i class="fas fa-satellite-dish"></i> Distance Learning Partnership Application</h2>
-                        <div class="date-input"><label>Application Date:</label> <span>${app.application_date || ''}</span></div>
-                        <fieldset>
-                          <legend><i class="fas fa-user"></i> Applicant</legend>
-                          <div class="form-group"><label>Applicant Name:</label><div class="readonly-box">${app.applicant_name || ''}</div></div>
-                          <div class="form-group"><label>Applicant Address:</label><div class="readonly-box">${app.applicant_address || ''}</div></div>
-                          <div class="form-group"><label>Educational Qualification:</label><div class="readonly-box">${app.educational_qualification || ''}</div></div>
-                        </fieldset>
-                        <fieldset>
-                          <legend><i class="fas fa-info-circle"></i> Details</legend>
-                          <div class="form-group"><label>Contact Number:</label><div class="readonly-box">${app.contact_number || ''}</div></div>
-                          <div class="form-group"><label>Email Address:</label><div class="readonly-box">${app.email_address || ''}</div></div>
-                          <div class="form-group"><label>Center Area (sq.ft):</label><div class="readonly-box">${app.center_area || ''}</div></div>
-                          <div class="form-group"><label>Investment Amount:</label><div class="readonly-box">${app.investment_amount || ''}</div></div>
-                          <div class="form-group"><label>Number of Schools:</label><div class="readonly-box">${app.number_of_schools || ''}</div></div>
-                        </fieldset>
-                      </section>
+                      
+                      <h2 class="distance-form-title">
+                        <i class="fas fa-laptop-code" style="margin-right:10px;"></i>Agreement for Distance Learning Program
+                      </h2>
+                      
+                      <div class="distance-institute-header">
+                        <p style="margin:0; font-weight:600; color:#800000; font-size:1.1rem;"><i class="fas fa-university" style="margin-right:8px;"></i>Nucleon Coaching Institute, Durgapur</p>
+                      </div>
+
+                      <div class="distance-intro-section">
+                        This Agreement is made on <strong style="color:#800000;">${app.agreement_date || app.application_date || 'N/A'}</strong> between:
+                        <br><br>
+                        <strong>Nucleon Coaching Institute, Durgapur</strong><br>
+                        <br>
+                        <strong>AND</strong><br><br>
+                        Name of Applicant: <strong style="color:#800000;">${app.applicant_name || 'N/A'}</strong><br>
+                        Address of Applicant: <strong style="color:#800000;">${app.applicant_address || 'N/A'}</strong><br>
+                        (Hereinafter referred to as "Applicant")<br><br>
+                        <strong>Subject: Establishment of a Distance Learning Program</strong>
+                      </div>
+
+                      <div class="distance-info-section">
+                        <h3 class="distance-section-title">
+                          <i class="fas fa-user" style="margin-right:8px;"></i>Applicant Information
+                        </h3>
+                        
+                        <div class="distance-grid">
+                          <div class="distance-field">
+                            <label class="distance-label"><i class="fas fa-calendar-alt" style="color:#800000; margin-right:5px;"></i>Application Date:</label>
+                            <div class="distance-value">${app.application_date || 'N/A'}</div>
+                          </div>
+                          <div class="distance-field">
+                            <label class="distance-label"><i class="fas fa-phone" style="color:#800000; margin-right:5px;"></i>Contact Number:</label>
+                            <div class="distance-value">${app.contact_number || 'N/A'}</div>
+                          </div>
+                          <div class="distance-field">
+                            <label class="distance-label"><i class="fas fa-envelope" style="color:#800000; margin-right:5px;"></i>Email Address:</label>
+                            <div class="distance-value">${app.email_address || 'N/A'}</div>
+                          </div>
+                          <div class="distance-field">
+                            <label class="distance-label"><i class="fas fa-graduation-cap" style="color:#800000; margin-right:5px;"></i>Educational Qualification:</label>
+                            <div class="distance-value">${app.educational_qualification || 'N/A'}</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="distance-info-section">
+                        <h3 class="distance-section-title">
+                          <i class="fas fa-laptop" style="margin-right:8px;"></i>Distance Learning Program Details
+                        </h3>
+                        
+                        <div class="distance-grid">
+                          <div class="distance-field">
+                            <label class="distance-label"><i class="fas fa-map" style="color:#800000; margin-right:5px;"></i>Center Area for Study Centre:</label>
+                            <div class="distance-value">${app.center_area || 'N/A'}</div>
+                          </div>
+                          <div class="distance-field">
+                            <label class="distance-label"><i class="fas fa-rupee-sign" style="color:#800000; margin-right:5px;"></i>Minimum Amount of Investment:</label>
+                            <div class="distance-value" style="background-color: #f8f9fa; color: #800000; font-weight: 600;">₹1,00,000/- (One Lakh Rupees)</div>
+                          </div>
+                          <div class="distance-field">
+                            <label class="distance-label"><i class="fas fa-school" style="color:#800000; margin-right:5px;"></i>Number of Schools in the Area:</label>
+                            <div class="distance-value">${app.number_of_schools || 'N/A'}</div>
+                          </div>
+                          <div class="distance-field">
+                            <label class="distance-label"><i class="fas fa-users" style="color:#800000; margin-right:5px;"></i>Average Number of Students Passed in Class X Each Year:</label>
+                            <div class="distance-value">${app.avg_students || 'N/A'}</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="distance-info-section">
+                        <h3 class="distance-section-title">
+                          <i class="fas fa-file-contract" style="margin-right:8px;"></i>Agreement Terms & Conditions
+                        </h3>
+                        
+                        <div class="distance-terms-section" style="margin-bottom: 20px;">
+                          <h4 style="color: #800000; margin-bottom: 15px; font-size: 1.2rem;"><i class="fas fa-clock" style="margin-right: 8px;"></i> Duration of Agreement:</h4>
+                          <p style="margin: 0; color: #444; line-height: 1.6;">This Agreement shall be valid for a period of <strong>three (3) years</strong> from the date of signing.</p>
+                        </div>
+
+                        <div class="distance-terms-section" style="margin-bottom: 20px;">
+                          <h4 style="color: #800000; margin-bottom: 15px; font-size: 1.2rem;"><i class="fas fa-money-bill-wave" style="margin-right: 8px;"></i> Financial Terms:</h4>
+                          <ul style="color: #444; line-height: 1.6; margin: 0; padding-left: 20px;">
+                            <li>The total investment amount is <strong>₹1,00,000/-</strong> for the duration of three years.</li>
+                            <li>The agreement will be renewed after mutual consent of both parties.</li>
+                          </ul>
+                        </div>
+
+                        <div class="distance-terms-section">
+                          <h4 style="color: #800000; margin-bottom: 15px; font-size: 1.2rem;"><i class="fas fa-gavel" style="margin-right: 8px;"></i> Jurisdiction:</h4>
+                          <p style="margin: 0; color: #444; line-height: 1.6;">Any disputes arising out of or in connection with this Agreement shall be settled in <strong>Guwahati, Assam</strong>.</p>
+                        </div>
+                      </div>
+
+                      <div class="distance-info-section">
+                        <h3 class="distance-section-title">
+                          <i class="fas fa-handshake" style="margin-right:8px;"></i>Responsibilities
+                        </h3>
+                        
+                        <div class="distance-responsibilities-grid">
+                          <div class="distance-responsibility-box">
+                            <h4 style="color: #800000; margin-bottom: 15px; font-size: 1.1rem;"><i class="fas fa-user-check" style="margin-right: 8px;"></i> Responsibilities of the Applicant:</h4>
+                            <ul style="color: #555; line-height: 1.5; margin: 0; padding-left: 18px; font-size: 0.95rem;">
+                              <li>The Applicant agrees to procure study materials and Daily Practice Papers (DPPs) from Nucleon Coaching Institute, Durgapur.</li>
+                              <li>At the initial stage, the Applicant must receive 30 copies which include foundation crash course materials, dropper materials, and regular study materials combined.</li>
+                            </ul>
+                          </div>
+                          <div class="distance-responsibility-box">
+                            <h4 style="color: #800000; margin-bottom: 15px; font-size: 1.1rem;"><i class="fas fa-university" style="margin-right: 8px;"></i> Responsibilities of the Institute:</h4>
+                            <ul style="color: #555; line-height: 1.5; margin: 0; padding-left: 18px; font-size: 0.95rem;">
+                              <li>The Institute will provide necessary support, including training and resources, to help the Distance Learning Program succeed.</li>
+                              <li>The Institute will facilitate marketing and promotional activities for the Distance Learning Program.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="distance-info-section">
+                        <h3 class="distance-section-title">
+                          <i class="fas fa-list-alt" style="margin-right:8px;"></i>Additional Terms
+                        </h3>
+                        
+                        <div style="display: grid; gap: 20px;">
+                          <div style="background: rgba(128,0,0,0.02); padding: 15px; border-radius: 8px; border-left: 4px solid #800000;">
+                            <h4 style="color: #800000; margin-bottom: 10px; font-size: 1.1rem;"><i class="fas fa-times-circle" style="margin-right: 8px;"></i> Termination:</h4>
+                            <p style="margin: 0; color: #444; line-height: 1.6; font-size: 0.95rem;">This Agreement may be terminated by either party with written notice of at least thirty (30) days if either party fails to meet their obligations under this Agreement.</p>
+                          </div>
+                          <div style="background: rgba(128,0,0,0.02); padding: 15px; border-radius: 8px; border-left: 4px solid #800000;">
+                            <h4 style="color: #800000; margin-bottom: 10px; font-size: 1.1rem;"><i class="fas fa-balance-scale" style="margin-right: 8px;"></i> Governing Law:</h4>
+                            <p style="margin: 0; color: #444; line-height: 1.6; font-size: 0.95rem;">This Agreement shall be governed by and construed in accordance with the laws of India.</p>
+                          </div>
+                          <div style="background: rgba(128,0,0,0.02); padding: 15px; border-radius: 8px; border-left: 4px solid #800000;">
+                            <h4 style="color: #800000; margin-bottom: 10px; font-size: 1.1rem;"><i class="fas fa-info-circle" style="margin-right: 8px;"></i> Miscellaneous:</h4>
+                            <ul style="color: #444; line-height: 1.5; margin: 0; padding-left: 18px; font-size: 0.95rem;">
+                              <li>Any amendments to this Agreement must be made in writing and signed by both parties.</li>
+                              <li>This Agreement constitutes the entire understanding between the parties and supersedes all prior discussions or agreements.</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="distance-declaration-section">
+                        <h3 style="color:#800000; font-family:'Oswald',sans-serif; margin-bottom:20px; font-size:1.4rem; text-align:center;">
+                          <i class="fas fa-file-signature" style="margin-right:8px;"></i>Declaration & Agreement
+                        </h3>
+                        
+                        <div class="distance-declaration-text">
+                          <p style="color:#333; line-height:1.6; margin-bottom:15px; text-align:justify; font-size: 1rem;">
+                            <strong>IN WITNESS WHEREOF</strong>, the parties hereto have executed this Agreement as of the day and year first above written. I, the undersigned, hereby declare that the information provided above is true and accurate to the best of my knowledge. I understand and agree to all the terms and conditions mentioned in this agreement.
+                          </p>
+                          <p style="color:#333; line-height:1.6; margin:0; text-align:justify; font-size: 1rem;">
+                            I acknowledge that submitting this application does not guarantee approval and that further discussions may be required. I agree to establish and operate the Distance Learning Program in accordance with the guidelines and standards set forth by Nucleon Coaching Institute.
+                          </p>
+                        </div>
+                        
+                        <div class="distance-signature-grid">
+                          <div class="distance-field">
+                            <label class="distance-label"><i class="fas fa-signature" style="color:#800000; margin-right:5px;"></i>Applicant's Name (for Signature):</label>
+                            <div class="distance-value">${app.signature_name || app.applicant_name || 'N/A'}</div>
+                          </div>
+                          <div class="distance-field">
+                            <label class="distance-label"><i class="fas fa-calendar" style="color:#800000; margin-right:5px;"></i>Signature Date:</label>
+                            <div class="distance-value">${app.signature_date || app.application_date || 'N/A'}</div>
+                          </div>
+                        </div>
+
+                        <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.8); border-radius: 8px; font-style: italic; color: #666; text-align: center;">
+                          <p style="margin: 0; font-size: 0.9rem;"><i class="fas fa-info-circle" style="margin-right: 8px; color: #800000;"></i>Note: Please fill in all the required information before signing the agreement.</p>
+                        </div>
+                      </div>
                     </div>`;
                     showDetailView(html);
                 }
