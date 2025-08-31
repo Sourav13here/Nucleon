@@ -38,7 +38,7 @@
                 <li><a href="partnership.html" class="active">Partnership</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <button class="mobile-menu-btn">
+            <button class="mobile-menIu-btn">
                 <i class="fas fa-bars"></i>
             </button>
         </nav>
@@ -73,19 +73,19 @@
 
 
     <!-- Main Content -->
-    <main style="flex: 1; padding: 60px 20px;">
+    <main style="flex: 1; padding: 40px 10px;">
         <div style="max-width: 900px; margin: 0 auto;">
     
             <!-- Partnership Introduction (Move this first) -->
             <section style="text-align: center; margin-bottom: 50px;">
-                <p style="font-size: 1.2rem; color: #555; max-width: 700px; margin: 0 auto 40px; line-height: 1.7;">
+                <p style="font-size: 1.2rem; color: #555; max-width: 700px; margin: 0 auto 30px; line-height: 1.7;">
                     Nucleon Coaching Institutes invites visionary institutions and individuals to collaborate with us through our comprehensive partnership programs. Choose from three distinct partnership opportunities designed to expand quality education and create mutual growth.
                 </p>
             </section>
     
             <!-- Partnership Application (Now comes after intro) -->
-            <section style="background: white; border-radius: 20px; padding: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); margin-bottom: 40px;">
-                <h2 style="font-family: 'Oswald', sans-serif; font-size: 2rem; color: #800000; text-align: center; margin-bottom: 30px; position: relative;">
+            <section class="responsive-section">
+                                <h2 style="font-family: 'Oswald', sans-serif; font-size: 2rem; color: #800000; text-align: center; margin-bottom: 30px; position: relative;">
                     Partnership Application
                     <span style="content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background: linear-gradient(45deg, #800000, #a00000); border-radius: 2px; display: block;"></span>
                 </h2>
@@ -102,6 +102,23 @@
     
                 <div id="formContainer"></div>
             </section>
+
+            <style>
+                .responsive-section {
+                    background: white;
+                    border-radius: 20px;
+                    padding: 30px;
+                    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+                    margin-bottom: 40px;
+                }
+                
+                /* For mobile screens */
+                @media (max-width: 768px) {
+                    .responsive-section {
+                        padding: 10px;
+                    }
+                }
+                </style>
 
             <!-- Partnership Cards -->
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 50px;">
@@ -279,23 +296,181 @@
 
         if (type === "school") {
     formHtml = `
-        <form id="schoolForm" style="background: linear-gradient(145deg, #f8f9fa, #ffffff); border: 2px solid #800000; border-radius: 15px; padding: 30px; margin-top: 30px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); opacity: 0; animation: fadeInUp 0.6s ease forwards;">
+        <form id="schoolForm" style="background: linear-gradient(145deg, #f8f9fa, #ffffff); border: 2px solid #800000; border-radius: 15px; padding: 20px; margin-top: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); opacity: 0; animation: fadeInUp 0.6s ease forwards;">
             <style>
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
-/* ADD THE MOBILE CSS FROM ABOVE HERE */
+
+/* Mobile Responsive Styles */
 @media (max-width: 768px) {
-    form { padding: 20px !important; margin: 15px 0 !important; border-radius: 10px !important; }
-    div[style*="display:grid"] { grid-template-columns: 1fr !important; gap: 15px !important; }
-    input, textarea, select { width: 100% !important; min-width: unset !important; font-size: 16px !important; padding: 12px !important; }
-    div[style*="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))"] { grid-template-columns: 1fr !important; }
-    h2, h3 { font-size: 1.4rem !important; text-align: center !important; margin-bottom: 20px !important; }
-    div[style*="border-radius: 12px"] { padding: 15px !important; margin-bottom: 20px !important; border-radius: 8px !important; }
-    button[type="submit"] { width: 100% !important; padding: 15px !important; font-size: 1.1rem !important; margin-top: 20px !important; }
-    input[style*="border-bottom"] { display: block !important; width: 100% !important; margin: 10px 0 !important; border: 2px solid #800000 !important; border-radius: 5px !important; padding: 10px !important; background: white !important; }
-    div[style*="background: linear-gradient(135deg, rgba(128,0,0,0.05)"] { padding: 15px !important; }
+    #schoolForm {
+        padding: 25px 22px !important;
+        margin: 5px 0 !important;
+        border-radius: 8px !important;
+        border-width: 1px !important;
+    }
+    
+    div[style*="display:grid"] {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+    
+    input, textarea, select {
+        width: 100% !important;
+        min-width: unset !important;
+        font-size: 16px !important;
+        padding: 20px !important;
+    }
+    
+    div[style*="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))"] {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+    
+    h2, h3 {
+        font-size: 1.2rem !important;
+        text-align: center !important;
+        margin-bottom: 12px !important;
+    }
+    
+    h2 {
+        padding: 0 3px 5px 3px !important;
+        margin: 0 0 12px 0 !important;
+        border-bottom-width: 2px !important;
+    }
+    
+    div[style*="border-radius: 12px"] {
+        padding: 12px 8px !important;
+        margin-bottom: 12px !important;
+        border-radius: 6px !important;
+    }
+    
+    button[type="submit"] {
+        width: 100% !important;
+        padding: 12px !important;
+        font-size: 0.95rem !important;
+        margin-top: 12px !important;
+        border-radius: 25px !important;
+    }
+    
+    div[style*="background: linear-gradient(135deg, rgba(128,0,0,0.05)"] {
+        padding: 12px 8px !important;
+        border-radius: 6px !important;
+        margin-bottom: 12px !important;
+    }
+    
+    div[style*="background: rgba(128,0,0,0.05)"] {
+        padding: 10px !important;
+        margin-bottom: 12px !important;
+        border-radius: 0 5px 5px 0 !important;
+        border-left-width: 3px !important;
+    }
+    
+    div[style*="background: white; border: 1px solid #e9ecef"] {
+        padding: 10px !important;
+        margin-bottom: 12px !important;
+        border-radius: 6px !important;
+    }
+    
+    div[style*="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr))"] {
+        gap: 10px !important;
+        margin-top: 12px !important;
+    }
+    
+    div[style*="display:grid; grid-template-columns:1fr"] {
+        gap: 12px !important;
+    }
+    
+    textarea {
+        min-height: 80px !important;
+    }
+    
+    div[style*="margin-bottom:20px"] {
+        margin-bottom: 12px !important;
+    }
+    
+    div[style*="margin-top:20px"] {
+        margin-top: 12px !important;
+    }
+    
+    div[style*="margin-bottom:25px"] {
+        margin-bottom: 12px !important;
+    }
+    
+    div[style*="padding: 15px"] {
+        padding: 10px !important;
+    }
+    
+    div[style*="padding: 20px"] {
+        padding: 12px !important;
+    }
+    
+    div[style*="padding: 25px"] {
+        padding: 12px 8px !important;
+    }
+    
+    div[style*="gap:20px"] {
+        gap: 12px !important;
+    }
+    
+    input[style*="width:200px"] {
+        width: 100% !important;
+    }
+    
+    label {
+        margin-bottom: 6px !important;
+    }
+    
+    p[style*="padding:15px"] {
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    #schoolForm {
+        padding: 16px 14px !important;
+        margin: 4px 0 !important;
+    }
+    
+    h2 {
+        font-size: 1.1rem !important;
+        padding-bottom: 4px !important;
+        margin-bottom: 10px !important;
+    }
+    
+    h3 {
+        font-size: 1rem !important;
+        margin-bottom: 10px !important;
+        padding-bottom: 5px !important;
+    }
+    
+    div[style*="border-radius: 12px"] {
+        padding: 10px 6px !important;
+        margin-bottom: 10px !important;
+    }
+    
+    input, textarea, select {
+        padding: 8px !important;
+    }
+    
+    div[style*="background: linear-gradient(135deg, rgba(128,0,0,0.05)"] {
+        padding: 10px 6px !important;
+    }
+    
+    button[type="submit"] {
+        padding: 10px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    div[style*="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr))"] {
+        gap: 8px !important;
+    }
+    
+    div[style*="gap:10px"] {
+        gap: 8px !important;
+    }
 }
 </style>
             <h2 style="color:#800000; font-family:'Oswald',sans-serif; margin-bottom:25px; text-align:center; font-size:1.8rem; border-bottom:3px solid #800000; padding-bottom:10px;">
@@ -349,36 +524,99 @@
                     </div>
                 </div>
             </div>
+            <div style="margin-bottom:20px;">
+    <label style="display:block; font-weight:600; color:#333; margin-bottom:12px; font-size:1.1rem;">
+        <i class="fas fa-tasks" style="color:#800000; margin-right:5px;"></i>Type of Integrated Project Requested:
+    </label>
+    <div style="display:flex; flex-direction:column; gap:12px; background:rgba(128,0,0,0.03); padding:15px; border-radius:8px;">
+    <div style="display:flex; flex-wrap: wrap; gap: 8px; justify-content: space-between;">
+        <label style="display:flex; align-items:center; font-weight:500; color:#555; cursor:pointer; padding:10px 12px; border-radius:5px; transition:all 0.3s; background:rgba(255,255,255,0.9); box-shadow:0 2px 4px rgba(0,0,0,0.08); white-space: nowrap; flex: 1; min-width: 120px; margin: 4px;">
+            <input type="checkbox" name="project_science" value="1" style="margin-right:8px; transform:scale(1.3);"> 
+            <i class="fas fa-flask" style="color:#800000; margin-right:6px; font-size:1rem;"></i>Science
+        </label>
+        <label style="display:flex; align-items:center; font-weight:500; color:#555; cursor:pointer; padding:10px 12px; border-radius:5px; transition:all 0.3s; background:rgba(255,255,255,0.9); box-shadow:0 2px 4px rgba(0,0,0,0.08); white-space: nowrap; flex: 1; min-width: 120px; margin: 4px;">
+            <input type="checkbox" name="project_math" value="1" style="margin-right:8px; transform:scale(1.3);"> 
+            <i class="fas fa-calculator" style="color:#800000; margin-right:6px; font-size:1rem;"></i>Math
+        </label>
+        <label style="display:flex; align-items:center; font-weight:500; color:#555; cursor:pointer; padding:10px 12px; border-radius:5px; transition:all 0.3s; background:rgba(255,255,255,0.9); box-shadow:0 2px 4px rgba(0,0,0,0.08); white-space: nowrap; flex: 1; min-width: 120px; margin: 4px;">
+            <input type="checkbox" name="project_language" value="1" style="margin-right:8px; transform:scale(1.3);"> 
+            <i class="fas fa-book" style="color:#800000; margin-right:6px; font-size:1rem;"></i>Language
+        </label>
+        <label style="display:flex; align-items:center; font-weight:500; color:#555; cursor:pointer; padding:10px 12px; border-radius:5px; transition:all 0.3s; background:rgba(255,255,255,0.9); box-shadow:0 2px 4px rgba(0,0,0,0.08); white-space: nowrap; flex: 1; min-width: 120px; margin: 4px;">
+            <input type="checkbox" name="project_social" value="1" style="margin-right:8px; transform:scale(1.3);"> 
+            <i class="fas fa-globe" style="color:#800000; margin-right:6px; font-size:1rem;"></i>Social
+        </label>
 
-            <div style="background: white; border: 1px solid #e9ecef; border-radius: 12px; padding: 25px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-                <h3 style="color:#800000; font-family:'Oswald',sans-serif; margin-bottom:20px; font-size:1.4rem; border-bottom:2px solid #800000; padding-bottom:8px; display:inline-block;">
-                    <i class="fas fa-project-diagram" style="margin-right:8px;"></i>Project Details
-                </h3>
-                
-                <div style="margin-bottom:20px;">
-                    <label style="display:block; font-weight:600; color:#333; margin-bottom:12px; font-size:1.1rem;">
-                        <i class="fas fa-tasks" style="color:#800000; margin-right:5px;"></i>Type of Integrated Project Requested:
-                    </label>
-                    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; background:rgba(128,0,0,0.03); padding:15px; border-radius:8px;">
-                        <label style="display:flex; align-items:center; font-weight:500; color:#555; cursor:pointer; padding:8px; border-radius:5px; transition:all 0.3s;" onmouseover="this.style.background='rgba(128,0,0,0.05)'" onmouseout="this.style.background='transparent'">
-                            <input type="checkbox" name="project_science" value="1" style="margin-right:8px; transform:scale(1.2);"> <i class="fas fa-flask" style="color:#800000; margin-right:8px;"></i>Science
-                        </label>
-                        <label style="display:flex; align-items:center; font-weight:500; color:#555; cursor:pointer; padding:8px; border-radius:5px; transition:all 0.3s;" onmouseover="this.style.background='rgba(128,0,0,0.05)'" onmouseout="this.style.background='transparent'">
-                            <input type="checkbox" name="project_math" value="1" style="margin-right:8px; transform:scale(1.2);"> <i class="fas fa-calculator" style="color:#800000; margin-right:8px;"></i>Mathematics
-                        </label>
-                        <label style="display:flex; align-items:center; font-weight:500; color:#555; cursor:pointer; padding:8px; border-radius:5px; transition:all 0.3s;" onmouseover="this.style.background='rgba(128,0,0,0.05)'" onmouseout="this.style.background='transparent'">
-                            <input type="checkbox" name="project_language" value="1" style="margin-right:8px; transform:scale(1.2);"> <i class="fas fa-book" style="color:#800000; margin-right:8px;"></i>Language Arts
-                        </label>
-                        <label style="display:flex; align-items:center; font-weight:500; color:#555; cursor:pointer; padding:8px; border-radius:5px; transition:all 0.3s;" onmouseover="this.style.background='rgba(128,0,0,0.05)'" onmouseout="this.style.background='transparent'">
-                            <input type="checkbox" name="project_social" value="1" style="margin-right:8px; transform:scale(1.2);"> <i class="fas fa-globe" style="color:#800000; margin-right:8px;"></i>Social Studies
-                        </label>
-                        <div style="display:flex; align-items:center; padding:8px;">
-                            <input type="checkbox" id="other_project_checkbox" style="margin-right:8px; transform:scale(1.2);">
-                            <label style="margin-right:10px; font-weight:500; color:#555;">Other:</label>
-                            <input type="text" name="project_other" id="project_other" placeholder="Specify" style="flex:1; border:1px solid #800000; border-radius:5px; padding:5px; font-size:0.9rem;" disabled>
-                        </div>
-                    </div>
-                </div>
+        <!-- Fixed OTHER -->
+        <label style="display:flex; align-items:center; font-weight:500; color:#555; cursor:pointer; padding:10px 12px; border-radius:5px; transition:all 0.3s; background:rgba(255,255,255,0.9); box-shadow:0 2px 4px rgba(0,0,0,0.08); white-space: nowrap; flex: 1; min-width: 120px; margin: 4px;">
+            <input type="checkbox" id="other_project_checkbox" value="1" style="margin-right:8px; transform:scale(1.3);" 
+                   onchange="document.getElementById('other-input-container').style.display=this.checked?'block':'none'; if(this.checked){document.getElementById('project_other').focus();} else {document.getElementById('project_other').value='';}">
+            <span>Other</span>
+        </label>
+    </div>
+
+    <div id="other-input-container" style="display:none; margin-top:8px;">
+        <input type="text" name="project_other" id="project_other" placeholder="Specify" style="border:1px solid #800000; border-radius:5px; padding:12px; font-size:16px; width:100%;">
+    </div>
+</div>
+
+</div>
+
+<style>
+@media (max-width: 768px) {
+    /* Mobile layout - all options in one line */
+    div[style*="flex-wrap: wrap"] {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        gap: 6px !important;
+        justify-content: flex-start !important;
+    }
+    
+    /* Individual option boxes */
+    label[style*="white-space: nowrap"], 
+    div[style*="white-space: nowrap"] {
+        min-width: 100px !important;
+        padding: 10px !important;
+        flex: 0 0 auto !important;
+        margin: 4px !important;
+    }
+    
+    /* Checkbox sizing */
+    input[type="checkbox"] {
+        transform: scale(1.3) !important;
+        margin-right: 6px !important;
+    }
+    
+    /* Icon sizing */
+    .fas {
+        font-size: 0.9rem !important;
+        margin-right: 5px !important;
+    }
+    
+    /* Text for mobile */
+    label[style*="white-space: nowrap"] {
+        font-size: 0.9rem;
+    }
+    
+    /* Other input styling */
+    #project_other {
+        padding: 12px !important;
+        font-size: 16px !important;
+    }
+    
+    /* Container padding */
+    div[style*="flex-direction:column"] {
+        padding: 12px !important;
+    }
+}
+
+/* Hide scrollbar for neat appearance */
+div[style*="flex-wrap: wrap"]::-webkit-scrollbar {
+    display: none;
+}
+</style>
 
                 <div style="display:grid; grid-template-columns:1fr; gap:20px;">
                     <div>
@@ -465,72 +703,6 @@ if (type === "study") {
     formHtml = `
     <!-- Success Message (Initially Hidden) -->
     <div id="successMessage" style="display: none; background: linear-gradient(45deg, #28a745, #34ce57); color: white; padding: 20px; border-radius: 12px; margin-bottom: 30px; text-align: center; box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3); animation: slideDown 0.5s ease;">
-        <style>
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-/* ADD THE MOBILE CSS FROM ABOVE HERE */
-@media (max-width: 768px) {
-    form { 
-        padding: 20px !important; 
-        margin: 15px 0 !important; 
-        border-radius: 10px !important; 
-    }
-    
-    div[style*="display:grid"] { 
-        grid-template-columns: 1fr !important; 
-        gap: 15px !important; 
-    }
-    
-    div[style*="display: grid"] { 
-        grid-template-columns: 1fr !important; 
-        gap: 15px !important; 
-    }
-    
-    input, textarea, select { 
-        width: 100% !important; 
-        min-width: unset !important; 
-        font-size: 16px !important; 
-        padding: 12px !important; 
-    }
-    
-    input[style*="border-bottom"] { 
-        display: block !important; 
-        width: calc(100% - 10px) !important; 
-        margin: 10px 0 !important; 
-        border: 2px solid #800000 !important; 
-        border-radius: 5px !important; 
-        padding: 10px !important; 
-        background: white !important; 
-        border-bottom: 2px solid #800000 !important;
-    }
-    
-    h2, h3 { 
-        font-size: 1.4rem !important; 
-        text-align: center !important; 
-        margin-bottom: 20px !important; 
-    }
-    
-    div[style*="border-radius: 12px"] { 
-        padding: 15px !important; 
-        margin-bottom: 20px !important; 
-        border-radius: 8px !important; 
-    }
-    
-    button[type="submit"] { 
-        width: 100% !important; 
-        padding: 15px !important; 
-        font-size: 1.1rem !important; 
-        margin-top: 20px !important; 
-    }
-    
-    div[style*="font-size: 1.1rem"] {
-        font-size: 1rem !important;
-        padding: 15px !important;
-    }
-}
-</style>
         <h2 style="margin: 0; font-family: 'Oswald', sans-serif; font-size: 1.5rem;">
             <i class="fas fa-check-circle" style="margin-right: 10px;"></i>Form Submitted Successfully!
         </h2>
@@ -542,6 +714,255 @@ if (type === "study") {
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            #studyForm { 
+                padding: 8px 5px !important; 
+                margin: 5px 0 !important; 
+                border-radius: 8px !important; 
+                border-width: 1px !important;
+            }
+            
+            #successMessage {
+                padding: 15px !important;
+                margin: 10px 0 !important;
+                border-radius: 8px !important;
+            }
+            
+            div[style*="display:grid"], 
+            div[style*="display: grid"] { 
+                grid-template-columns: 1fr !important; 
+                gap: 10px !important; 
+            }
+            
+            input, textarea, select { 
+                width: 100% !important; 
+                min-width: unset !important; 
+                font-size: 16px !important; 
+                padding: 10px !important; 
+            }
+            
+            input[style*="border-bottom"] { 
+                display: block !important; 
+                width: calc(100% - 10px) !important; 
+                margin: 10px 0 !important; 
+                border: 2px solid #800000 !important; 
+                border-radius: 5px !important; 
+                padding: 10px !important; 
+                background: white !important; 
+                border-bottom: 2px solid #800000 !important;
+            }
+            
+            h2, h3 { 
+                font-size: 1.2rem !important; 
+                text-align: center !important; 
+                margin-bottom: 12px !important; 
+            }
+            
+            h2 {
+                padding: 0 3px 5px 3px !important;
+                margin: 0 0 12px 0 !important;
+                border-bottom-width: 2px !important;
+            }
+            
+            div[style*="border-radius: 12px"] { 
+                padding: 12px 8px !important; 
+                margin-bottom: 12px !important; 
+                border-radius: 6px !important; 
+            }
+            
+            button[type="submit"] { 
+                width: 100% !important; 
+                padding: 12px !important; 
+                font-size: 0.95rem !important; 
+                margin-top: 12px !important; 
+                border-radius: 25px !important;
+            }
+            
+            div[style*="font-size: 1.1rem"] {
+                font-size: 1rem !important;
+                padding: 12px !important;
+                margin-bottom: 12px !important;
+                border-radius: 6px !important;
+            }
+            
+            div[style*="background: rgba(128,0,0,0.05)"] {
+                padding: 10px !important;
+                margin-bottom: 12px !important;
+                border-radius: 0 5px 5px 0 !important;
+                border-left-width: 3px !important;
+            }
+            
+            div[style*="background: white; border: 1px solid #e9ecef"] {
+                padding: 10px !important;
+                margin-bottom: 12px !important;
+                border-radius: 6px !important;
+            }
+            
+            div[style*="display: grid; grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
+            }
+            
+            div[style*="background: rgba(128,0,0,0.03)"] {
+                padding: 10px !important;
+                border-radius: 6px !important;
+            }
+            
+            div[style*="background: rgba(128,0,0,0.02)"] {
+                padding: 12px !important;
+                border-radius: 6px !important;
+            }
+            
+            div[style*="background: linear-gradient(135deg, rgba(128,0,0,0.05)"] {
+                padding: 12px 8px !important;
+                border-radius: 6px !important;
+                margin-bottom: 12px !important;
+            }
+            
+            div[style*="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr))"] {
+                gap: 10px !important;
+                margin-top: 12px !important;
+            }
+            
+            div[style*="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr))"] {
+                gap: 10px !important;
+            }
+            
+            textarea {
+                min-height: 80px !important;
+            }
+            
+            div[style*="margin-bottom:20px"] {
+                margin-bottom: 12px !important;
+            }
+            
+            div[style*="margin-top:20px"] {
+                margin-top: 12px !important;
+            }
+            
+            div[style*="margin-bottom:25px"] {
+                margin-bottom: 12px !important;
+            }
+            
+            div[style*="margin-top:30px"] {
+                margin-top: 15px !important;
+            }
+            
+            div[style*="padding: 15px"] {
+                padding: 10px !important;
+            }
+            
+            div[style*="padding: 20px"] {
+                padding: 12px !important;
+            }
+            
+            div[style*="padding: 25px"] {
+                padding: 12px 8px !important;
+            }
+            
+            div[style*="gap:20px"] {
+                gap: 12px !important;
+            }
+            
+            div[style*="gap: 25px"] {
+                gap: 10px !important;
+            }
+            
+            label {
+                margin-bottom: 6px !important;
+            }
+            
+            p[style*="padding:15px"] {
+                padding: 10px !important;
+            }
+            
+            ul {
+                font-size: 0.85rem !important;
+                line-height: 1.4 !important;
+                margin: 8px 0 !important;
+                padding-left: 15px !important;
+            }
+            
+            li {
+                margin-bottom: 6px !important;
+            }
+            
+            h4 {
+                font-size: 1rem !important;
+                margin-bottom: 10px !important;
+            }
+            
+            input[style*="width:200px"] {
+                width: 100% !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #studyForm {
+                padding: 16px 14px !important;
+                margin: 4px 0 !important;
+            }
+            
+            #successMessage {
+                padding: 12px !important;
+                margin: 8px 0 !important;
+            }
+            
+            h2 {
+                font-size: 1.1rem !important;
+                padding-bottom: 4px !important;
+                margin-bottom: 10px !important;
+            }
+            
+            h3 {
+                font-size: 1rem !important;
+                margin-bottom: 10px !important;
+                padding-bottom: 5px !important;
+            }
+            
+            div[style*="border-radius: 12px"] {
+                padding: 10px 6px !important;
+                margin-bottom: 10px !important;
+            }
+            
+            input, textarea, select {
+                padding: 8px !important;
+            }
+            
+            div[style*="background: linear-gradient(135deg, rgba(128,0,0,0.05)"] {
+                padding: 10px 6px !important;
+            }
+            
+            button[type="submit"] {
+                padding: 10px !important;
+                font-size: 0.9rem !important;
+            }
+            
+            div[style*="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr))"] {
+                gap: 8px !important;
+            }
+            
+            div[style*="gap:10px"] {
+                gap: 8px !important;
+            }
+            
+            ul {
+                font-size: 0.8rem !important;
+                padding-left: 12px !important;
+            }
+            
+            div[style*="font-size: 1.1rem"] {
+                font-size: 0.9rem !important;
+                padding: 10px !important;
+            }
         }
         </style>
         
@@ -555,7 +976,7 @@ if (type === "study") {
 
         <!-- Introduction Paragraph -->
         <div style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px; color: #444; background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #800000;">
-            I, <input type="text" name="principal_name" placeholder="Your Full Name" required style="border: none; border-bottom: 2px solid #800000; background: transparent; padding: 8px 5px; margin: 0 5px; font-size: 1rem; color: #800000; font-weight: 500; transition: all 0.3s ease; min-width: 150px;" onfocus="this.style.borderBottomColor='#a00000'; this.style.background='rgba(128,0,0,0.05)'" onblur="this.style.borderBottomColor='#800000'; this.style.background='transparent'">, 
+            I, <input type="text" name="principal_name_intro" placeholder="Your Full Name" required style="border: none; border-bottom: 2px solid #800000; background: transparent; padding: 8px 5px; margin: 0 5px; font-size: 1rem; color: #800000; font-weight: 500; transition: all 0.3s ease; min-width: 150px;" onfocus="this.style.borderBottomColor='#a00000'; this.style.background='rgba(128,0,0,0.05)'" onblur="this.style.borderBottomColor='#800000'; this.style.background='transparent'">, 
             propose to establish a <strong>Nucleon Study Center</strong> at <input type="text" name="centre_name" placeholder="Study Centre Name" required style="border: none; border-bottom: 2px solid #800000; background: transparent; padding: 8px 5px; margin: 0 5px; font-size: 1rem; color: #800000; font-weight: 500; transition: all 0.3s ease; min-width: 200px;" onfocus="this.style.borderBottomColor='#a00000'; this.style.background='rgba(128,0,0,0.05)'" onblur="this.style.borderBottomColor='#800000'; this.style.background='transparent'"> 
             in collaboration with Nucleon Coaching Institutes to provide quality education and support to local students in achieving their academic goals.
         </div>
@@ -674,7 +1095,7 @@ if (type === "study") {
             
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
                 <div style="background: rgba(128,0,0,0.03); padding: 20px; border-radius: 8px; border: 1px solid rgba(128,0,0,0.1);">
-                    <h4 style="color: 800000; margin-bottom: 15px; font-size: 1.1rem;"><i class="fas fa-user-check" style="margin-right: 8px;"></i>Applicant Responsibilities:</h4>
+                    <h4 style="color: #800000; margin-bottom: 15px; font-size: 1.1rem;"><i class="fas fa-user-check" style="margin-right: 8px;"></i>Applicant Responsibilities:</h4>
                     <ul style="color: #555; line-height: 1.5; margin: 0; padding-left: 18px; font-size: 0.95rem;">
                         <li>Establish and operate the Study Centre according to Nucleon guidelines</li>
                         <li>Procure study materials and DPPs from Nucleon Coaching Institute</li>
@@ -683,7 +1104,7 @@ if (type === "study") {
                     </ul>
                 </div>
                 <div style="background: rgba(128,0,0,0.03); padding: 20px; border-radius: 8px; border: 1px solid rgba(128,0,0,0.1);">
-                    <h4 style="color: 800000; margin-bottom: 15px; font-size: 1.1rem;"><i class="fas fa-university" style="margin-right: 8px;"></i>Institute Responsibilities:</h4>
+                    <h4 style="color: #800000; margin-bottom: 15px; font-size: 1.1rem;"><i class="fas fa-university" style="margin-right: 8px;"></i>Institute Responsibilities:</h4>
                     <ul style="color: #555; line-height: 1.5; margin: 0; padding-left: 18px; font-size: 0.95rem;">
                         <li>Provide necessary support, training and resources</li>
                         <li>Facilitate marketing and promotional activities</li>
@@ -718,16 +1139,12 @@ if (type === "study") {
                     <label style="display: block; font-weight: 600; color: #333; margin-bottom: 8px;"><i class="fas fa-calendar" style="color:#800000; margin-right:5px;"></i>Declaration Date:</label>
                     <input type="date" name="declaration_date" required style="width: 100%; border: 2px solid #e9ecef; border-radius: 8px; padding: 12px; font-size: 1rem; transition: all 0.3s;" onfocus="this.style.borderColor='#800000'" onblur="this.style.borderColor='#e9ecef'">
                 </div>
-
-               
             </div>
 
             <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.8); border-radius: 8px; font-style: italic; color: #666; text-align: center;">
-                    <p style="margin: 0; font-size: 0.9rem;"><i class="fas fa-info-circle" style="margin-right: 8px; color: #800000;"></i>Note: Please fill in all the required information before signing the agreement.</p>
-                </div>
+                <p style="margin: 0; font-size: 0.9rem;"><i class="fas fa-info-circle" style="margin-right: 8px; color: #800000;"></i>Note: Please fill in all the required information before signing the agreement.</p>
+            </div>
         </div>
-
-       
 
         <!-- Submit Button -->
         <div style="text-align: center; margin-top: 30px;">
@@ -738,77 +1155,10 @@ if (type === "study") {
     </form>
     `;
 }
-
 if (type === "distance") {
     formHtml = `
         <!-- Success Message (Initially Hidden) -->
         <div id="successMessage" style="display: none; background: linear-gradient(45deg, #28a745, #34ce57); color: white; padding: 20px; border-radius: 12px; margin-bottom: 30px; text-align: center; box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3); animation: slideDown 0.5s ease;">
-            <style>
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-/* ADD THE MOBILE CSS FROM ABOVE HERE */
-@media (max-width: 768px) {
-    form { 
-        padding: 20px !important; 
-        margin: 15px 0 !important; 
-        border-radius: 10px !important; 
-    }
-    
-    div[style*="display:grid"] { 
-        grid-template-columns: 1fr !important; 
-        gap: 15px !important; 
-    }
-    
-    div[style*="display: grid"] { 
-        grid-template-columns: 1fr !important; 
-        gap: 15px !important; 
-    }
-    
-    input, textarea, select { 
-        width: 100% !important; 
-        min-width: unset !important; 
-        font-size: 16px !important; 
-        padding: 12px !important; 
-    }
-    
-    input[style*="border-bottom"] { 
-        display: block !important; 
-        width: calc(100% - 10px) !important; 
-        margin: 10px 0 !important; 
-        border: 2px solid #800000 !important; 
-        border-radius: 5px !important; 
-        padding: 10px !important; 
-        background: white !important; 
-        border-bottom: 2px solid #800000 !important;
-    }
-    
-    h2, h3 { 
-        font-size: 1.4rem !important; 
-        text-align: center !important; 
-        margin-bottom: 20px !important; 
-    }
-    
-    div[style*="border-radius: 12px"] { 
-        padding: 15px !important; 
-        margin-bottom: 20px !important; 
-        border-radius: 8px !important; 
-    }
-    
-    button[type="submit"] { 
-        width: 100% !important; 
-        padding: 15px !important; 
-        font-size: 1.1rem !important; 
-        margin-top: 20px !important; 
-    }
-    
-    div[style*="font-size: 1.1rem"] {
-        font-size: 1rem !important;
-        padding: 15px !important;
-    }
-}
-</style>
             <h2 style="margin: 0; font-family: 'Oswald', sans-serif; font-size: 1.5rem;">
                 <i class="fas fa-check-circle" style="margin-right: 10px;"></i>Form Submitted Successfully!
             </h2>
@@ -820,6 +1170,255 @@ if (type === "distance") {
             @keyframes fadeInUp {
                 from { opacity: 0; transform: translateY(30px); }
                 to { opacity: 1; transform: translateY(0); }
+            }
+            
+            @keyframes slideDown {
+                from { opacity: 0; transform: translateY(-20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            
+            /* Mobile Responsive Styles */
+            @media (max-width: 768px) {
+                #distanceForm { 
+                    padding: 8px 5px !important; 
+                    margin: 5px 0 !important; 
+                    border-radius: 8px !important; 
+                    border-width: 1px !important;
+                }
+                
+                #successMessage {
+                    padding: 15px !important;
+                    margin: 10px 0 !important;
+                    border-radius: 8px !important;
+                }
+                
+                div[style*="display:grid"], 
+                div[style*="display: grid"] { 
+                    grid-template-columns: 1fr !important; 
+                    gap: 10px !important; 
+                }
+                
+                input, textarea, select { 
+                    width: 100% !important; 
+                    min-width: unset !important; 
+                    font-size: 16px !important; 
+                    padding: 10px !important; 
+                }
+                
+                input[style*="border-bottom"] { 
+                    display: block !important; 
+                    width: calc(100% - 10px) !important; 
+                    margin: 10px 0 !important; 
+                    border: 2px solid #800000 !important; 
+                    border-radius: 5px !important; 
+                    padding: 10px !important; 
+                    background: white !important; 
+                    border-bottom: 2px solid #800000 !important;
+                }
+                
+                h2, h3 { 
+                    font-size: 1.2rem !important; 
+                    text-align: center !important; 
+                    margin-bottom: 12px !important; 
+                }
+                
+                h2 {
+                    padding: 0 3px 5px 3px !important;
+                    margin: 0 0 12px 0 !important;
+                    border-bottom-width: 2px !important;
+                }
+                
+                div[style*="border-radius: 12px"] { 
+                    padding: 12px 8px !important; 
+                    margin-bottom: 12px !important; 
+                    border-radius: 6px !important; 
+                }
+                
+                button[type="submit"] { 
+                    width: 100% !important; 
+                    padding: 12px !important; 
+                    font-size: 0.95rem !important; 
+                    margin-top: 12px !important; 
+                    border-radius: 25px !important;
+                }
+                
+                div[style*="font-size: 1.1rem"] {
+                    font-size: 1rem !important;
+                    padding: 12px !important;
+                    margin-bottom: 12px !important;
+                    border-radius: 6px !important;
+                }
+                
+                div[style*="background: rgba(128,0,0,0.05)"] {
+                    padding: 10px !important;
+                    margin-bottom: 12px !important;
+                    border-radius: 0 5px 5px 0 !important;
+                    border-left-width: 3px !important;
+                }
+                
+                div[style*="background: white; border: 1px solid #e9ecef"] {
+                    padding: 10px !important;
+                    margin-bottom: 12px !important;
+                    border-radius: 6px !important;
+                }
+                
+                div[style*="display: grid; grid-template-columns: 1fr 1fr"] {
+                    grid-template-columns: 1fr !important;
+                    gap: 10px !important;
+                }
+                
+                div[style*="background: rgba(128,0,0,0.03)"] {
+                    padding: 10px !important;
+                    border-radius: 6px !important;
+                }
+                
+                div[style*="background: rgba(128,0,0,0.02)"] {
+                    padding: 12px !important;
+                    border-radius: 6px !important;
+                }
+                
+                div[style*="background: linear-gradient(135deg, rgba(128,0,0,0.05)"] {
+                    padding: 12px 8px !important;
+                    border-radius: 6px !important;
+                    margin-bottom: 12px !important;
+                }
+                
+                div[style*="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr))"] {
+                    gap: 10px !important;
+                    margin-top: 12px !important;
+                }
+                
+                div[style*="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr))"] {
+                    gap: 10px !important;
+                }
+                
+                textarea {
+                    min-height: 80px !important;
+                }
+                
+                div[style*="margin-bottom:20px"] {
+                    margin-bottom: 12px !important;
+                }
+                
+                div[style*="margin-top:20px"] {
+                    margin-top: 12px !important;
+                }
+                
+                div[style*="margin-bottom:25px"] {
+                    margin-bottom: 12px !important;
+                }
+                
+                div[style*="margin-top:30px"] {
+                    margin-top: 15px !important;
+                }
+                
+                div[style*="padding: 15px"] {
+                    padding: 10px !important;
+                }
+                
+                div[style*="padding: 20px"] {
+                    padding: 12px !important;
+                }
+                
+                div[style*="padding: 25px"] {
+                    padding: 12px 8px !important;
+                }
+                
+                div[style*="gap:20px"] {
+                    gap: 12px !important;
+                }
+                
+                div[style*="gap: 25px"] {
+                    gap: 10px !important;
+                }
+                
+                label {
+                    margin-bottom: 6px !important;
+                }
+                
+                p[style*="padding:15px"] {
+                    padding: 10px !important;
+                }
+                
+                ul {
+                    font-size: 0.85rem !important;
+                    line-height: 1.4 !important;
+                    margin: 8px 0 !important;
+                    padding-left: 15px !important;
+                }
+                
+                li {
+                    margin-bottom: 6px !important;
+                }
+                
+                h4 {
+                    font-size: 1rem !important;
+                    margin-bottom: 10px !important;
+                }
+                
+                input[style*="width:200px"] {
+                    width: 100% !important;
+                }
+            }
+
+            @media (max-width: 480px) {
+                #distanceForm {
+                    padding: 16px 14px !important;
+                    margin: 4px 0 !important;
+                }
+                
+                #successMessage {
+                    padding: 12px !important;
+                    margin: 8px 0 !important;
+                }
+                
+                h2 {
+                    font-size: 1.1rem !important;
+                    padding-bottom: 4px !important;
+                    margin-bottom: 10px !important;
+                }
+                
+                h3 {
+                    font-size: 1rem !important;
+                    margin-bottom: 10px !important;
+                    padding-bottom: 5px !important;
+                }
+                
+                div[style*="border-radius: 12px"] {
+                    padding: 10px 6px !important;
+                    margin-bottom: 10px !important;
+                }
+                
+                input, textarea, select {
+                    padding: 8px !important;
+                }
+                
+                div[style*="background: linear-gradient(135deg, rgba(128,0,0,0.05)"] {
+                    padding: 10px 6px !important;
+                }
+                
+                button[type="submit"] {
+                    padding: 10px !important;
+                    font-size: 0.9rem !important;
+                }
+                
+                div[style*="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr))"] {
+                    gap: 8px !important;
+                }
+                
+                div[style*="gap:10px"] {
+                    gap: 8px !important;
+                }
+                
+                ul {
+                    font-size: 0.8rem !important;
+                    padding-left: 12px !important;
+                }
+                
+                div[style*="font-size: 1.1rem"] {
+                    font-size: 0.9rem !important;
+                    padding: 10px !important;
+                }
             }
             </style>
             
@@ -1013,9 +1612,6 @@ if (type === "distance") {
 }
 
 
-
-
-
         container.innerHTML = formHtml;
     }
 
@@ -1191,5 +1787,33 @@ function handleResize() {
 window.addEventListener('resize', handleResize);
 handleResize(); // Initial check
 </script>
+
+
+<script>
+    // Function to toggle the disabled state of the Other text input
+    function toggleOtherInput() {
+        const otherCheckbox = document.getElementById('other_project_checkbox');
+        const otherInput = document.getElementById('project_other');
+        
+        if (otherCheckbox.checked) {
+            otherInput.disabled = false;
+            otherInput.focus(); // Automatically focus on the input when enabled
+        } else {
+            otherInput.disabled = true;
+            otherInput.value = ''; // Clear the input when disabled
+        }
+    }
+    
+    // Add event listener when the document is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        const otherCheckbox = document.getElementById('other_project_checkbox');
+        if (otherCheckbox) {
+            otherCheckbox.addEventListener('change', toggleOtherInput);
+        }
+    });
+    </script>
+    
+    
+
 </body>
 </html>
