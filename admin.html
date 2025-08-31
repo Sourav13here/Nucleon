@@ -8,31 +8,64 @@
 
   <link rel="icon" href="https://img.icons8.com/ios-filled/50/800000/graduation-cap.png" type="image/x-icon">
   <link
-    href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="./admin.css">
 
   <style>
     /* Variables */
     :root {
       --primary: #800000;
       --primary-dark: #5e0f0f;
+      --primary-light: #a01a1a;
+      --secondary: #0f766e;
+      --success: #059669;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --info: #0284c7;
+
+      --gray-50: #f9fafb;
       --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
       --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
       --gray-500: #6b7280;
+      --gray-600: #4b5563;
       --gray-700: #374151;
+      --gray-800: #1f2937;
       --gray-900: #111827;
       --white: #ffffff;
-      --font-primary: 'Oswald', sans-serif;
-      --font-secondary: 'Inter', sans-serif;
+
+      --font-primary: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --radius-sm: 0.375rem;
       --radius: 0.5rem;
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --radius-lg: 0.75rem;
+      --radius-xl: 1rem;
+
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+      --sidebar-width: 280px;
+      --header-height: 70px;
+
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      font-family: var(--font-secondary);
+      font-family: var(--font-primary);
+      background-color: var(--gray-50);
+      color: var(--gray-900);
+      line-height: 1.6;
     }
 
     /* LOGIN SCREEN */
@@ -42,23 +75,69 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background-color: var(--gray-100);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
       padding: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #login-screen::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+      pointer-events: none;
     }
 
     .login-container {
       width: 100%;
       max-width: 420px;
       background: var(--white);
-      padding: 2.5rem 2rem;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-lg);
+      padding: 3rem 2.5rem;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-xl);
       text-align: center;
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .login-header {
+      margin-bottom: 2.5rem;
     }
 
     .login-logo {
-      width: 60px;
-      margin-bottom: 1rem;
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .login-logo i {
+      font-size: 2rem;
+      color: var(--white);
+    }
+
+    .login-header h2 {
+      margin: 0 0 0.5rem;
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+
+    .login-header p {
+      margin: 0;
+      color: var(--gray-600);
+      font-size: 0.95rem;
     }
 
     .form-group {
@@ -66,48 +145,12 @@
       text-align: left;
     }
 
-    .form-control {
-      width: 100%;
-      padding: 0.75rem 1rem 0.75rem 2.5rem;
-      border: 1px solid var(--gray-300);
-      border-radius: var(--radius);
-    }
-
-    .btn {
-      display: inline-block;
-      width: 100%;
-      padding: 0.85rem 1.5rem;
-      border: none;
-      border-radius: var(--radius);
-      font-weight: 600;
-      font-size: 1.1rem;
-      cursor: pointer;
-      background: var(--primary);
-      color: var(--white);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .btn:hover {
-      background: var(--primary-dark);
-    }
-
-    .back-to-site {
-      margin-top: 2rem;
-      font-size: 0.9rem;
-    }
-
-    /* Toggle visibility */
-    #admin-panel {
-      display: none;
-    }
-
-    #admin-panel.active {
+    .form-group label {
       display: block;
-    }
-
-    #login-screen.hidden {
-      display: none;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--gray-700);
+      font-size: 0.875rem;
     }
 
     .input-wrapper {
@@ -117,115 +160,814 @@
     .input-wrapper .icon {
       position: absolute;
       top: 50%;
-      left: 10px;
+      left: 1rem;
       transform: translateY(-50%);
+      color: var(--gray-400);
+      font-size: 0.875rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.875rem 1rem 0.875rem 2.75rem;
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      transition: var(--transition);
+      background: var(--white);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.1);
+    }
+
+    .form-control::placeholder {
+      color: var(--gray-400);
+    }
+
+    .toggle-password {
+      position: absolute;
+      top: 50%;
+      right: 1rem;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: var(--gray-400);
+      font-size: 0.875rem;
+      transition: var(--transition);
+    }
+
+    .toggle-password:hover {
+      color: var(--gray-600);
+    }
+
+    .btn {
+      display: inline-block;
+      width: 100%;
+      padding: 1rem 1.5rem;
+      border: none;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+      margin-top: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .btn:hover {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .back-to-site {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+
+    .back-to-site a {
+      color: var(--gray-600);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .back-to-site a:hover {
+      color: var(--primary);
+    }
+
+    /* ADMIN PANEL STYLES */
+    #admin-panel {
+      display: none;
+      min-height: 100vh;
+    }
+
+    #admin-panel.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #login-screen.hidden {
+      display: none;
+    }
+
+    /* Header */
+    .admin-header {
+      height: var(--header-height);
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.25rem;
+      color: var(--gray-600);
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+
+    .hamburger:hover {
+      background: var(--gray-100);
+      color: var(--gray-900);
+    }
+
+    .admin-header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+
+    .admin-user {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+
+    .admin-user:hover {
+      background: var(--gray-100);
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.875rem;
+      box-shadow: var(--shadow);
+    }
+
+    .admin-user span {
+      font-weight: 500;
+      color: var(--gray-700);
+      font-size: 0.9rem;
+    }
+
+    /* Container */
+    .admin-container {
+      display: flex;
+      flex: 1;
+      position: relative;
+    }
+
+    /* Sidebar */
+    .admin-sidebar {
+      width: var(--sidebar-width);
+      background: var(--white);
+      border-right: 1px solid var(--gray-200);
+      padding: 1.5rem 0;
+      overflow-y: auto;
+      transition: var(--transition);
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      bottom: 0;
+      z-index: 50;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .admin-nav {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-item {
+      margin-bottom: 0.25rem;
+    }
+
+    .nav-link,
+    .submenu-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.875rem 1.5rem;
+      color: var(--gray-700);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      border: none;
+      background: none;
+      width: 100%;
+      cursor: pointer;
+      border-left: 3px solid transparent;
+    }
+
+    .nav-link:hover,
+    .submenu-toggle:hover {
+      background: var(--gray-50);
+      color: var(--primary);
+      border-left-color: var(--primary);
+    }
+
+    .nav-link.active {
+      background: rgba(128, 0, 0, 0.1);
+      color: var(--primary);
+      border-left-color: var(--primary);
+      font-weight: 600;
+    }
+
+    .nav-link i,
+    .submenu-toggle i {
+      width: 18px;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .submenu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      background: var(--gray-50);
+      border-left: 2px solid var(--gray-200);
+      margin-left: 1.5rem;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .submenu.active {
+      max-height: 300px;
+      transition: max-height 0.3s ease-in;
+    }
+
+    .submenu .nav-link {
+      padding: 0.75rem 1.5rem 0.75rem 2rem;
+      font-size: 0.875rem;
+      font-weight: 400;
+    }
+
+    .submenu .nav-link:hover {
+      background: var(--white);
+    }
+
+    .submenu .nav-link.active {
+      background: var(--white);
+      border-left-color: var(--primary);
+    }
+
+    .submenu-toggle::after {
+      content: '\f107';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      margin-left: auto;
+      transition: var(--transition);
+    }
+
+    .submenu-toggle.expanded::after {
+      transform: rotate(180deg);
+    }
+
+    /* Main Content */
+    .admin-main {
+      flex: 1;
+      margin-left: var(--sidebar-width);
+      padding: 1.5rem;
+      transition: var(--transition);
+      min-height: calc(100vh - var(--header-height));
+    }
+
+    /* Stats Cards */
+    .stats-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--white);
+      padding: 1.5rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--gray-200);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--gray-600);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.025em;
+    }
+
+    .stat-number {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      font-family: var(--font-mono);
+    }
+
+    /* Panel Header */
+    .panel-header {
+      background: var(--white);
+      padding: 1.5rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--gray-200);
+      margin-bottom: 1.5rem;
+    }
+
+    .panel-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 0.25rem;
+    }
+
+    .panel-sub {
+      color: var(--gray-600);
+      font-size: 0.95rem;
+    }
+
+    /* Content Panels */
+    .content-panel {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .content-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Table Wrapper */
+    .table-wrapper {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--gray-200);
+      overflow-x: auto;
+    }
+
+    .table-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--gray-200);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--gray-50);
+    }
+
+    .table-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--gray-900);
+    }
+
+    .table-actions {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .btn-sm {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-secondary {
+      background: var(--gray-200);
+      color: var(--gray-700);
+    }
+
+    .btn-secondary:hover {
+      background: var(--gray-300);
+    }
+
+    .search-wrapper {
+      position: relative;
+      max-width: 300px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.5rem 0.75rem 0.5rem 2.25rem;
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      transition: var(--transition);
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.1);
+    }
+
+    .search-wrapper .icon {
+      position: absolute;
+      top: 50%;
+      left: 0.75rem;
+      transform: translateY(-50%);
+      color: var(--gray-400);
+      font-size: 0.875rem;
+    }
+
+    /* Table Styles from script.js */
+    .submissions-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+    }
+    .submissions-table th, .submissions-table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid var(--gray-200);
+        text-align: left;
+    }
+    .submissions-table th {
+        background-color: var(--gray-50);
+        font-weight: 600;
+        color: var(--gray-700);
+    }
+    .submissions-table tbody tr:hover {
+        background-color: var(--gray-50);
+    }
+    .submissions-table td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 200px;
+    }
+    .action-btn {
+        padding: 5px 10px;
+        border: 1px solid var(--gray-300);
+        background-color: var(--white);
+        color: var(--gray-700);
+        cursor: pointer;
+        border-radius: var(--radius-sm);
+        margin-right: 5px;
+        transition: background-color 0.2s;
+    }
+    .action-btn.view-btn:hover { background-color: var(--info); color: white; border-color: var(--info); }
+    .action-btn.delete-btn:hover { background-color: var(--danger); color: white; border-color: var(--danger); }
+    .col-action { text-align: right; white-space: nowrap; width: 1%; }
+
+    /* Detail View Styles */
+    #application-detail-view .panel {
+        background: white;
+        padding: 2rem;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+    }
+    #application-detail-view .back-btn {
+        margin-bottom: 1.5rem;
+        background: none;
+        border: none;
+        color: var(--primary);
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    #application-detail-view h3 {
+        margin-top: 0;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid var(--gray-200);
+        padding-bottom: 1rem;
+    }
+    .details-container .detail-row {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--gray-100);
+    }
+    .details-container .detail-row:last-child {
+        border-bottom: none;
+    }
+    .detail-label {
+        font-weight: 500;
+        color: var(--gray-600);
+    }
+    .detail-value {
+        color: var(--gray-800);
+        white-space: pre-wrap;
+    }
+
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
       color: var(--gray-500);
     }
 
-    .input-wrapper .toggle-password {
-      position: absolute;
-      top: 50%;
-      right: 10px;
-      transform: translateY(-50%);
-      cursor: pointer;
+    .empty-state i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--gray-300);
+    }
+
+    .empty-state h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--gray-700);
+    }
+
+    /* Footer */
+    .admin-footer {
+      margin-top: auto;
+      padding: 2rem 0;
+      text-align: center;
       color: var(--gray-500);
+      font-size: 0.875rem;
+      border-top: 1px solid var(--gray-200);
+      background: var(--white);
+    }
+
+    /* Sidebar Backdrop */
+    .sidebar-backdrop {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 40;
+    }
+
+    .sidebar-backdrop.show {
+      display: block;
+    }
+
+    /* Loading State */
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem;
+      color: var(--gray-500);
+    }
+
+    .spinner {
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--gray-200);
+      border-top: 2px solid var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-right: 0.75rem;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      .admin-sidebar {
+        transform: translateX(-100%);
+      }
+
+      .admin-sidebar.open {
+        transform: translateX(0);
+      }
+
+      .admin-main {
+        margin-left: 0;
+      }
+    }
+
+    /* Notification styles */
+    .notification {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      z-index: 1000;
+      max-width: 400px;
+      animation: slideIn 0.3s ease-out;
+    }
+
+    .notification.success {
+      background: var(--success);
+      color: var(--white);
+    }
+
+    .notification.error {
+      background: var(--danger);
+      color: var(--white);
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- LOGIN SCREEN -->
   <div id="login-screen">
     <div class="login-container">
       <div class="login-header">
-        <img src="images/logo.png" alt="Nucleon Logo" class="login-logo">
+        <div class="login-logo">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
         <h2>Admin Panel</h2>
-        <p>Please sign in to continue.</p>
+        <p>Sign in to access the Nucleon Coaching dashboard</p>
       </div>
 
-      <form id="loginForm" action="admin_login.php" method="POST">
+      <form id="loginForm">
         <div class="form-group">
           <label for="username">Username</label>
           <div class="input-wrapper">
-            <i class="fa-solid fa-user icon"></i> <!-- updated class -->
-            <input type="text" id="username" name="username" class="form-control" placeholder="e.g., admin" required>
+            <i class="fas fa-user icon"></i>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username" required
+              autocomplete="username">
           </div>
         </div>
 
         <div class="form-group">
           <label for="password">Password</label>
           <div class="input-wrapper">
-            <i class="fa-solid fa-lock icon"></i> <!-- updated class -->
-            <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" required>
-            <i class="fa-solid fa-eye-slash toggle-password" id="togglePassword"></i> <!-- updated class -->
+            <i class="fas fa-lock icon"></i>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password"
+              required autocomplete="current-password">
+            <i class="fas fa-eye-slash toggle-password" id="togglePassword"></i>
           </div>
         </div>
 
-
-        <button type="submit" class="btn">Sign In</button>
+        <button type="submit" class="btn">
+          <span id="login-text">Sign In</span>
+          <div id="login-spinner" class="spinner" style="display: none; margin: 0 auto;"></div>
+        </button>
       </form>
 
       <p class="back-to-site">
-        <a href="index.html">&larr; Back to Main Website</a>
+        <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Main Website</a>
       </p>
     </div>
   </div>
 
-  <!-- ADMIN PANEL -->
   <div id="admin-panel">
     <header class="admin-header">
       <button id="menuToggle" class="hamburger" aria-label="Toggle Menu">
         <i class="fas fa-bars"></i>
       </button>
-      <h1>Nucleon Admin Panel</h1>
-      <div class="admin-user">
+      <h1>Nucleon Admin</h1>
+      <div class="admin-user" id="userDropdown">
         <div class="user-avatar">AD</div>
         <span>Admin User</span>
+        <i class="fas fa-chevron-down" style="font-size: 0.75rem; margin-left: 0.25rem;"></i>
       </div>
     </header>
 
     <div class="admin-container">
-      <aside class="admin-sidebar" aria-label="Sidebar">
+      <aside class="admin-sidebar" id="sidebar" aria-label="Navigation">
         <ul class="admin-nav">
-          <li class="nav-item"><a href="#" class="nav-link" data-target="dashboard"><i
-                class="fas fa-tachometer-alt"></i> Dashboard</a></li>
           <li class="nav-item">
-            <a href="#" class="submenu-toggle disabled"><i class="fas fa-handshake"></i> Partnerships</a>
+            <a href="#" class="nav-link" data-target="dashboard">
+              <i class="fas fa-chart-line"></i> Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <button class="submenu-toggle expanded">
+                <i class="fas fa-handshake"></i> Partnerships
+            </button>
             <ul class="submenu active">
-              <li><a href="#" class="nav-link" data-target="school-integration"><i class="fas fa-school"></i> School
-                  Integration Projects</a></li>
-              <li><a href="#" class="nav-link" data-target="study-centers"><i class="fas fa-building"></i> Study Center
-                  Establishment</a></li>
-              <li><a href="#" class="nav-link" data-target="distance-learning"><i class="fas fa-laptop"></i> Distance
-                  Learning Program</a></li>
+                <li><a href="#" class="nav-link" data-target="school-integration">
+                    <i class="fas fa-school"></i> School Integration
+                </a></li>
+                <li><a href="#" class="nav-link" data-target="study-centers">
+                    <i class="fas fa-building"></i> Study Centers
+                </a></li>
+                <li><a href="#" class="nav-link" data-target="distance-learning">
+                    <i class="fas fa-laptop"></i> Distance Learning
+                </a></li>
             </ul>
           </li>
-          <li><a href="#" class="nav-link" data-target="educators"><i class="fas fa-chalkboard-teacher"></i>
-              Educators</a></li>
-          <li><a href="#" class="nav-link" data-target="contacts"><i class="fas fa-envelope"></i> Contact Form
-              Submissions</a></li>
-          <li><a href="#" class="nav-link" data-target="trash"><i class="fas fa-trash"></i> Trash</a></li>
-          <li><a href="#" class="nav-link" data-target="logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" data-target="educators">
+              <i class="fas fa-chalkboard-teacher"></i> Educators
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" data-target="contacts">
+              <i class="fas fa-envelope"></i> Contact Submissions
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" data-target="trash">
+              <i class="fas fa-trash-alt"></i> Trash
+            </a>
+          </li>
+          <li class="nav-item" style="margin-top: auto; border-top: 1px solid var(--gray-200); padding-top: 1rem;">
+            <a href="#" class="nav-link" data-target="logout">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+          </li>
         </ul>
       </aside>
 
       <main class="admin-main" role="main">
         <div id="statsCards" class="stats-cards">
           <div class="stat-card">
-            <div class="stat-label">Active Submissions</div>
+            <div class="stat-label">Total Submissions</div>
             <div id="stat-total" class="stat-number">0</div>
           </div>
           <div class="stat-card">
-            <div class="stat-label">School Integration Projects</div>
+            <div class="stat-label">School Integration</div>
             <div id="stat-partnership-school" class="stat-number">0</div>
           </div>
           <div class="stat-card">
-            <div class="stat-label">Study Center Establishment</div>
+            <div class="stat-label">Study Centers</div>
             <div id="stat-partnership-study" class="stat-number">0</div>
           </div>
           <div class="stat-card">
-            <div class="stat-label">Distance Learning Program</div>
+            <div class="stat-label">Distance Learning</div>
             <div id="stat-partnership-distance" class="stat-number">0</div>
           </div>
           <div class="stat-card">
@@ -233,44 +975,71 @@
             <div id="stat-educator" class="stat-number">0</div>
           </div>
           <div class="stat-card">
-            <div class="stat-label">Contact Form Submissions</div>
+            <div class="stat-label">Contact Forms</div>
             <div id="stat-contact" class="stat-number">0</div>
           </div>
         </div>
 
         <div id="panelHeader" class="panel-header">
           <div>
-            <div id="panelTitle" class="panel-title">School Integration Projects</div>
-            <div id="panelSub" class="panel-sub"></div>
+            <div id="panelTitle" class="panel-title">Dashboard Overview</div>
+            <div id="panelSub" class="panel-sub">Welcome to the Nucleon Coaching admin dashboard</div>
           </div>
         </div>
 
-        <!-- All content sections -->
-        <section id="dashboard" class="content-panel active"></section>
+        <section id="dashboard" class="content-panel active">
+            <p>Welcome to the dashboard. Select a category from the sidebar to view submissions.</p>
+        </section>
+
         <section id="school-integration" class="content-panel">
-          <div id="school-table-container" class="table-wrapper"></div>
+          <div class="table-wrapper">
+             <div id="school-table-container"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+          </div>
         </section>
+
         <section id="study-centers" class="content-panel">
-          <div id="study-table-container" class="table-wrapper"></div>
+            <div class="table-wrapper">
+                <div id="study-table-container"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+            </div>
         </section>
+
         <section id="distance-learning" class="content-panel">
-          <div id="distance-table-container" class="table-wrapper"></div>
+            <div class="table-wrapper">
+                <div id="distance-table-container"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+            </div>
         </section>
+        
         <section id="educators" class="content-panel">
-          <div id="educators-table-container" class="table-wrapper"></div>
+            <p>Educators section is not yet connected to the backend.</p>
         </section>
+
         <section id="contacts" class="content-panel">
-          <div id="contacts-table-container" class="table-wrapper"></div>
+            <div class="table-wrapper">
+                <div id="contacts-table-container"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+            </div>
         </section>
+
         <section id="trash" class="content-panel">
-          <h3>Trash</h3>
-          <p>Deleted items will be cleared after 30 days (demo).</p>
-          <div id="trash-table-container" class="table-wrapper"></div>
+            <p>Trash section is not yet connected to the backend.</p>
         </section>
+
         <section id="logout" class="content-panel">
-          <h3>Logout</h3>
-          <p>This link is a placeholder. Hook up your auth/logout flow here.</p>
+            <div class="table-wrapper">
+              <div style="padding: 3rem; text-align: center;">
+                <i class="fas fa-sign-out-alt" style="font-size: 3rem; color: var(--gray-300); margin-bottom: 1rem;"></i>
+                <h3>Logout Confirmation</h3>
+                <p style="color: var(--gray-600); margin-bottom: 2rem;">Are you sure you want to logout from the admin panel?</p>
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                  <button class="btn-sm btn-secondary" id="cancelLogoutBtn">Cancel</button>
+                  <button class="btn-sm" style="background: var(--danger); color: var(--white);" id="performLogoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                  </button>
+                </div>
+              </div>
+            </div>
         </section>
+        
+        <div id="application-detail-view" class="content-panel"></div>
 
         <footer class="admin-footer">
           <p>&copy; 2025 Nucleon Coaching Institutes. All rights reserved.</p>
@@ -279,44 +1048,487 @@
     </div>
     <div id="sidebarBackdrop" class="sidebar-backdrop"></div>
   </div>
-
-  <script src="./adminscript.js"></script>
+  
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const loginForm = document.getElementById("loginForm");
-      const loginScreen = document.getElementById("login-screen");
-      const adminPanel = document.getElementById("admin-panel");
-      const togglePassword = document.getElementById("togglePassword");
-      const password = document.getElementById("password");
+    (function () {
+        // --- DATA ---
+        const SAMPLE = {
+            schoolIntegration: [],
+            studyCenters: [],
+            distanceLearning: [],
+            educators: [],
+            contacts: [],
+            trash: []
+        };
 
-      // Toggle password visibility
-      togglePassword.addEventListener("click", function () {
-        const type = password.getAttribute("type") === "password" ? "text" : "password";
-        password.setAttribute("type", type);
-        this.classList.toggle("fa-eye");
-        this.classList.toggle("fa-eye-slash");
-      });
+        // --- DOM ELEMENTS ---
+        const loginForm = document.getElementById("loginForm");
+        const loginScreen = document.getElementById("login-screen");
+        const adminPanel = document.getElementById("admin-panel");
+        const togglePassword = document.getElementById("togglePassword");
+        const passwordInput = document.getElementById("password");
+        
+        const statsCardsContainer = document.getElementById('statsCards');
+        const panelHeaderContainer = document.getElementById('panelHeader');
+        const allContentPanels = document.querySelectorAll('.admin-main > section.content-panel');
+        const applicationDetailView = document.getElementById('application-detail-view');
 
-      // Intercept login form
-      loginForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const formData = new FormData(loginForm);
+        // --- UTILITY FUNCTIONS ---
+        function showNotification(message, type = 'success') {
+            const existing = document.querySelector('.notification');
+            if (existing) existing.remove();
 
-        try {
-          const res = await fetch("admin_login.php", { method: "POST", body: formData });
-          const result = await res.json(); // Expect JSON { success: true/false }
-          if (result.success) {
-            loginScreen.classList.add("hidden");
-            adminPanel.classList.add("active");
-          } else {
-            alert("Invalid credentials");
-          }
-        } catch (err) {
-          alert("Error connecting to server");
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => notification.remove(), 3000);
         }
-      });
-    });
+        
+        // --- LOGIN & LOGOUT ---
+        async function handleLogin(e) {
+            e.preventDefault();
+            const loginText = document.getElementById('login-text');
+            const loginSpinner = document.getElementById('login-spinner');
+            const submitBtn = e.target.querySelector('.btn');
+
+            loginText.style.display = 'none';
+            loginSpinner.style.display = 'block';
+            submitBtn.disabled = true;
+
+            try {
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                if (document.getElementById('username').value && passwordInput.value) {
+                    showNotification('Login successful!', 'success');
+                    setTimeout(() => {
+                        loginScreen.classList.add("hidden");
+                        adminPanel.classList.add("active");
+                        initializeDashboard();
+                    }, 500);
+                } else {
+                    throw new Error('Please fill in all fields');
+                }
+            } catch (err) {
+                showNotification(err.message || 'Login failed.', 'error');
+            } finally {
+                loginText.style.display = 'inline';
+                loginSpinner.style.display = 'none';
+                submitBtn.disabled = false;
+            }
+        }
+
+        function performLogout() {
+            showNotification('You have been logged out.', 'success');
+            setTimeout(() => {
+                adminPanel.classList.remove('active');
+                loginScreen.classList.remove('hidden');
+                loginForm.reset();
+                history.pushState(null, '', window.location.pathname); // Clear hash
+            }, 1000);
+        }
+
+        function cancelLogout() {
+            history.back(); // Go back to the previous panel
+        }
+
+        // --- API & DATA LOADING ---
+        const API_BASE = "http://127.0.0.1:8000/api";
+
+        async function loadSchoolProjects() {
+            try {
+                const res = await fetch(`${API_BASE}/school-projects`);
+                const json = await res.json();
+                if (json.success) {
+                    SAMPLE.schoolIntegration = json.data;
+                    renderSchoolProjectsTable(json.data);
+                    updateActiveStats();
+                }
+            } catch (e) { console.error("Error loading school projects:", e); }
+        }
+
+        async function loadStudyCenters() {
+            try {
+                const res = await fetch(`${API_BASE}/study-centre-applications`);
+                const json = await res.json();
+                if (json.success) {
+                    SAMPLE.studyCenters = json.data;
+                    renderStudyCentersTable(json.data);
+                    updateActiveStats();
+                }
+            } catch (e) { console.error("Error loading study centres:", e); }
+        }
+
+        async function loadDistanceLearning() {
+            try {
+                const res = await fetch(`${API_BASE}/distance-learning`);
+                const json = await res.json();
+                if (json.success) {
+                    SAMPLE.distanceLearning = json.data;
+                    renderDistanceLearningTable(json.data);
+                    updateActiveStats();
+                }
+            } catch (e) { console.error("Error loading distance learning:", e); }
+        }
+        
+        async function loadContactsFromApi() {
+            try {
+                const response = await fetch(`${API_BASE}/contacts`);
+                const result = await response.json();
+                if (result.success) {
+                    SAMPLE.contacts = result.data;
+                    const columns = ['name', 'email', 'phone', 'program', 'submitted_at'];
+                    renderTable('#contacts-table-container', SAMPLE.contacts, columns, true, 'contact');
+                    updateActiveStats();
+                }
+            } catch (err) { console.error("Error loading contacts:", err); }
+        }
+        
+        // --- STATS ---
+        function updateActiveStats() {
+            const counts = {
+                school: SAMPLE.schoolIntegration.length,
+                study: SAMPLE.studyCenters.length,
+                distance: SAMPLE.distanceLearning.length,
+                educator: SAMPLE.educators.length,
+                contact: SAMPLE.contacts.length
+            };
+            counts.total = counts.school + counts.study + counts.distance + counts.educator + counts.contact;
+
+            document.getElementById('stat-total').textContent = counts.total;
+            document.getElementById('stat-partnership-school').textContent = counts.school;
+            document.getElementById('stat-partnership-study').textContent = counts.study;
+            document.getElementById('stat-partnership-distance').textContent = counts.distance;
+            document.getElementById('stat-educator').textContent = counts.educator;
+            document.getElementById('stat-contact').textContent = counts.contact;
+        }
+
+        // --- RENDERING ---
+        function renderTable(containerSelector, data, columnOrder, includeActions = false, dataType = '') {
+            const container = document.querySelector(containerSelector);
+            if (!container) return;
+            if (!data || data.length === 0) {
+                container.innerHTML = `<div class="empty-state"><h3>No Submissions Found</h3></div>`;
+                return;
+            }
+
+            const formatHeader = key => key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+            const headers = columnOrder.map(key => `<th>${formatHeader(key)}</th>`).join('');
+            const actionHeader = includeActions ? `<th class="col-action">Actions</th>` : '';
+
+            const rows = data.map(item => {
+                const cells = columnOrder.map(key => `<td title="${item[key]}">${item[key] || 'N/A'}</td>`).join('');
+                const actionCell = includeActions ? `
+                    <td class="col-action">
+                        <button class="action-btn delete-btn" data-id="${item.id}" data-type="${dataType}">Delete</button>
+                    </td>` : '';
+                return `<tr>${cells}${actionCell}</tr>`;
+            }).join('');
+
+            container.innerHTML = `
+                <table class="submissions-table">
+                    <thead><tr>${headers}${actionHeader}</tr></thead>
+                    <tbody>${rows}</tbody>
+                </table>`;
+            
+            container.querySelectorAll('.delete-btn').forEach(btn => 
+                btn.addEventListener('click', () => handleDelete(btn.dataset.id, btn.dataset.type))
+            );
+        }
+
+        function renderDetailView(entries, title) {
+            let detailHtml = `<div class="panel">
+                <button class="back-btn"><i class="fas fa-arrow-left"></i> Back to List</button>
+                <h3>${title}</h3><div class="details-container">`;
+
+            for (const [label, value] of Object.entries(entries)) {
+                detailHtml += `
+                    <div class="detail-row">
+                        <span class="detail-label">${label}</span>
+                        <span class="detail-value">${value || 'N/A'}</span>
+                    </div>`;
+            }
+            detailHtml += `</div></div>`;
+            showDetailView(detailHtml);
+        }
+
+        function renderSchoolProjectsTable(data) {
+            const container = document.querySelector('#school-table-container');
+            if (!data || data.length === 0) {
+                container.innerHTML = '<div class="empty-state"><h3>No school projects found.</h3></div>';
+                return;
+            }
+            const html = `
+              <table class="submissions-table">
+                <thead><tr><th>Date</th><th>School Name</th><th>Principal</th><th class="col-action">Actions</th></tr></thead>
+                <tbody>
+                  ${data.map(app => `
+                    <tr>
+                      <td>${app.application_date || 'N/A'}</td>
+                      <td title="${app.school_name}">${app.school_name}</td>
+                      <td title="${app.principal_name}">${app.principal_name}</td>
+                      <td class="col-action">
+                        <button class="action-btn view-btn" data-id="${app.id}">View</button>
+                        <button class="action-btn delete-btn" data-id="${app.id}" data-type="school-project">Delete</button>
+                      </td>
+                    </tr>`).join("")}
+                </tbody>
+              </table>`;
+            container.innerHTML = html;
+            container.querySelectorAll('.view-btn').forEach(btn => 
+                btn.addEventListener('click', () => viewSchoolApplication(btn.dataset.id))
+            );
+            container.querySelectorAll('.delete-btn').forEach(btn => 
+                btn.addEventListener('click', () => handleDelete(btn.dataset.id, btn.dataset.type))
+            );
+        }
+        
+        function renderStudyCentersTable(data) {
+            const container = document.querySelector('#study-table-container');
+            if (!data || data.length === 0) {
+                container.innerHTML = '<div class="empty-state"><h3>No study centers found.</h3></div>';
+                return;
+            }
+            const html = `
+              <table class="submissions-table">
+                <thead><tr><th>Date</th><th>Centre Name</th><th>Principal</th><th class="col-action">Actions</th></tr></thead>
+                <tbody>
+                  ${data.map(app => `
+                    <tr>
+                      <td>${app.application_date || 'N/A'}</td>
+                      <td>${app.centre_name}</td>
+                      <td>${app.principal_name}</td>
+                      <td class="col-action">
+                        <button class="action-btn view-btn" data-id="${app.id}">View</button>
+                        <button class="action-btn delete-btn" data-id="${app.id}" data-type="study-center">Delete</button>
+                      </td>
+                    </tr>`).join("")}
+                </tbody>
+              </table>`;
+            container.innerHTML = html;
+            container.querySelectorAll('.view-btn').forEach(btn => 
+                btn.addEventListener('click', () => viewStudyCenterApplication(btn.dataset.id))
+            );
+            container.querySelectorAll('.delete-btn').forEach(btn => 
+                btn.addEventListener('click', () => handleDelete(btn.dataset.id, btn.dataset.type))
+            );
+        }
+        
+        function renderDistanceLearningTable(data) {
+            const container = document.querySelector('#distance-table-container');
+            if (!data || data.length === 0) {
+                container.innerHTML = '<div class="empty-state"><h3>No distance learning applications found.</h3></div>';
+                return;
+            }
+            const html = `
+              <table class="submissions-table">
+                <thead><tr><th>Date</th><th>Applicant</th><th>Contact</th><th class="col-action">Actions</th></tr></thead>
+                <tbody>
+                  ${data.map(app => `
+                    <tr>
+                      <td>${app.application_date || 'N/A'}</td>
+                      <td>${app.applicant_name}</td>
+                      <td>${app.contact_number}</td>
+                      <td class="col-action">
+                        <button class="action-btn view-btn" data-id="${app.id}">View</button>
+                        <button class="action-btn delete-btn" data-id="${app.id}" data-type="distance-learning">Delete</button>
+                      </td>
+                    </tr>`).join("")}
+                </tbody>
+              </table>`;
+            container.innerHTML = html;
+            container.querySelectorAll('.view-btn').forEach(btn => 
+                btn.addEventListener('click', () => viewDistanceLearningApplication(btn.dataset.id))
+            );
+            container.querySelectorAll('.delete-btn').forEach(btn => 
+                btn.addEventListener('click', () => handleDelete(btn.dataset.id, btn.dataset.type))
+            );
+        }
+
+        // --- VIEW HANDLERS ---
+        async function viewSchoolApplication(id) {
+            try {
+                const res = await fetch(`${API_BASE}/school-projects/${id}`);
+                const json = await res.json();
+                if (json.success) {
+                    const app = json.data;
+                    const detailEntries = { "Date": app.application_date, "School": app.school_name, "Address": app.address, "Principal": app.principal_name, "Contact": app.contact_number, "Email": app.email, "Board": app.affiliated_board, "Objective": app.objective, "Target Audience": app.target_audience, "Duration": app.duration, "Resources": app.resources_required, "Benefits": app.benefits };
+                    renderDetailView(detailEntries, "School Project Application");
+                }
+            } catch (err) { console.error("Error loading application:", err); }
+        }
+        
+        async function viewStudyCenterApplication(id) {
+            try {
+                const res = await fetch(`${API_BASE}/study-centre-applications/${id}`);
+                const json = await res.json();
+                if (json.success) {
+                    const app = json.data;
+                    const detailEntries = { "Date": app.application_date, "Centre Name": app.centre_name, "Principal": app.principal_name, "Address": app.address, "Contact": app.contact_number, "Email": app.email, "Infrastructure": app.infrastructure, "Staff": app.staff_strength, "Capacity": app.student_capacity, "Experience": app.previous_experience, "Benefits": app.benefits };
+                    renderDetailView(detailEntries, "Study Center Application");
+                }
+            } catch (err) { console.error("Error loading study center:", err); }
+        }
+
+        async function viewDistanceLearningApplication(id) {
+            try {
+                const res = await fetch(`${API_BASE}/distance-learning/${id}`);
+                const json = await res.json();
+                if (json.success) {
+                    const app = json.data;
+                    const detailEntries = { "Date": app.application_date, "Name": app.applicant_name, "Address": app.applicant_address, "Contact": app.contact_number, "Email": app.email_address, "Qualification": app.educational_qualification, "Area (sq.ft)": app.center_area, "Investment": app.investment_amount, "# Schools": app.number_of_schools };
+                    renderDetailView(detailEntries, "Distance Learning Application");
+                }
+            } catch (err) { console.error("Error loading distance learning app:", err); }
+        }
+
+        async function handleDelete(id, type) {
+            if (!confirm('Move this item to trash?')) return;
+            
+            const urls = {
+                'school-project': `${API_BASE}/school-projects/${id}`,
+                'study-center': `${API_BASE}/study-centre-applications/${id}`,
+                'distance-learning': `${API_BASE}/distance-learning/${id}`,
+                'contact': `${API_BASE}/contacts/${id}`
+            };
+            const loadFunctions = {
+                'school-project': loadSchoolProjects,
+                'study-center': loadStudyCenters,
+                'distance-learning': loadDistanceLearning,
+                'contact': loadContactsFromApi
+            };
+
+            try {
+                const response = await fetch(urls[type], { method: 'DELETE' });
+                if (response.ok) {
+                    showNotification('Item moved to trash.', 'success');
+                    if (loadFunctions[type]) await loadFunctions[type]();
+                } else {
+                    throw new Error('Server responded with an error.');
+                }
+            } catch (error) {
+                console.error('Error deleting item:', error);
+                showNotification('Failed to delete item.', 'error');
+            }
+        }
+        
+        // --- VIEW & NAVIGATION ---
+        function showListView() {
+            applicationDetailView.classList.remove('active');
+            applicationDetailView.innerHTML = '';
+            statsCardsContainer.style.display = 'grid';
+            panelHeaderContainer.style.display = 'block';
+
+            const currentPanelId = (location.hash || '').replace('#', '') || 'dashboard';
+            allContentPanels.forEach(p => p.classList.remove('active'));
+            
+            const panelToShow = document.getElementById(currentPanelId);
+            if (panelToShow) {
+                panelToShow.classList.add('active');
+                if (currentPanelId !== 'dashboard') {
+                    statsCardsContainer.style.display = 'none';
+                }
+            }
+            updateActiveStats();
+        }
+
+        function showDetailView(htmlContent) {
+            allContentPanels.forEach(section => section.classList.remove('active'));
+            statsCardsContainer.style.display = 'none';
+            panelHeaderContainer.style.display = 'none';
+
+            applicationDetailView.innerHTML = htmlContent;
+            applicationDetailView.classList.add('active');
+
+            const backBtn = applicationDetailView.querySelector('.back-btn');
+            if (backBtn) {
+                backBtn.addEventListener('click', () => history.back());
+            }
+        }
+
+        function showPanel(id) {
+            if(applicationDetailView.classList.contains('active')) {
+                showListView();
+            }
+
+            allContentPanels.forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            
+            const panelToShow = document.getElementById(id);
+            const activeLink = document.querySelector(`a[data-target="${id}"]`);
+            
+            if(panelToShow) panelToShow.classList.add('active');
+            if(activeLink) activeLink.classList.add('active');
+            
+            document.getElementById('panelTitle').textContent = activeLink ? activeLink.textContent.trim() : 'Dashboard';
+            statsCardsContainer.style.display = (id === 'dashboard') ? 'grid' : 'none';
+            panelHeaderContainer.style.display = (id === 'dashboard') ? 'block' : 'block';
+
+            updateActiveStats();
+        }
+
+        // --- INITIALIZATION ---
+        function initializeLogin() {
+            loginForm?.addEventListener("submit", handleLogin);
+            togglePassword?.addEventListener("click", function () {
+                const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+                passwordInput.setAttribute("type", type);
+                this.classList.toggle("fa-eye");
+                this.classList.toggle("fa-eye-slash");
+            });
+        }
+        
+        async function initializeDashboard() {
+            await Promise.all([
+                loadSchoolProjects(),
+                loadStudyCenters(),
+                loadDistanceLearning(),
+                loadContactsFromApi()
+            ]);
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', e => {
+                    e.preventDefault();
+                    const target = link.getAttribute('data-target');
+                    if (!target) return;
+                    history.pushState({ panel: target }, '', '#' + target);
+                    showPanel(target);
+                });
+            });
+            
+            window.addEventListener('popstate', (e) => {
+                const hash = location.hash.replace('#', '') || 'dashboard';
+                showPanel(hash);
+            });
+            
+            // Mobile Menu
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.getElementById('sidebar');
+            const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+            menuToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('open');
+                sidebarBackdrop.classList.toggle('show');
+            });
+            sidebarBackdrop.addEventListener('click', () => {
+                sidebar.classList.remove('open');
+                sidebarBackdrop.classList.remove('show');
+            });
+            
+            // Logout buttons
+            document.getElementById('cancelLogoutBtn').addEventListener('click', cancelLogout);
+            document.getElementById('performLogoutBtn').addEventListener('click', performLogout);
+
+            const initialPanel = location.hash.replace('#', '') || 'dashboard';
+            showPanel(initialPanel);
+        }
+
+        // --- SCRIPT ENTRY POINT ---
+        document.addEventListener("DOMContentLoaded", initializeLogin);
+
+    })();
   </script>
+
 </body>
 
 </html>
