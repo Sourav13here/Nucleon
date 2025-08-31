@@ -1368,6 +1368,38 @@
         opacity: 1;
       }
     }
+
+    /* Panel Header Styles */
+    .panel-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 1.5rem 2rem;
+      margin-bottom: 0;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 70px;
+      z-index: 100;
+    }
+
+    .panel-header h2 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--gray-900);
+    }
+
+    .panel-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--gray-600);
+    }
+
+    .panel-breadcrumb i {
+      font-size: 0.75rem;
+      color: var(--gray-400);
+    }
   </style>
 
    <!-- Favicon -->
@@ -1470,32 +1502,13 @@
       </aside>
 
       <main class="admin-main" role="main">
-        <!-- <div id="statsCards" class="stats-cards">
-          <div class="stat-card">
-            <div class="stat-label">Total Submissions</div>
-            <div id="stat-total" class="stat-number">0</div>
+        <!-- Panel Header -->
+        <div class="panel-header">
+          <h2 id="panel-title">School Integration</h2>
+          <div class="panel-breadcrumb">
+            <span>Admin</span> <i class="fas fa-chevron-right"></i> <span id="panel-breadcrumb-current">School Integration</span>
           </div>
-          <div class="stat-card">
-            <div class="stat-label">School Integration</div>
-            <div id="stat-partnership-school" class="stat-number">0</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Study Centers</div>
-            <div id="stat-partnership-study" class="stat-number">0</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Distance Learning</div>
-            <div id="stat-partnership-distance" class="stat-number">0</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Educators</div>
-            <div id="stat-educator" class="stat-number">0</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Contact Forms</div>
-            <div id="stat-contact" class="stat-number">0</div>
-          </div>
-        </div>         -->
+        </div>
 
         <section id="school-integration" class="content-panel">
           <div class="table-wrapper">
@@ -2778,10 +2791,23 @@
             if(panelToShow) panelToShow.classList.add('active');
             if(activeLink) activeLink.classList.add('active');
             
-            const panelTitleElement = document.getElementById('panelTitle');
-            if (panelTitleElement) {
-                panelTitleElement.textContent = activeLink ? activeLink.textContent.trim() : 'Dashboard';
-            }
+            // Update panel header title and breadcrumb
+            const panelTitleElement = document.getElementById('panel-title');
+            const panelBreadcrumbElement = document.getElementById('panel-breadcrumb-current');
+            
+            const titleMap = {
+                'school-integration': 'School Integration',
+                'study-centers': 'Study Centers',
+                'distance-learning': 'Distance Learning',
+                'educators': 'Educators',
+                'contacts': 'Contact Submissions',
+                'logout': 'Logout'
+            };
+            
+            const title = titleMap[id] || 'Dashboard';
+            if (panelTitleElement) panelTitleElement.textContent = title;
+            if (panelBreadcrumbElement) panelBreadcrumbElement.textContent = title;
+            
             if (statsCardsContainer) statsCardsContainer.style.display = (id === 'dashboard') ? 'grid' : 'none';
             if (panelHeaderContainer) panelHeaderContainer.style.display = (id === 'dashboard') ? 'block' : 'block';
 
