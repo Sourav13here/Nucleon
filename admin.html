@@ -2,186 +2,321 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Admin Panel | Nucleon Coaching Institutes</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Panel | Nucleon Coaching Institutes</title>
 
-    <link rel="icon" href="https://img.icons8.com/ios-filled/50/800000/graduation-cap.png" type="image/x-icon">
+  <link rel="icon" href="https://img.icons8.com/ios-filled/50/800000/graduation-cap.png" type="image/x-icon">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./admin.css">
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+  <style>
+    /* Variables */
+    :root {
+      --primary: #800000;
+      --primary-dark: #5e0f0f;
+      --gray-100: #f3f4f6;
+      --gray-300: #d1d5db;
+      --gray-500: #6b7280;
+      --gray-700: #374151;
+      --gray-900: #111827;
+      --white: #ffffff;
+      --font-primary: 'Oswald', sans-serif;
+      --font-secondary: 'Inter', sans-serif;
+      --radius: 0.5rem;
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    body {
+      margin: 0;
+      font-family: var(--font-secondary);
+    }
 
-    <link rel="stylesheet" href="./admin.css">
+    /* LOGIN SCREEN */
+    #login-screen {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: var(--gray-100);
+      padding: 1rem;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 420px;
+      background: var(--white);
+      padding: 2.5rem 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+    }
+
+    .login-logo {
+      width: 60px;
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius);
+    }
+
+    .btn {
+      display: inline-block;
+      width: 100%;
+      padding: 0.85rem 1.5rem;
+      border: none;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      background: var(--primary);
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .back-to-site {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+
+    /* Toggle visibility */
+    #admin-panel {
+      display: none;
+    }
+
+    #admin-panel.active {
+      display: block;
+    }
+
+    #login-screen.hidden {
+      display: none;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .input-wrapper .icon {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      color: var(--gray-500);
+    }
+
+    .input-wrapper .toggle-password {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: var(--gray-500);
+    }
+  </style>
 </head>
 
 <body>
 
-    <header class="admin-header">
-        <button id="menuToggle" class="hamburger" aria-label="Toggle Menu">
-            <i class="fas fa-bars"></i>
-        </button>
-        <h1>Nucleon Admin Panel</h1>
-        <div class="admin-user">
-            <div class="user-avatar">AD</div>
-            <span>Admin User</span>
+  <!-- LOGIN SCREEN -->
+  <div id="login-screen">
+    <div class="login-container">
+      <div class="login-header">
+        <img src="images/logo.png" alt="Nucleon Logo" class="login-logo">
+        <h2>Admin Panel</h2>
+        <p>Please sign in to continue.</p>
+      </div>
+
+      <form id="loginForm" action="admin_login.php" method="POST">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-user icon"></i> <!-- updated class -->
+            <input type="text" id="username" name="username" class="form-control" placeholder="e.g., admin" required>
+          </div>
         </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-lock icon"></i> <!-- updated class -->
+            <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" required>
+            <i class="fa-solid fa-eye-slash toggle-password" id="togglePassword"></i> <!-- updated class -->
+          </div>
+        </div>
+
+
+        <button type="submit" class="btn">Sign In</button>
+      </form>
+
+      <p class="back-to-site">
+        <a href="index.html">&larr; Back to Main Website</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div id="admin-panel">
+    <header class="admin-header">
+      <button id="menuToggle" class="hamburger" aria-label="Toggle Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <h1>Nucleon Admin Panel</h1>
+      <div class="admin-user">
+        <div class="user-avatar">AD</div>
+        <span>Admin User</span>
+      </div>
     </header>
 
-
     <div class="admin-container">
-        <aside class="admin-sidebar" aria-label="Sidebar">
-            <ul class="admin-nav">
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-target="dashboard"><i class="fas fa-tachometer-alt"></i>
-                        Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="submenu-toggle disabled" aria-disabled="true" tabindex="-1"><i
-                            class="fas fa-handshake"></i> Partnerships</a>
-                    <ul class="submenu active" aria-hidden="false">
-                        <li class="nav-item submenu-item">
-                            <a href="#" class="nav-link" data-target="school-integration"><i class="fas fa-school"></i>
-                                School Integration Projects</a>
-                        </li>
-                        <li class="nav-item submenu-item">
-                            <a href="#" class="nav-link" data-target="study-centers"><i class="fas fa-building"></i>
-                                Study Center Establishment</a>
-                        </li>
-                        <li class="nav-item submenu-item">
-                            <a href="#" class="nav-link" data-target="distance-learning"><i class="fas fa-laptop"></i>
-                                Distance Learning Program</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-target="educators"><i class="fas fa-chalkboard-teacher"></i>
-                        Educators</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-target="contacts"><i class="fas fa-envelope"></i> Contact Form
-                        Submissions</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-target="trash"><i class="fas fa-trash"></i> Trash</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link" data-target="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                </li>
+      <aside class="admin-sidebar" aria-label="Sidebar">
+        <ul class="admin-nav">
+          <li class="nav-item"><a href="#" class="nav-link" data-target="dashboard"><i
+                class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+          <li class="nav-item">
+            <a href="#" class="submenu-toggle disabled"><i class="fas fa-handshake"></i> Partnerships</a>
+            <ul class="submenu active">
+              <li><a href="#" class="nav-link" data-target="school-integration"><i class="fas fa-school"></i> School
+                  Integration Projects</a></li>
+              <li><a href="#" class="nav-link" data-target="study-centers"><i class="fas fa-building"></i> Study Center
+                  Establishment</a></li>
+              <li><a href="#" class="nav-link" data-target="distance-learning"><i class="fas fa-laptop"></i> Distance
+                  Learning Program</a></li>
             </ul>
-        </aside>
+          </li>
+          <li><a href="#" class="nav-link" data-target="educators"><i class="fas fa-chalkboard-teacher"></i>
+              Educators</a></li>
+          <li><a href="#" class="nav-link" data-target="contacts"><i class="fas fa-envelope"></i> Contact Form
+              Submissions</a></li>
+          <li><a href="#" class="nav-link" data-target="trash"><i class="fas fa-trash"></i> Trash</a></li>
+          <li><a href="#" class="nav-link" data-target="logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+      </aside>
 
-        <main class="admin-main" role="main">
-            <div id="statsCards" class="stats-cards">
-                <div class="stat-card">
-                    <div class="stat-label">Active Submissions</div>
-                    <div id="stat-total" class="stat-number">0</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">School Integration Projects</div>
-                    <div id="stat-partnership-school" class="stat-number">0</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Study Center Establishment</div>
-                    <div id="stat-partnership-study" class="stat-number">0</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Distance Learning Program</div>
-                    <div id="stat-partnership-distance" class="stat-number">0</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Educators</div>
-                    <div id="stat-educator" class="stat-number">0</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Contact Form Submissions</div>
-                    <div id="stat-contact" class="stat-number">0</div>
-                </div>
-            </div>
+      <main class="admin-main" role="main">
+        <div id="statsCards" class="stats-cards">
+          <div class="stat-card">
+            <div class="stat-label">Active Submissions</div>
+            <div id="stat-total" class="stat-number">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">School Integration Projects</div>
+            <div id="stat-partnership-school" class="stat-number">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Study Center Establishment</div>
+            <div id="stat-partnership-study" class="stat-number">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Distance Learning Program</div>
+            <div id="stat-partnership-distance" class="stat-number">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Educators</div>
+            <div id="stat-educator" class="stat-number">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Contact Form Submissions</div>
+            <div id="stat-contact" class="stat-number">0</div>
+          </div>
+        </div>
 
-            <div id="panelHeader" class="panel-header">
-                <div>
-                    <div id="panelTitle" class="panel-title">School Integration Projects</div>
-                    <div id="panelSub" class="panel-sub"></div>
-                </div>
-                <div></div>
-            </div>
+        <div id="panelHeader" class="panel-header">
+          <div>
+            <div id="panelTitle" class="panel-title">School Integration Projects</div>
+            <div id="panelSub" class="panel-sub"></div>
+          </div>
+        </div>
 
-            <section id="dashboard" class="content-panel active"></section>
-            <section id="school-integration" class="content-panel">
-                <div class="panel">
-                    <!-- <div class="search-bar">
-                        <input id="search-school" type="text" placeholder="Search school integration projects...">
-                        <button id="search-school-btn"><i class="fas fa-search"></i> Search</button>
-                    </div> -->
-                    <div id="school-table-container" class="table-wrapper"></div>
-                </div>
-            </section>
-            <section id="study-centers" class="content-panel">
-                <div class="panel">
-                    <!-- <div class="search-bar">
-                        <input id="search-study" type="text" placeholder="Search study centers...">
-                        <button id="search-study-btn"><i class="fas fa-search"></i> Search</button>
-                    </div> -->
-                    <div id="study-table-container" class="table-wrapper"></div>
-                </div>
-            </section>
-            <section id="distance-learning" class="content-panel">
-                <div class="panel">
-                    <!-- <div class="search-bar">
-                        <input id="search-distance" type="text" placeholder="Search distance learning programs...">
-                        <button id="search-distance-btn"><i class="fas fa-search"></i> Search</button>
-                    </div> -->
-                    <div id="distance-table-container" class="table-wrapper"></div>
-                </div>
-            </section>
-            <section id="educators" class="content-panel">
-                <div class="panel">
-                    <!-- <div class="search-bar">
-                        <input id="search-educators" type="text" placeholder="Search educators...">
-                        <button id="search-educators-btn"><i class="fas fa-search"></i> Search</button>
-                    </div> -->
-                    <div id="educators-table-container" class="table-wrapper"></div>
-                </div>
-            </section>
-            <section id="contacts" class="content-panel">
-                <div class="panel">
-                    <!-- <div class="search-bar">
-                        <input id="search-contacts" type="text" placeholder="Search contact submissions...">
-                        <button id="search-contacts-btn"><i class="fas fa-search"></i> Search</button>
-                    </div> -->
-                    <div id="contacts-table-container" class="table-wrapper"></div>
-                </div>
-            </section>
-            <section id="trash" class="content-panel">
-                <div class="panel">
-                    <h3>Trash</h3>
-                    <p>Deleted items will be cleared after 30 days (demo - no real deletion persistence).</p>
-                    <div id="trash-table-container" class="table-wrapper"></div>
-                </div>
-            </section>
-            <section id="logout" class="content-panel">
-                <div class="panel">
-                    <h3>Logout</h3>
-                    <p>This link is a placeholder. Hook up your auth/logout flow here.</p>
-                </div>
-            </section>
+        <!-- All content sections -->
+        <section id="dashboard" class="content-panel active"></section>
+        <section id="school-integration" class="content-panel">
+          <div id="school-table-container" class="table-wrapper"></div>
+        </section>
+        <section id="study-centers" class="content-panel">
+          <div id="study-table-container" class="table-wrapper"></div>
+        </section>
+        <section id="distance-learning" class="content-panel">
+          <div id="distance-table-container" class="table-wrapper"></div>
+        </section>
+        <section id="educators" class="content-panel">
+          <div id="educators-table-container" class="table-wrapper"></div>
+        </section>
+        <section id="contacts" class="content-panel">
+          <div id="contacts-table-container" class="table-wrapper"></div>
+        </section>
+        <section id="trash" class="content-panel">
+          <h3>Trash</h3>
+          <p>Deleted items will be cleared after 30 days (demo).</p>
+          <div id="trash-table-container" class="table-wrapper"></div>
+        </section>
+        <section id="logout" class="content-panel">
+          <h3>Logout</h3>
+          <p>This link is a placeholder. Hook up your auth/logout flow here.</p>
+        </section>
 
-            <section id="application-detail-view" class="content-panel">
-                </section>
-
-
-            <footer class="admin-footer">
-                <p>&copy; 2025 Nucleon Coaching Institutes. All rights reserved.</p>
-            </footer>
-        </main>
+        <footer class="admin-footer">
+          <p>&copy; 2025 Nucleon Coaching Institutes. All rights reserved.</p>
+        </footer>
+      </main>
     </div>
-
     <div id="sidebarBackdrop" class="sidebar-backdrop"></div>
-    <script src="./adminscript.js"></script>
+  </div>
 
+  <script src="./adminscript.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const loginForm = document.getElementById("loginForm");
+      const loginScreen = document.getElementById("login-screen");
+      const adminPanel = document.getElementById("admin-panel");
+      const togglePassword = document.getElementById("togglePassword");
+      const password = document.getElementById("password");
+
+      // Toggle password visibility
+      togglePassword.addEventListener("click", function () {
+        const type = password.getAttribute("type") === "password" ? "text" : "password";
+        password.setAttribute("type", type);
+        this.classList.toggle("fa-eye");
+        this.classList.toggle("fa-eye-slash");
+      });
+
+      // Intercept login form
+      loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const formData = new FormData(loginForm);
+
+        try {
+          const res = await fetch("admin_login.php", { method: "POST", body: formData });
+          const result = await res.json(); // Expect JSON { success: true/false }
+          if (result.success) {
+            loginScreen.classList.add("hidden");
+            adminPanel.classList.add("active");
+          } else {
+            alert("Invalid credentials");
+          }
+        } catch (err) {
+          alert("Error connecting to server");
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>
