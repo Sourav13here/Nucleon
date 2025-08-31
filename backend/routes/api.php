@@ -6,6 +6,7 @@ use App\Http\Controllers\SchoolProjectController;
 use App\Http\Controllers\StudyCentreApplicationController;
 use App\Http\Controllers\DistanceLearningController;
 use App\Http\Controllers\TrashController;
+use App\Http\Controllers\EducatorController;
 
 // Contact form routes
 Route::post('/contacts', [ContactController::class, 'store']);
@@ -42,3 +43,10 @@ Route::delete('/distance-learning/{id}/force-delete', [DistanceLearningControlle
 
 // Trash routes
 Route::get('/trash', [TrashController::class, 'index']); 
+
+// Educator application routes
+Route::post('/educators', [EducatorController::class, 'store']);
+Route::get('/educators', [EducatorController::class, 'index']);
+Route::get('/educators/{id}', [EducatorController::class, 'show']);
+Route::get('/educators/{id}/resume', [EducatorController::class, 'downloadResume']);
+Route::delete('/educators/{id}', [EducatorController::class, 'destroy']);
