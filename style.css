@@ -444,7 +444,7 @@ h4 { font-size: 1.5rem; }
 .nav-links a {
     color: var(--gray-700);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 0.9rem;
     padding: 0.5rem 0.2rem;
     position: relative;
