@@ -281,8 +281,34 @@
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <a href="#" style="position:fixed; bottom:20px; right:20px; width:50px; height:50px; background:#800000; color:#fff; display:flex; align-items:center; justify-content:center; border:2px solid #fff; border-radius:50%; text-decoration:none; font-size:20px; box-shadow:0 0 10px rgba(0,0,0,0.3); transition:all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(128,0,0,0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 0 10px rgba(0,0,0,0.3)'" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});">
+  <!-- Back to Top Button (scoped CSS + simple anchor) -->
+    <style>
+        /* Force fixed placement above any transformed container */
+        #backToTop {
+            position: fixed !important;
+            bottom: 20px !important;
+            right: 20px !important;
+            width: 50px;
+            height: 50px;
+            background: #800000;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            visibility: hidden;
+            z-index: 99999 !important;
+            transform: translateZ(0); /* avoid stacking/context quirks */
+            pointer-events: auto;
+        }
+    </style>
+
+    <a id="backToTop" href="#" aria-label="Back to top" onclick="event.preventDefault(); window.scrollTo({top:0, behavior:'smooth'});">
         <i class="fas fa-arrow-up"></i>
     </a>
 
@@ -323,6 +349,7 @@
         font-size: 16px !important;
         padding: 20px !important;
     }
+    
     
     div[style*="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))"] {
         grid-template-columns: 1fr !important;
@@ -683,6 +710,7 @@ div[style*="flex-wrap: wrap"]::-webkit-scrollbar {
                     </div>
                     
                 </div>
+                
                 <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.8); border-radius: 8px; font-style: italic; color: #666; text-align: center;">
                     <p style="margin: 0; font-size: 0.9rem;"><i class="fas fa-info-circle" style="margin-right: 8px; color: #800000;"></i>Note: Please fill in all the required information before signing the agreement.</p>
                 </div>
@@ -1616,13 +1644,12 @@ if (type === "distance") {
     }
 
     // Show/hide back to top button based on scroll position
-    window.addEventListener('scroll', function() {
-        const backToTop = document.querySelector('a[href="#"]');
+   window.addEventListener('scroll', function() {
+        const backToTop = document.getElementById('backToTop');
+        if (!backToTop) return;
         if (window.pageYOffset > 300) {
-            backToTop.style.opacity = '1';
             backToTop.style.visibility = 'visible';
         } else {
-            backToTop.style.opacity = '0';
             backToTop.style.visibility = 'hidden';
         }
     });
