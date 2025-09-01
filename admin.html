@@ -96,9 +96,9 @@
 
     .login-container {
       width: 100%;
-      max-width: 420px;
+      max-width: 320px;
       background: var(--white);
-      padding: 3rem 2.5rem;
+      padding: 2rem 1.75rem;
       border-radius: var(--radius-xl);
       box-shadow: var(--shadow-xl);
       text-align: center;
@@ -826,7 +826,7 @@
     
     .form-view-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 2rem;
         margin-top: 1.5rem;
         width: 100%;
@@ -937,50 +937,141 @@
     @media (max-width: 768px) {
         .form-view-container {
             grid-template-columns: 1fr;
-            gap: 1.25rem;
+            gap: 0.75rem;
             padding: 0;
             margin: 0;
+            margin-top: 0.75rem;
         }
         
         #application-detail-view .panel {
-            padding: 1.5rem;
-            margin: 1rem;
-            border-radius: var(--radius-lg);
-            max-width: calc(100vw - 2rem);
+            padding: 0.75rem;
+            margin: 0.25rem;
+            border-radius: var(--radius);
+            max-width: calc(100vw - 0.5rem);
             overflow-x: hidden;
+            box-shadow: var(--shadow);
         }
         
         #application-detail-view h3 {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
             word-wrap: break-word;
             overflow-wrap: break-word;
+            padding-bottom: 0.75rem;
         }
         
         .form-field {
             width: 100%;
             max-width: 100%;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
         }
         
         .field-label {
-            font-size: 0.8rem;
-            margin-bottom: 0.5rem;
-            padding-left: 0.75rem;
+            font-size: 0.75rem;
+            margin-bottom: 0.4rem;
+            padding-left: 0.5rem;
+            letter-spacing: 0.3px;
+            word-break: break-word;
+            overflow-wrap: break-word;
         }
         
         .field-value {
-            padding: 0.875rem 1rem;
-            font-size: 0.95rem;
-            min-height: 2.5rem;
+            padding: 0.625rem 0.75rem;
+            font-size: 0.85rem;
+            min-height: 2rem;
             width: 100%;
             max-width: 100%;
+            line-height: 1.4;
+            border-radius: var(--radius);
+            word-break: break-word;
+            overflow-wrap: break-word;
+            white-space: pre-wrap;
+            max-height: none;
+            height: auto;
+            overflow: visible;
+            border-width: 1px;
         }
         
         #application-detail-view .back-btn {
-            padding: 0.625rem 1.25rem;
-            font-size: 0.85rem;
-            margin-bottom: 1.5rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            margin-bottom: 1.25rem;
+            gap: 0.5rem;
+        }
+        
+        /* Study Center Mobile Responsiveness */
+        .study-responsibilities-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
+        }
+        
+        .study-responsibility-box {
+            padding: 0.75rem !important;
+            margin-bottom: 0.75rem;
+        }
+        
+        .study-responsibility-box h4 {
+            font-size: 0.9rem !important;
+            margin-bottom: 0.75rem !important;
+        }
+        
+        .study-responsibility-box ul {
+            font-size: 0.8rem !important;
+            line-height: 1.4 !important;
+            padding-left: 1rem !important;
+        }
+        
+        .study-terms-section {
+            padding: 0.75rem !important;
+            margin-bottom: 1rem !important;
+        }
+        
+        .study-declaration-section {
+            padding: 1rem !important;
+            margin-bottom: 1rem !important;
+        }
+        
+        .study-declaration-text {
+            padding: 0.75rem !important;
+            font-size: 0.85rem !important;
+        }
+        
+        /* Distance Learning Mobile Responsiveness */
+        .distance-responsibilities-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
+        }
+        
+        .distance-responsibility-box {
+            padding: 0.75rem !important;
+            margin-bottom: 0.75rem;
+        }
+        
+        .distance-responsibility-box h4 {
+            font-size: 0.9rem !important;
+            margin-bottom: 0.75rem !important;
+        }
+        
+        .distance-responsibility-box ul {
+            font-size: 0.8rem !important;
+            line-height: 1.4 !important;
+            padding-left: 1rem !important;
+        }
+        
+        .distance-terms-section {
+            padding: 0.75rem !important;
+            margin-bottom: 1rem !important;
+        }
+        
+        .distance-declaration-section {
+            padding: 1rem !important;
+            margin-bottom: 1rem !important;
+        }
+        
+        .distance-declaration-text {
+            padding: 0.75rem !important;
+            font-size: 0.85rem !important;
         }
     }
 
@@ -1164,12 +1255,37 @@
       }
       
       .admin-header {
-        padding: 0 1rem;
-        height: 60px;
+        padding: 0 0.75rem;
+        height: auto;
+        min-height: 60px;
+        flex-wrap: wrap;
+        gap: 0.5rem;
       }
       
       .admin-header h1 {
-        font-size: 1.25rem;
+        font-size: 0.9rem;
+        line-height: 1.2;
+        word-break: break-word;
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      
+      .admin-user {
+        flex-shrink: 0;
+        gap: 0.5rem;
+      }
+      
+      .admin-user span {
+        display: none;
+      }
+      
+      .admin-user .btn-sm {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.75rem;
+        white-space: nowrap;
       }
       
       .submissions-table {
@@ -1318,20 +1434,102 @@
       }
       
       #application-detail-view .panel {
-        padding: 1rem;
-        margin: 0.5rem;
-        max-width: calc(100vw - 1rem);
+        padding: 0.75rem;
+        margin: 0.25rem;
+        max-width: calc(100vw - 0.5rem);
       }
       
       .field-value {
         padding: 0.75rem;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         min-height: 2rem;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        white-space: pre-wrap;
+        line-height: 1.4;
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+        text-overflow: clip;
       }
       
       .field-label {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         padding-left: 0.5rem;
+      }
+      
+      /* Study Center Ultra-Small Mobile */
+      .study-responsibilities-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
+      }
+      
+      .study-responsibility-box {
+        padding: 0.5rem !important;
+        margin-bottom: 0.5rem;
+      }
+      
+      .study-responsibility-box h4 {
+        font-size: 0.8rem !important;
+        margin-bottom: 0.5rem !important;
+      }
+      
+      .study-responsibility-box ul {
+        font-size: 0.75rem !important;
+        line-height: 1.3 !important;
+        padding-left: 0.75rem !important;
+      }
+      
+      .study-terms-section {
+        padding: 0.5rem !important;
+        margin-bottom: 0.75rem !important;
+      }
+      
+      .study-declaration-section {
+        padding: 0.75rem !important;
+        margin-bottom: 0.75rem !important;
+      }
+      
+      .study-declaration-text {
+        padding: 0.5rem !important;
+        font-size: 0.8rem !important;
+      }
+      
+      /* Distance Learning Ultra-Small Mobile */
+      .distance-responsibilities-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
+      }
+      
+      .distance-responsibility-box {
+        padding: 0.5rem !important;
+        margin-bottom: 0.5rem;
+      }
+      
+      .distance-responsibility-box h4 {
+        font-size: 0.8rem !important;
+        margin-bottom: 0.5rem !important;
+      }
+      
+      .distance-responsibility-box ul {
+        font-size: 0.75rem !important;
+        line-height: 1.3 !important;
+        padding-left: 0.75rem !important;
+      }
+      
+      .distance-terms-section {
+        padding: 0.5rem !important;
+        margin-bottom: 0.75rem !important;
+      }
+      
+      .distance-declaration-section {
+        padding: 0.75rem !important;
+        margin-bottom: 0.75rem !important;
+      }
+      
+      .distance-declaration-text {
+        padding: 0.5rem !important;
+        font-size: 0.8rem !important;
       }
     }
 
@@ -1426,7 +1624,7 @@
       <h1>Nucleon Admin</h1>
       <div class="admin-user">
         <a href="index.html" class="btn-sm" style="background: var(--primary); color: var(--white); text-decoration: none; margin-right: 10px;">
-          <i class="fas fa-home"></i> Go to Main Site
+          <i class="fas fa-home"></i>main site
         </a>
         <button class="btn-sm" style="background: var(--danger); color: var(--white);" id="performLogoutBtn">
           <i class="fas fa-sign-out-alt"></i> Logout
