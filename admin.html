@@ -1859,7 +1859,7 @@
                 formData.append('username', username);
                 formData.append('password', password);
 
-                const response = await fetch('admin_login.php', {
+                const response = await fetch('../backend/admin_login.php', {
                     method: 'POST',
                     body: formData
                 });
@@ -1900,7 +1900,7 @@
         }
 
         // --- API & DATA LOADING ---
-        const API_BASE = "http://127.0.0.1:8000/api";
+        const API_BASE = "http://localhost:8000/api";
 
         async function loadSchoolProjects() {
             try {
