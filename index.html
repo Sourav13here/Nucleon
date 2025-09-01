@@ -632,18 +632,11 @@
             flex-direction: column;
             align-items: center;
             padding: 1rem 0;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            z-index: 999;
+            box-shadow: var(--shadow);
         }
 
         .nav-links.active {
             display: flex;
-        }
-
-        .nav-links a {
-            padding: 0.8rem 1rem;
-            width: 100%;
-            text-align: center;
         }
 
         /* Mobile menu link colors on primary background */
@@ -1835,13 +1828,45 @@
     .mt-4 { margin-top: var(--space-4); }
     .p-4 { padding: var(--space-4); }
     .hidden { display: none; }
-    </style>
+
+    /* ===== DIRECTOR DESK ===== */
+    .director-desk { background: var(--white); }
+    .director-desk .section-title { margin-bottom: var(--space-8); }
+    .director-desk .desk-wrapper {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        flex-wrap: wrap;
+        background: var(--white);
+        border: 1px solid var(--gray-200);
+        border-radius: var(--radius-lg);
+        padding: 1.5rem;
+        box-shadow: var(--shadow-lg);
+    }
+    .director-desk .desk-photo { flex: 0 0 auto; }
+    .director-desk .desk-photo img {
+        width: 240px;
+        height: 240px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: var(--shadow-lg);
+        border: 3px solid var(--primary);
+        background: #eee;
+    }
+    .director-desk .desk-content { flex: 1; }
+    .director-desk .desk-content h4 { margin-bottom: 0.5rem; color: var(--primary); text-align: justify; }
+    .director-desk .desk-content p { color: var(--gray-600); line-height: 1.75; text-align: justify; }
+    @media (max-width: 992px) {
+        .director-desk .desk-photo img { width: 200px; height: 200px; }
+    }
+    @media (max-width: 768px) {
+        .director-desk .desk-wrapper { flex-direction: column; text-align: center; }
+        .director-desk .desk-photo img { width: 170px; height: 170px; }
+    }
+     </style>
 </head>
 <body>
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="loader"></div>
-    </div>
+    
 
     <!-- Header -->
     <header class="header">
@@ -1854,7 +1879,7 @@
                             <span class="brand-line-1">Nucleon Coaching</span>
                             <span class="brand-line-1">Institutes</span>
                         </span>
-                        <span class="brand-tagline">Asli Padhai Yahi Pe!</span>
+                        <span class="brand-tagline">Asli Padhai Yahi Pe !!</span>
                     </span>
                 </a>
                 <ul class="nav-links">
@@ -1866,7 +1891,7 @@
                     <li><a href="partnership.html">Partnership</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
-                <button class="mobile-menIu-btn">
+                <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
                     <i class="fas fa-bars"></i>
                 </button>
             </nav>
@@ -1938,6 +1963,25 @@
             </div>
         </section>
 
+        <!-- Director Desk Section -->
+        <section id="director-desk" class="section director-desk">
+            <div class="container">
+                <div class="section-title">
+                    <span class="section-subtitle">Director Desk</span>
+                    
+                </div>
+                <div class="desk-wrapper">
+                    <div class="desk-photo">
+                        <img src="images/director.jpg" alt="Managing Director" onerror="this.onerror=null;this.src='images/principal.jpg';">
+                    </div>
+                    <div class="desk-content">
+                        <h4>At Nucleon Coaching Institute, we understand the challenges that lie ahead.</h4>
+                        <p>Our dedicated team of experienced educators is committed to providing you with the highest quality of instruction and support. We believe that every student has the potential to excel, and it is our mission to help you unlock that potential through personalized guidance, innovative teaching methods, and a nurturing environment.</p>
+                        <p class="text-primary" style="margin-top:1rem; font-weight:600;">— Dibyendu Mukherjee, Managing Director</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Faculty Members Section -->
         <section id="faculty" class="section">
@@ -2344,8 +2388,8 @@
             <div style="flex:1; min-width:200px;">
                 <h3 style="margin-bottom:15px; color:#ffff;">Contact Info</h3>
                 <p><i class="fas fa-map-marker-alt"></i> Durgapur, West Bengal</p>
-                <p><i class="fas fa-phone"></i> +91-XXXX-XXXXXX</p>
-                <p><i class="fas fa-envelope"></i> info@nucleoncoaching.com</p>
+                <p><i class="fas fa-phone"></i> +91 97072 60700 </p>
+                
             </div>
         </div>
         
@@ -2586,4 +2630,3 @@
     </script>
 </body>
 </html>
-    </style>
