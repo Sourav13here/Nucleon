@@ -135,85 +135,103 @@
         <section style="padding: 60px 20px; background: #fff;">
             <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
 
-                <!-- Section Title -->
-                <div style="margin-bottom: 40px;">
-                    <span
-                        style="display: block; font-size: 20px; color: rgb(128,0,0); font-weight: bold; margin-bottom: 8px;">
-                        Our Achievements
-                    </span>
-                    <h2 style="font-size: 32px; margin: 0; color: #222;">
-                        Numbers That Speak
-                    </h2>
+            <!-- Section Title -->
+            <div style="margin-bottom: 40px;">
+            <span
+                style="display: block; font-size: 20px; color: rgb(128,0,0); font-weight: bold; margin-bottom: 8px;">
+                Our Achievements
+            </span>
+            <h2 style="font-size: 32px; margin: 0; color: #222;">
+                Numbers That Speak
+            </h2>
+            </div>
+
+            <!-- Stats -->
+            <div style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;">
+
+            <!-- Study Centers -->
+            <div style="text-align: center; width: 200px;">
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 36px; font-weight: bold; color: rgb(21, 20, 20); border: 2px solid rgb(128,0,0); width: 200px; height: 140px; border-radius: 8px; box-shadow: 0 4px 8px rgba(128,0,0,0.4); margin: 0 auto;"
+                data-target="12">
+                <span class="stat-number">0</span>
+                <span style="font-size: 16px; color: rgb(21,20,20); font-weight: normal;">Study Centers</span>
                 </div>
+            </div>
 
-                <!-- Stats -->
-                <div style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;">
-
-                    <!-- Study Centers -->
-                    <div style="text-align: center; width: 200px;">
-                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 36px; font-weight: bold; color: rgb(21, 20, 20); border: 2px solid rgb(128,0,0); width: 200px; height: 140px; border-radius: 8px; box-shadow: 0 4px 8px rgba(128,0,0,0.4); margin: 0 auto;"
-                            data-target="40">
-                            <span class="stat-number">0+</span>
-                            <span style="font-size: 16px; color: rgb(21,20,20); font-weight: normal;">Study
-                                Centers</span>
-                        </div>
-                    </div>
-
-                    <!-- Years of Excellence -->
-                    <div style="text-align: center; width: 200px;">
-                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 36px; font-weight: bold; color: rgb(21, 20, 20); border: 2px solid rgb(128,0,0); width: 200px; height: 140px; border-radius: 8px; box-shadow: 0 4px 8px rgba(128,0,0,0.4); margin: 0 auto;"
-                            data-target="15">
-                            <span class="stat-number">0+</span>
-                            <span style="font-size: 16px; color: rgb(21,20,20); font-weight: normal;">Years of
-                                Excellence</span>
-                        </div>
-                    </div>
-
-                    <!-- Students Enrolled -->
-                    <div style="text-align: center; width: 200px;">
-                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 36px; font-weight: bold; color: rgb(21, 20, 20); border: 2px solid rgb(128,0,0); width: 200px; height: 140px; border-radius: 8px; box-shadow: 0 4px 8px rgba(128,0,0,0.4); margin: 0 auto;"
-                            data-target="10000">
-                            <span class="stat-number">0+</span>
-                            <span style="font-size: 16px; color: rgb(21,20,20); font-weight: normal;">Students
-                                Enrolled</span>
-                        </div>
-                    </div>
-
-                    <!-- Success Rate -->
-                    <div style="text-align: center; width: 200px;">
-                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 36px; font-weight: bold; color: rgb(21, 20, 20); border: 2px solid rgb(128,0,0); width: 200px; height: 140px; border-radius: 8px; box-shadow: 0 4px 8px rgba(128,0,0,0.4); margin: 0 auto;"
-                            data-target="95" data-suffix="%">
-                            <span class="stat-number">0%</span>
-                            <span style="font-size: 16px; color: rgb(21,20,20); font-weight: normal;">Success
-                                Rate</span>
-                        </div>
-                    </div>
-
+            <!-- Years of Excellence -->
+            <div style="text-align: center; width: 200px;">
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 36px; font-weight: bold; color: rgb(21, 20, 20); border: 2px solid rgb(128,0,0); width: 200px; height: 140px; border-radius: 8px; box-shadow: 0 4px 8px rgba(128,0,0,0.4); margin: 0 auto;"
+                data-target="15">
+                <span class="stat-number">0</span>
+                <span style="font-size: 16px; color: rgb(21,20,20); font-weight: normal;">Years of Excellence</span>
                 </div>
+            </div>
 
-                <!-- Inline JS for Number Animation -->
-                <script>
-                    document.querySelectorAll('[data-target]').forEach(el => {
-                        let target = +el.getAttribute("data-target");
-                        let suffix = el.getAttribute("data-suffix") || "";
-                        let numberEl = el.querySelector(".stat-number");
-                        let duration = 1500; // animation time in ms
-                        let start = null;
-                    
-                        function animateCounter(timestamp) {
-                            if (!start) start = timestamp;
-                            let progress = Math.min((timestamp - start) / duration, 1);
-                            let value = Math.floor(progress * target);
-                            numberEl.innerText = value + suffix;
-                    
-                            if (progress < 1) {
-                                requestAnimationFrame(animateCounter);
-                            }
-                        }
-                    
-                        requestAnimationFrame(animateCounter);
+            <!-- Students Enrolled -->
+            <div style="text-align: center; width: 200px;">
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 36px; font-weight: bold; color: rgb(21, 20, 20); border: 2px solid rgb(128,0,0); width: 200px; height: 140px; border-radius: 8px; box-shadow: 0 4px 8px rgba(128,0,0,0.4); margin: 0 auto;"
+                data-target="8000" data-suffix="+">
+                <span class="stat-number">0+</span>
+                <span style="font-size: 16px; color: rgb(21,20,20); font-weight: normal;">Students Enrolled</span>
+                </div>
+            </div>
+
+            <!-- Success Rate -->
+            <div style="text-align: center; width: 200px;">
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 36px; font-weight: bold; color: rgb(21, 20, 20); border: 2px solid rgb(128,0,0); width: 200px; height: 140px; border-radius: 8px; box-shadow: 0 4px 8px rgba(128,0,0,0.4); margin: 0 auto;"
+                data-target="72" data-suffix="%">
+                <span class="stat-number">0%</span>
+                <span style="font-size: 16px; color: rgb(21,20,20); font-weight: normal;">Success Rate</span>
+                </div>
+            </div>
+
+            </div>
+
+            <!-- Inline JS for Number Animation -->
+            <script>
+            function initCounters() {
+                document.querySelectorAll('[data-target]').forEach(el => {
+                let target = +el.getAttribute("data-target");
+                let suffix = el.getAttribute("data-suffix") || "";
+                let numberEl = el.querySelector(".stat-number");
+                let duration = 1500; // animation time in ms
+
+                // Reset value before animation
+                numberEl.innerText = "0" + suffix;
+
+                function animateCounter() {
+                    let start = null;
+                    function step(timestamp) {
+                    if (!start) start = timestamp;
+                    let progress = Math.min((timestamp - start) / duration, 1);
+                    let value = Math.floor(progress * target);
+                    numberEl.innerText = value.toLocaleString() + suffix; // adds commas like 8,000+
+
+                    if (progress < 1) {
+                        requestAnimationFrame(step);
+                    }
+                    }
+                    requestAnimationFrame(step);
+                }
+
+                // Use IntersectionObserver so animation runs only when visible
+                let observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter();
+                        observer.unobserve(entry.target); // run once
+                    }
                     });
-                    </script>
+                }, { threshold: 0.5 });
+
+                observer.observe(el);
+                });
+            }
+
+            // Run after DOM content is ready
+            document.addEventListener("DOMContentLoaded", initCounters);
+            </script>
+
                     
 
 
