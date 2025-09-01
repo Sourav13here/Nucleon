@@ -115,6 +115,9 @@ function toggleMobileMenu() {
 
     // Add/remove active class to header when menu is open
     header.classList.toggle('menu-open', isActive);
+
+    // Sync ARIA
+    if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', String(isActive));
 }
 
 // Close mobile menu when clicking outside
@@ -126,6 +129,7 @@ function closeMobileMenu(event) {
         icon.classList.add('fa-bars');
         document.body.style.overflow = '';
         header.classList.remove('menu-open');
+        if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', 'false');
     }
 }
 
@@ -135,6 +139,15 @@ if (mobileMenuBtn && navLinks) {
     mobileMenuBtn.addEventListener('click', (e) => {
         e.stopPropagation(); // Prevent event from bubbling to document
         toggleMobileMenu();
+    });
+
+    // Keyboard accessibility (Enter/Space)
+    mobileMenuBtn.addEventListener('keydown', (e) => {
+        const key = e.key;
+        if (key === 'Enter' || key === ' ') {
+            e.preventDefault();
+            toggleMobileMenu();
+        }
     });
 
     // Close menu when clicking outside
