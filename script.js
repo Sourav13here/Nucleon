@@ -97,6 +97,8 @@ const header = document.querySelector('.header');
 const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
 const navLinks = document.querySelector('.nav-links');
 const navLinkItems = document.querySelectorAll('.nav-links a');
+const yearSpan = document.getElementById('current-year');
+if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
 // Toggle mobile menu
 function toggleMobileMenu() {
