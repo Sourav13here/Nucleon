@@ -359,36 +359,58 @@
         }
 
         .result-btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             background: rgba(255, 255, 255, 0.2);
             color: rgb(141, 13, 13);
-            padding: 0.8rem 2rem;
+            padding: 0.95rem 2.4rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
             backdrop-filter: blur(5px);
             border: 2px solid rgb(153, 35, 35);
+            margin: 0.5rem;
+            transition: none;
         }
 
-        .result-btn:hover {
-            background: transparent;
-            border-color: rgb(125, 20, 20);
-            color: rgb(190, 20, 20);
-            transform: translateY(-3px);
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            margin-top: 1.5rem;
         }
 
-        /* Swiper Navigation */
-        .swiper-button-next,
-        .swiper-button-prev {
-            color: white !important;
-            transition: all 0.3s ease;
-            position: absolute;
-            top: 70%;
-            transform: translateY(-50%) scale(0.7);
-            width: 44px;
-            height: 44px;
-            z-index: 10;
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.9rem 2.5rem;
+            margin: 0.35rem;
+        }
+
+        .social-btn i {
+            font-size: 1rem;
+        }
+
+        @media (max-width: 640px) {
+
+            .result-btn,
+            .social-btn {
+                width: 100%;
+                max-width: none;
+                margin: 0.4rem 0;
+            }
+
+            .social-cta-card {
+                width: 100%;
+                padding: 1.25rem;
+            }
+
+            .social-btn {
+                justify-content: center;
+            }
         }
 
         .swiper-button-next {
@@ -1524,35 +1546,40 @@
             color: rgba(255, 255, 255, 0.85);
             font-size: 0.95rem;
         }
-/* --- Styles for Poster Link Button --- */
 
-.poster-cta-container {
-    /* Centers the button and adds space above it */
-    text-align: center;
-    margin-bottom: 24px;
-}
+        /* --- Styles for Poster Link Button --- */
 
-.poster-cta-btn {
-    display: inline-block; /* Gives it a block-like behavior */
-    padding: 12px 28px;
-    /* background-color: var(--primary); */
-    color: var(--primary);
-    font-family: 'Oswald', sans-serif; /* Match your heading font */
-    font-size: 1.1rem;
-    font-weight: 500;
-    
-    border-radius: var(--radius); /* Use your existing --radius */
-    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
-    transition: all 0.3s ease;
-    /* border: 2px solid var(--primary); */
-}
+        .poster-cta-container {
+            /* Centers the button and adds space above it */
+            text-align: center;
+            margin-bottom: 24px;
+        }
 
-.poster-cta-btn:hover {
-    /* background-color: var(--primary-dark); */
-    border-color: var(--primary-dark);
-    transform: translateY(-3px); /* Lifts the button slightly */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
+        .poster-cta-btn {
+            display: inline-block;
+            /* Gives it a block-like behavior */
+            padding: 12px 28px;
+            /* background-color: var(--primary); */
+            color: var(--primary);
+            font-family: 'Oswald', sans-serif;
+            /* Match your heading font */
+            font-size: 1.1rem;
+            font-weight: 500;
+
+            border-radius: var(--radius);
+            /* Use your existing --radius */
+            /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+            transition: all 0.3s ease;
+            /* border: 2px solid var(--primary); */
+        }
+
+        .poster-cta-btn:hover {
+            /* background-color: var(--primary-dark); */
+            border-color: var(--primary-dark);
+            transform: translateY(-3px);
+            /* Lifts the button slightly */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
 
         .contact-item i {
             color: var(--secondary);
@@ -1711,22 +1738,29 @@
             padding-left: 100%;
             /* start off-screen to the right */
         }
+
         .notice-marquee:hover .marquee-track {
             animation-play-state: paused;
         }
-/* --- Style for the link inside the marquee --- */
-.marquee-link {
-    font-weight: 600; /* Make it bold like the "Notice:" */
-    color: #a35f00;   /* Match the 'Notice:' color */
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    padding: 0 0.25rem; /* Add a little horizontal space */
-    transition: color 0.2s ease;
-}
 
-.marquee-link:hover {
-    color: var(--primary-dark); /* Use your site's dark primary on hover */
-}
+        /* --- Style for the link inside the marquee --- */
+        .marquee-link {
+            font-weight: 600;
+            /* Make it bold like the "Notice:" */
+            color: #a35f00;
+            /* Match the 'Notice:' color */
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            padding: 0 0.25rem;
+            /* Add a little horizontal space */
+            transition: color 0.2s ease;
+        }
+
+        .marquee-link:hover {
+            color: var(--primary-dark);
+            /* Use your site's dark primary on hover */
+        }
+
         .notice-marquee strong {
             color: #a35f00;
         }
@@ -2267,18 +2301,18 @@
                 <div class="notice-marquee" role="status" aria-live="polite">
                     <div class="marquee-track">
                         <strong>Notice:</strong> Admissions open for JEE/NEET Foundation & Crash Courses · For
-                        Scholarship Test, contact Institute · 
-                        <a href="posters.html" class="marquee-link">Click here to see our scholarship posters</a> · 
+                        Scholarship Test, contact Institute ·
+                        <a href="posters.html" class="marquee-link">Click here to see our scholarship posters</a> ·
                         Contact us for partnership programs ·
-                        
+
                         <strong>Notice:</strong> Admissions open for JEE/NEET Foundation & Crash Courses · For
-                        Scholarship Test, contact Institute · 
-                        <a href="posters.html" class="marquee-link">Click here to see our scholarship posters</a> · 
+                        Scholarship Test, contact Institute ·
+                        <a href="posters.html" class="marquee-link">Click here to see our scholarship posters</a> ·
                         Contact us for partnership programs ·
                     </div>
                 </div>
 
-                </div>
+            </div>
         </section>
 
         <!-- Quote Section -->
@@ -2289,8 +2323,72 @@
                     From Foundation to Competitive Exams"
                 </div>
                 <div class="container" style="text-align:center;">
-                    <a id="results-cta" href="posters.html" class="result-btn">SCHOLARSHIP TEST DETAILS</a><br><br>
-                    <a id="results-cta" href="results.html" class="result-btn">SEE OUR RESULTS</a>
+                    <!-- Scholarship Test Section -->
+                    <div class="scholarship-action-card"
+                        style="background: linear-gradient(135deg, #fff5f5 0%, #fff 100%); border: 2px solid var(--primary); border-radius: 1rem; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 4px 20px rgba(128, 0, 0, 0.1);">
+                        <h4
+                            style="font-family: 'Oswald', sans-serif; font-size: 1.5rem; color: var(--primary); margin-bottom: 1rem;">
+                            <i class="fas fa-graduation-cap" style="margin-right: 0.5rem;"></i>
+                            Scholarship Test
+                        </h4>
+                        <p
+                            style="color: #666; margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto;">
+                            Take our scholarship test and get up to 100% fee waiver! Check out the details and prize
+                            distribution.
+                        </p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+                            <a href="posters.html" class="result-btn"
+                                style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                                <i class="fas fa-file-alt"></i>
+                                Scholarship Test Details
+                            </a>
+                            <a href="photos.html" class="result-btn"
+                                style="display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, #a00000 0%, #600000 100%); border-color: #800000; color: #fff;">
+                                <i class="fas fa-trophy"></i>
+                                Prize Distribution
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Results Button -->
+                    <a href="results.html" class="result-btn"
+                        style="display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem;">
+                        <i class="fas fa-chart-line"></i>
+                        See Our Results
+                    </a>
+
+                    <!-- Social Media Section -->
+                    <div class="social-cta-card" aria-label="Connect with us on social media"
+                        style="background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%); border-radius: 1rem; padding: 2rem; border: 1px solid #e0e0e0;">
+                        <h4
+                            style="font-family: 'Oswald', sans-serif; font-size: 1.3rem; color: var(--gray-900); margin-bottom: 0.5rem;">
+                            <i class="fas fa-users" style="color: var(--primary); margin-right: 0.5rem;"></i>
+                            Join Our Community
+                        </h4>
+                        <p style="color: #666; margin-bottom: 1.5rem;">Follow us for updates, tips, and success stories
+                        </p>
+                        <div class="social-links"
+                            style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+                            <a href="https://youtube.com/@nucleoncoachinginstitute?si=obmoDLDB2ZQrVi7X"
+                                class="result-btn social-btn" target="_blank" rel="noopener noreferrer"
+                                style="background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%); border-color: #FF0000; display: inline-flex; align-items: center; gap: 0.5rem; color: #fff;">
+                                <i class="fab fa-youtube"></i>
+                                YouTube
+                            </a>
+                            <a href="https://www.facebook.com/share/1BjMaSV2YM/" class="result-btn social-btn"
+                                target="_blank" rel="noopener noreferrer"
+                                style="background: linear-gradient(135deg, #1877F2 0%, #0D5DC5 100%); border-color: #1877F2; display: inline-flex; align-items: center; gap: 0.5rem; color: #fff;">
+                                <i class="fab fa-facebook-f"></i>
+                                Facebook
+                            </a>
+                            <a href="https://www.instagram.com/nucleon66?igsh=cGhvczZ6end5M3hq"
+                                class="result-btn social-btn" target="_blank" rel="noopener noreferrer"
+                                style="background: linear-gradient(135deg, #E4405F 0%, #C13584 100%); border-color: #E4405F; display: inline-flex; align-items: center; gap: 0.5rem; color: #fff;">
+                                <i class="fab fa-instagram"></i>
+                                Instagram
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -2654,17 +2752,19 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <figure class="gallery-item">
-                                <img src="images/1.jpg" alt="Students in classroom" loading="lazy">
+                                <img src="images/photos/Photo from dibyendu mukherjee(12).jpg"
+                                    alt="Students in classroom" loading="lazy">
                             </figure>
                         </div>
                         <div class="swiper-slide">
                             <figure class="gallery-item">
-                                <img src="images/5.jpg" alt="Faculty guiding students" loading="lazy">
+                                <img src="images/10.jpg" alt="Faculty guiding students" loading="lazy">
                             </figure>
                         </div>
                         <div class="swiper-slide">
                             <figure class="gallery-item">
-                                <img src="images/10.jpg" alt="Award ceremony" loading="lazy">
+                                <img src="images/photos/Photo from dibyendu mukherjee(21).jpg" alt="Award ceremony"
+                                    loading="lazy">
                             </figure>
                         </div>
                         <div class="swiper-slide">
