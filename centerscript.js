@@ -1,16 +1,18 @@
 // Mobile Menu Toggle Functionality
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
     const header = document.querySelector('.header');
+    const yearSpan = document.getElementById('current-year');
+    if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
     // Check if elements exist before adding event listeners
     if (mobileMenuBtn && navLinks && header) {
         // Mobile Menu Toggle
-        mobileMenuBtn.addEventListener('click', function() {
+        mobileMenuBtn.addEventListener('click', function () {
             navLinks.classList.toggle('active');
             header.classList.toggle('menu-open');
-            
+
             const icon = mobileMenuBtn.querySelector('i');
             if (icon) {
                 icon.classList.toggle('fa-bars');
@@ -20,10 +22,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Close menu when clicking on navigation links
         document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', function() {
+            link.addEventListener('click', function () {
                 navLinks.classList.remove('active');
                 header.classList.remove('menu-open');
-                
+
                 const icon = mobileMenuBtn.querySelector('i');
                 if (icon) {
                     icon.classList.add('fa-bars');
@@ -33,11 +35,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Close menu when clicking outside
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (!mobileMenuBtn.contains(e.target) && !navLinks.contains(e.target)) {
                 navLinks.classList.remove('active');
                 header.classList.remove('menu-open');
-                
+
                 const icon = mobileMenuBtn.querySelector('i');
                 if (icon) {
                     icon.classList.add('fa-bars');
@@ -47,11 +49,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Close menu on window resize (when switching from mobile to desktop)
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             if (window.innerWidth > 768) {
                 navLinks.classList.remove('active');
                 header.classList.remove('menu-open');
-                
+
                 const icon = mobileMenuBtn.querySelector('i');
                 if (icon) {
                     icon.classList.add('fa-bars');
@@ -96,7 +98,7 @@ window.addEventListener('scroll', function () {
 });
 
 // Back to top button click event
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const backToTopBtn = document.getElementById('backToTop');
     if (backToTopBtn) {
         backToTopBtn.addEventListener('click', function (e) {
